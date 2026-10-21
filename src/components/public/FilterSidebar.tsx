@@ -7,6 +7,7 @@ import { Filter, RotateCcw, X } from 'lucide-react'
 interface FilterSidebarProps {
   onCloseMobile?: () => void
   totalCount?: number
+  defaultListingType?: string
 }
 
 const COMMON_AMENITIES = [
@@ -21,12 +22,14 @@ const COMMON_AMENITIES = [
   'Golf Course View',
 ]
 
-export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps) {
+export function FilterSidebar({ onCloseMobile, totalCount, defaultListingType }: FilterSidebarProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
   const [query, setQuery] = useState(searchParams.get('query') || '')
-  const [listingType, setListingType] = useState(searchParams.get('listing_type') || 'all')
+  const [listingType, setListingType] = useState(
+    searchParams.get('listing_type') || defaultListingType || 'all'
+  )
   const [propertyType, setPropertyType] = useState(searchParams.get('property_type') || 'all')
   const [bhk, setBhk] = useState(searchParams.get('bhk') || 'all')
   const [locality, setLocality] = useState(searchParams.get('locality') || 'all')
@@ -53,13 +56,14 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
 
     selectedAmenities.forEach((a) => params.append('amenities', a))
 
-    router.push(`/properties?${params.toString()}`)
+    const targetUrl = defaultListingType === 'rent' ? '/rent' : defaultListingType === 'sale' ? '/buy' : '/properties'
+    router.push(`${targetUrl}?${params.toString()}`)
     if (onCloseMobile) onCloseMobile()
   }
 
   const resetFilters = () => {
     setQuery('')
-    setListingType('all')
+    setListingType(defaultListingType || 'all')
     setPropertyType('all')
     setBhk('all')
     setLocality('all')
@@ -68,7 +72,8 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
     setMinPrice('')
     setMaxPrice('')
     setSelectedAmenities([])
-    router.push('/properties')
+    const targetUrl = defaultListingType === 'rent' ? '/rent' : defaultListingType === 'sale' ? '/buy' : '/properties'
+    router.push(targetUrl)
     if (onCloseMobile) onCloseMobile()
   }
 
@@ -79,14 +84,14 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 space-y-6">
+    <div className="bg-white rounded-3xl border border-[#e8e2d5] shadow-luxury p-5 sm:p-6 space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+      <div className="flex items-center justify-between pb-4 border-b border-stone-100">
         <div className="flex items-center gap-2">
-          <Filter className="w-5 h-5 text-sky-600" />
-          <h2 className="font-bold text-slate-900 text-base">Filters</h2>
+          <Filter className="w-5 h-5 text-[#b38b42]" />
+          <h2 className="font-serif font-bold text-[#0c0f14] text-base">Filters</h2>
           {totalCount !== undefined && (
-            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-semibold">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-[#f5f1e9] text-[#b38b42] font-bold">
               {totalCount}
             </span>
           )}
@@ -96,15 +101,15 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
           <button
             type="button"
             onClick={resetFilters}
-            className="flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors"
+            className="flex items-center gap-1 text-xs font-semibold text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-3.5 h-3.5 text-[#b38b42]" />
             Reset
           </button>
           {onCloseMobile && (
             <button
               onClick={onCloseMobile}
-              className="lg:hidden p-1 text-slate-400 hover:text-slate-700"
+              className="lg:hidden p-1 text-stone-400 hover:text-stone-700"
             >
               <X className="w-5 h-5" />
             </button>
@@ -114,49 +119,51 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
 
       {/* Keyword Search */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
           Search Keyword
         </label>
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="e.g. Godrej, Central Park, 3 BHK..."
-          className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500"
+          placeholder="e.g. Godrej, Sai Crystal, Golf..."
+          className="w-full px-3 py-2 text-xs sm:text-sm bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
         />
       </div>
 
-      {/* Buy / Rent */}
-      <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-          Listing Type
-        </label>
-        <div className="grid grid-cols-3 gap-1 bg-slate-100 p-1 rounded-xl">
-          {[
-            { label: 'All', value: 'all' },
-            { label: 'Buy', value: 'sale' },
-            { label: 'Rent', value: 'rent' },
-          ].map((item) => (
-            <button
-              key={item.value}
-              type="button"
-              onClick={() => setListingType(item.value)}
-              className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                listingType === item.value
-                  ? 'bg-white text-slate-900 shadow-sm font-bold'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+      {/* Buy / Rent Pills */}
+      {!defaultListingType && (
+        <div className="space-y-1.5">
+          <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
+            Listing Purpose
+          </label>
+          <div className="grid grid-cols-3 gap-1 bg-[#f4efe6] p-1 rounded-xl">
+            {[
+              { label: 'All', value: 'all' },
+              { label: 'Buy', value: 'sale' },
+              { label: 'Rent', value: 'rent' },
+            ].map((item) => (
+              <button
+                key={item.value}
+                type="button"
+                onClick={() => setListingType(item.value)}
+                className={`py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                  listingType === item.value
+                    ? 'bg-[#0c0f14] text-white shadow-xs font-bold'
+                    : 'text-stone-600 hover:text-stone-900'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* BHK Config */}
+      {/* BHK Config Pills */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-          BHK Config
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          Configuration (BHK)
         </label>
         <div className="flex flex-wrap gap-1.5">
           {['all', '1', '2', '3', '4'].map((val) => (
@@ -164,13 +171,13 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
               key={val}
               type="button"
               onClick={() => setBhk(val)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                 bhk === val
-                  ? 'bg-sky-600 text-white border-sky-600 shadow-sm'
-                  : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  ? 'bg-[#0c0f14] text-white border-[#0c0f14] shadow-xs'
+                  : 'bg-[#fbf9f5] text-stone-700 border-[#e8e2d5] hover:bg-[#f4efe6]'
               }`}
             >
-              {val === 'all' ? 'Any BHK' : val === '4' ? '4+ BHK' : `${val} BHK`}
+              {val === 'all' ? 'Any' : val === '4' ? '4+ BHK' : `${val} BHK`}
             </button>
           ))}
         </div>
@@ -178,13 +185,13 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
 
       {/* Locality */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
           Locality
         </label>
         <select
           value={locality}
           onChange={(e) => setLocality(e.target.value)}
-          className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium text-slate-800"
+          className="w-full px-3 py-2 text-xs sm:text-sm bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] font-medium text-[#0c0f14]"
         >
           <option value="all">All Localities</option>
           <option value="Panvel">Panvel</option>
@@ -194,12 +201,34 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
           <option value="Seawoods">Seawoods</option>
           <option value="Belapur">CBD Belapur</option>
           <option value="New Panvel">New Panvel</option>
+          <option value="Ulwe">Ulwe</option>
+          <option value="Kalamboli">Kalamboli</option>
+        </select>
+      </div>
+
+      {/* Property Type Pills */}
+      <div className="space-y-1.5">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
+          Property Type
+        </label>
+        <select
+          value={propertyType}
+          onChange={(e) => setPropertyType(e.target.value)}
+          className="w-full px-3 py-2 text-xs sm:text-sm bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] font-medium text-[#0c0f14]"
+        >
+          <option value="all">All Types</option>
+          <option value="flat">Apartments / Flats</option>
+          <option value="penthouse">Penthouses</option>
+          <option value="villa">Row Houses / Villas</option>
+          <option value="plot">Plots / Land</option>
+          <option value="shop">Retail Shops</option>
+          <option value="office">Commercial Offices</option>
         </select>
       </div>
 
       {/* Budget Min / Max */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
           Budget Range (₹)
         </label>
         <div className="grid grid-cols-2 gap-2">
@@ -208,27 +237,27 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
             placeholder="Min (e.g. 4000000)"
-            className="w-full px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="w-full px-2.5 py-1.5 text-xs bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
           />
           <input
             type="number"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
             placeholder="Max (e.g. 15000000)"
-            className="w-full px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="w-full px-2.5 py-1.5 text-xs bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
           />
         </div>
       </div>
 
       {/* Furnishing */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
           Furnishing
         </label>
         <select
           value={furnishing}
           onChange={(e) => setFurnishing(e.target.value)}
-          className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium text-slate-800"
+          className="w-full px-3 py-2 text-xs sm:text-sm bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] font-medium text-[#0c0f14]"
         >
           <option value="all">Any Furnishing</option>
           <option value="unfurnished">Unfurnished</option>
@@ -239,13 +268,13 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
 
       {/* Sort By */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
           Sort By
         </label>
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value)}
-          className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium text-slate-800"
+          className="w-full px-3 py-2 text-xs sm:text-sm bg-[#fbf9f5] border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] font-medium text-[#0c0f14]"
         >
           <option value="newest">Newest Listed</option>
           <option value="price_asc">Price: Low to High</option>
@@ -256,20 +285,20 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
 
       {/* Amenities Multi-Check */}
       <div className="space-y-2">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600">
           Amenities
         </label>
         <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1">
           {COMMON_AMENITIES.map((amenity) => (
             <label
               key={amenity}
-              className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer hover:text-slate-900"
+              className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer hover:text-[#0c0f14]"
             >
               <input
                 type="checkbox"
                 checked={selectedAmenities.includes(amenity)}
                 onChange={() => toggleAmenity(amenity)}
-                className="w-4 h-4 rounded text-sky-600 focus:ring-sky-500 border-slate-300"
+                className="w-4 h-4 rounded text-[#0c0f14] focus:ring-[#c5a059] border-[#e8e2d5]"
               />
               <span>{amenity}</span>
             </label>
@@ -282,7 +311,7 @@ export function FilterSidebar({ onCloseMobile, totalCount }: FilterSidebarProps)
         <button
           type="button"
           onClick={applyFilters}
-          className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-xl shadow-md transition-all active:scale-98"
+          className="w-full py-3 px-4 bg-[#0c0f14] hover:bg-[#1a202c] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md transition-all active:scale-98 cursor-pointer"
         >
           Apply Filters
         </button>

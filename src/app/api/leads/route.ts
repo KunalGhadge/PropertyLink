@@ -47,13 +47,17 @@ export async function POST(request: Request) {
     // 4. Save to runtime store
     const newLead = createLead({
       name: validated.data.name,
-      phone: validated.data.phone,
+      phone: validated.data.phone || undefined,
       email: validated.data.email || undefined,
       message: validated.data.message || undefined,
+      budget_range: validated.data.budget_range || undefined,
       budget_min: validated.data.budget_min || undefined,
       budget_max: validated.data.budget_max || undefined,
       preferred_location: validated.data.preferred_location || undefined,
       property_id: validated.data.property_id || undefined,
+      preferred_contact: validated.data.preferred_contact || undefined,
+      listing_purpose: validated.data.listing_purpose || undefined,
+      property_type: validated.data.property_type || undefined,
       source: validated.data.source,
     })
 

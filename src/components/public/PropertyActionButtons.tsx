@@ -13,6 +13,7 @@ interface PropertyActionButtonsProps {
   locality: string
   phone: string
   whatsappNumber: string
+  propertySlug?: string
   brochureUrl?: string | null
   floorPlanUrl?: string | null
   ownerName?: string | null
@@ -27,6 +28,7 @@ export function PropertyActionButtons({
   locality,
   phone,
   whatsappNumber,
+  propertySlug,
   brochureUrl,
   floorPlanUrl,
   ownerName,
@@ -61,7 +63,8 @@ export function PropertyActionButtons({
           price={priceFormatted}
           location={locality}
           phone={whatsappNumber}
-          propertyUrl={typeof window !== 'undefined' ? window.location.href : ''}
+          propertySlug={propertySlug}
+          propertyUrl={propertySlug ? `/property/${propertySlug}` : undefined}
           label="Enquire on WhatsApp"
           size="lg"
           className="w-full shadow-md"
@@ -73,13 +76,13 @@ export function PropertyActionButtons({
             href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
             className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-98"
           >
-            <Phone className="w-4 h-4 text-sky-400" />
+            <Phone className="w-4 h-4 text-[#c5a059]" />
             <span>Call Broker</span>
           </a>
 
           <button
             onClick={() => setIsVisitModalOpen(true)}
-            className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-98"
+            className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-[#b38b42] hover:bg-[#9a7532] text-white font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-98"
           >
             <Calendar className="w-4 h-4" />
             <span>Book Visit</span>

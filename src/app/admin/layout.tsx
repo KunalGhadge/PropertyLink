@@ -20,11 +20,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (path.startsWith('/admin/properties/new')) return 'Create New Property'
     if (path.includes('/edit')) return 'Edit Property'
     if (path.startsWith('/admin/properties')) return 'Manage Properties'
-    if (path.startsWith('/admin/leads')) return 'Leads & Customer Pipeline'
+    if (path.startsWith('/admin/leads') || path.startsWith('/admin/enquiries')) return 'Leads & Enquiries Pipeline'
     if (path.startsWith('/admin/site-visits')) return 'Site Visits Schedule'
     if (path.startsWith('/admin/analytics')) return 'Analytics & Conversion'
     if (path.startsWith('/admin/settings')) return 'Site Customization & Branding'
     if (path.startsWith('/admin/team')) return 'Team & Agents Management'
+    if (path.startsWith('/admin/guide')) return 'Broker Onboarding & Operations Guide'
     return 'Broker Portal'
   }
 

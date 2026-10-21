@@ -10,6 +10,7 @@ interface WhatsAppButtonProps {
   price?: string
   location?: string
   propertyUrl?: string
+  propertySlug?: string
   customMessage?: string
   propertyId?: string
   variant?: 'primary' | 'secondary' | 'icon' | 'floating'
@@ -24,6 +25,7 @@ export function WhatsAppButton({
   price,
   location,
   propertyUrl,
+  propertySlug,
   customMessage,
   propertyId,
   variant = 'primary',
@@ -31,7 +33,7 @@ export function WhatsAppButton({
   label = 'WhatsApp',
   className,
 }: WhatsAppButtonProps) {
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // If propertyId is present, track click event
     if (propertyId) {
       try {
@@ -47,13 +49,35 @@ export function WhatsAppButton({
         // non-blocking
       }
     }
+
+    // Dynamically upgrade relative URL to full URL upon user click without causing SSR hydration mismatch
+    if (typeof window !== 'undefined') {
+      const fullUrl = propertySlug
+        ? `${window.location.origin}/property/${propertySlug}`
+        : propertyUrl && propertyUrl.startsWith('/')
+        ? `${window.location.origin}${propertyUrl}`
+        : propertyUrl
+
+      if (fullUrl && fullUrl !== propertyUrl) {
+        const dynamicUrl = buildWhatsAppUrl(phone, {
+          propertyTitle,
+          price,
+          location,
+          propertyUrl: fullUrl,
+          customMessage,
+        })
+        e.currentTarget.href = dynamicUrl
+      }
+    }
   }
+
+  const resolvedPropertyUrl = propertyUrl || (propertySlug ? `/property/${propertySlug}` : undefined)
 
   const url = buildWhatsAppUrl(phone, {
     propertyTitle,
     price,
     location,
-    propertyUrl,
+    propertyUrl: resolvedPropertyUrl,
     customMessage,
   })
 

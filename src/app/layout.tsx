@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans } from 'next/font/google'
+import { Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { QueryProvider } from '@/components/providers/QueryProvider'
 
@@ -7,6 +7,12 @@ const fontSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
+})
+
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
 })
 
 export const viewport: Viewport = {
@@ -50,8 +56,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={fontSans.variable}>
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased font-sans">
+    <html lang="en" className={`${fontSans.variable} ${fontSerif.variable}`}>
+      <body className="min-h-screen bg-[#fdfbf7] text-[#0c0f14] antialiased font-sans selection:bg-[#c5a059]/20 selection:text-[#0c0f14]">
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

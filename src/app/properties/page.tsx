@@ -46,28 +46,28 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
   })
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-[#fdfbf7]">
       <Navbar settings={settings} />
 
       {/* Header Banner */}
-      <div className="pt-24 pb-8 sm:pb-12 bg-slate-900 text-white">
+      <div className="pt-28 pb-10 sm:pb-14 bg-[#0c0f14] text-white border-b border-[#c5a059]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <span className="text-xs font-bold text-sky-400 uppercase tracking-wider block">
-                Navi Mumbai Real Estate Directory
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2">
+              <span className="text-xs font-bold text-[#c5a059] uppercase tracking-wider block">
+                Panvel & Navi Mumbai Real Estate Portfolio
               </span>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
-                {locality ? `Properties in ${locality}` : 'All Verified Properties'}
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight">
+                {locality ? `Verified Properties in ${locality}` : 'All Verified Properties'}
               </h1>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                Showing {properties.length} verified listings with direct developer pricing and zero buyer brokerage.
+              <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-2xl font-normal">
+                Showing {properties.length} verified listings with 100% legal title scrutiny, transparent developer pricing, and zero buyer brokerage on new launches.
               </p>
             </div>
 
             <WhatsAppButton
               phone={settings.whatsapp_number}
-              label="Send Custom Requirement"
+              label="Share Requirement on WhatsApp"
               size="md"
               className="self-start md:self-auto"
             />
@@ -76,7 +76,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
       </div>
 
       {/* Main Content Layout: Sidebar + Grid */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar (Sticky on desktop) */}
           <div className="lg:col-span-1">
@@ -88,13 +88,13 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
           {/* Properties Grid */}
           <div className="lg:col-span-3 space-y-6">
             {/* Quick Filter Active Tags */}
-            <div className="flex items-center justify-between bg-white px-4 py-3 rounded-2xl border border-slate-200/80 shadow-sm text-xs text-slate-600">
-              <span className="font-semibold text-slate-900">
-                {properties.length} properties found
+            <div className="flex items-center justify-between bg-white px-5 py-3.5 rounded-2xl border border-[#e8e2d5] shadow-xs text-xs text-stone-600">
+              <span className="font-serif font-bold text-[#0c0f14] text-sm">
+                {properties.length} {properties.length === 1 ? 'property' : 'properties'} found
               </span>
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">Sort:</span>
-                <span className="font-bold text-slate-800 capitalize">
+                <span className="text-stone-400">Sort:</span>
+                <span className="font-bold text-[#0c0f14] capitalize">
                   {sort === 'price_asc'
                     ? 'Price: Low to High'
                     : sort === 'price_desc'
@@ -115,29 +115,29 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
               </div>
             ) : (
               /* Empty State with WhatsApp fallback */
-              <div className="bg-white rounded-3xl border border-slate-200/90 p-8 sm:p-12 text-center space-y-5 shadow-sm">
-                <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+              <div className="bg-white rounded-3xl border border-[#e8e2d5] p-8 sm:p-12 text-center space-y-5 shadow-xs">
+                <div className="w-16 h-16 rounded-full bg-[#f5f1e9] flex items-center justify-center mx-auto text-[#b38b42]">
                   <Search className="w-8 h-8" />
                 </div>
                 <div className="max-w-md mx-auto space-y-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+                  <h3 className="text-xl font-serif font-bold text-[#0c0f14]">
                     No properties match your exact filters
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500">
-                    We frequently have off-market resale inventory and unlisted pre-launch units in Panvel and Kharghar.
+                  <p className="text-xs sm:text-sm text-stone-600">
+                    We frequently have off-market resale inventory and unlisted pre-launch units in Panvel and Kharghar. Share your requirement and we will send suitable options on WhatsApp.
                   </p>
                 </div>
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <Link
                     href="/properties"
-                    className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
+                    className="px-5 py-2.5 rounded-xl bg-[#f5f1e9] hover:bg-[#ede7dc] text-[#0c0f14] text-xs font-bold transition-colors"
                   >
                     Clear All Filters
                   </Link>
                   <WhatsAppButton
                     phone={settings.whatsapp_number}
                     label="Send Requirement on WhatsApp"
-                    size="sm"
+                    size="md"
                   />
                 </div>
               </div>
@@ -146,6 +146,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
         </div>
       </main>
 
+      {/* Floating Sticky Mobile WhatsApp Button */}
       <WhatsAppButton
         phone={settings.whatsapp_number}
         variant="floating"

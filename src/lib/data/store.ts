@@ -213,6 +213,32 @@ export function deleteProperty(id: string): boolean {
   return true
 }
 
+export function softDeleteProperty(id: string): boolean {
+  const prop = state.properties.find((p) => p.id === id)
+  if (!prop) return false
+  prop.status = 'hidden'
+  prop.deleted_at = new Date().toISOString()
+  prop.updated_at = new Date().toISOString()
+  return true
+}
+
+export function restoreProperty(id: string): boolean {
+  const prop = state.properties.find((p) => p.id === id)
+  if (!prop) return false
+  prop.status = 'available'
+  prop.deleted_at = null
+  prop.updated_at = new Date().toISOString()
+  return true
+}
+
+export function markPropertyAsSold(id: string): boolean {
+  const prop = state.properties.find((p) => p.id === id)
+  if (!prop) return false
+  prop.status = 'sold'
+  prop.updated_at = new Date().toISOString()
+  return true
+}
+
 export function duplicateProperty(id: string): PropertyWithImages | null {
   const original = state.properties.find((p) => p.id === id)
   if (!original) return null
@@ -243,27 +269,31 @@ export function getLeads(): Lead[] {
 
 export function createLead(leadData: {
   name: string
-  phone: string
+  phone?: string
   email?: string
   message?: string
+  budget_range?: string
   budget_min?: number
   budget_max?: number
   preferred_location?: string
   property_id?: string
-  source?: 'website_form' | 'whatsapp' | 'property_page' | 'landing_page' | 'manual'
+  preferred_contact?: string
+  listing_purpose?: string
+  property_type?: string
+  source?: string
 }): Lead {
   const newLead: Lead = {
     id: `lead-${Date.now()}`,
     agency_id: state.agency.id,
     property_id: leadData.property_id || null,
     name: leadData.name,
-    phone: leadData.phone,
+    phone: leadData.phone || '',
     email: leadData.email || null,
-    message: leadData.message || null,
+    message: leadData.message || (leadData.budget_range ? `Budget: ${leadData.budget_range} | Purpose: ${leadData.listing_purpose || 'buy'} | Type: ${leadData.property_type || 'any'}` : null),
     budget_min: leadData.budget_min || null,
     budget_max: leadData.budget_max || null,
     preferred_location: leadData.preferred_location || null,
-    source: leadData.source || 'website_form',
+    source: (leadData.source as any) || 'website_form',
     status: 'new',
     assigned_to: null,
     notes: null,

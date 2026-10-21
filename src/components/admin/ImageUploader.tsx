@@ -81,7 +81,7 @@ export function ImageUploader({ images, onChange }: ImageUploaderProps) {
             value={newUrl}
             onChange={(e) => setNewUrl(e.target.value)}
             placeholder="Paste public image URL (or upload to Supabase storage)..."
-            className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium"
+            className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] font-medium"
           />
         </div>
         <button
@@ -89,7 +89,7 @@ export function ImageUploader({ images, onChange }: ImageUploaderProps) {
           onClick={handleAddUrl}
           className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 text-[#c5a059]" />
           <span>Add Image</span>
         </button>
       </div>
@@ -101,7 +101,7 @@ export function ImageUploader({ images, onChange }: ImageUploaderProps) {
             <div
               key={img.id || idx}
               className={`relative aspect-[16/10] rounded-2xl overflow-hidden border-2 bg-slate-100 group shadow-sm transition-all ${
-                img.is_cover ? 'border-sky-600 ring-2 ring-sky-500/20' : 'border-slate-200'
+                img.is_cover ? 'border-[#c5a059] ring-2 ring-[#c5a059]/30' : 'border-slate-200'
               }`}
             >
               <Image
@@ -114,7 +114,7 @@ export function ImageUploader({ images, onChange }: ImageUploaderProps) {
 
               {/* Cover Badge */}
               {img.is_cover && (
-                <div className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md bg-sky-600 text-white text-[10px] font-bold shadow-md flex items-center gap-1">
+                <div className="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md bg-[#0c0f14] text-[#c5a059] text-[10px] font-bold shadow-md flex items-center gap-1 border border-[#c5a059]/40">
                   <Star className="w-3 h-3 fill-current" />
                   <span>Cover</span>
                 </div>

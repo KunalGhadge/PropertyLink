@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   ChevronRight,
   LogOut,
+  BookOpen,
 } from 'lucide-react'
 
 interface AdminSidebarProps {
@@ -30,11 +31,12 @@ export function AdminSidebar({
   const navItems = [
     { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
     { label: 'Properties', href: '/admin/properties', icon: Building2 },
-    { label: 'Leads & CRM', href: '/admin/leads', icon: Users2 },
+    { label: 'Enquiries', href: '/admin/enquiries', icon: Users2 },
     { label: 'Site Visits', href: '/admin/site-visits', icon: Calendar },
     { label: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
     { label: 'Site Settings', href: '/admin/settings', icon: Settings },
     { label: 'Team & Agents', href: '/admin/team', icon: UserCheck },
+    { label: 'Broker Guide', href: '/admin/guide', icon: BookOpen },
   ]
 
   return (
@@ -42,16 +44,16 @@ export function AdminSidebar({
       <div className="p-5 space-y-6">
         {/* Brand Header */}
         <div className="flex items-center gap-3 pb-5 border-b border-slate-800">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white font-black shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#b38b42] to-[#c5a059] flex items-center justify-center text-[#0c0f14] font-black shadow-md font-serif text-lg">
             PL
           </div>
           <div className="overflow-hidden">
-            <span className="font-bold text-white text-sm truncate block">
+            <span className="font-bold text-white text-sm truncate block font-serif">
               {agencyName}
             </span>
-            <span className="text-[10px] uppercase font-bold text-sky-400 tracking-wider flex items-center gap-1">
+            <span className="text-[10px] uppercase font-bold text-[#c5a059] tracking-wider flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Broker Portal
+              Broker Operations
             </span>
           </div>
         </div>
@@ -67,15 +69,15 @@ export function AdminSidebar({
                 href={item.href}
                 className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-600/20'
+                    ? 'bg-[#c5a059] text-[#0c0f14] font-bold shadow-md shadow-[#c5a059]/20'
                     : 'text-slate-400 hover:text-white hover:bg-slate-900'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#0c0f14]' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
                 </div>
-                {isActive && <ChevronRight className="w-3.5 h-3.5 text-white/80" />}
+                {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#0c0f14]/80" />}
               </Link>
             )
           })}
@@ -90,7 +92,7 @@ export function AdminSidebar({
           className="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-colors"
         >
           <span className="flex items-center gap-2">
-            <ExternalLink className="w-3.5 h-3.5 text-sky-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-[#c5a059]" />
             View Public Site
           </span>
           <span className="text-[10px] text-slate-500 font-normal">Live ↗</span>

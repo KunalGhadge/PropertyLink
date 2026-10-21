@@ -24,7 +24,7 @@ export function AnalyticsChart({ trendData }: AnalyticsChartProps) {
         </div>
         <div className="flex items-center gap-4 text-xs font-semibold">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-sky-500" />
+            <span className="w-3 h-3 rounded-full bg-[#c5a059]" />
             <span className="text-slate-600">Views</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -52,7 +52,7 @@ export function AnalyticsChart({ trendData }: AnalyticsChartProps) {
                 {/* Views Bar */}
                 <div
                   style={{ height: `${heightPercent}%` }}
-                  className="w-1/2 max-w-[28px] bg-gradient-to-t from-sky-600 to-sky-400 rounded-t-lg transition-all group-hover:brightness-110 shadow-xs"
+                  className="w-1/2 max-w-[28px] bg-gradient-to-t from-[#b38b42] to-[#c5a059] rounded-t-lg transition-all group-hover:brightness-110 shadow-xs"
                 />
                 {/* Leads Bar */}
                 <div
@@ -79,7 +79,7 @@ interface DistributionChartProps {
 
 export function DistributionChart({ data, title, subtitle }: DistributionChartProps) {
   const total = Object.values(data).reduce((sum, v) => sum + v, 0) || 1
-  const colors = ['#0284C7', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#64748B']
+  const colors = ['#c5a059', '#10b981', '#b38b42', '#059669', '#d97706', '#475569']
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm space-y-4">

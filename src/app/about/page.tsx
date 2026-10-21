@@ -46,6 +46,7 @@ export default function AboutPage() {
                 src={settings.broker_photo_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80'}
                 alt={settings.broker_name || 'Founder'}
                 fill
+                sizes="(max-width: 768px) 100vw, 384px"
                 className="object-cover"
               />
             </div>
@@ -145,6 +146,7 @@ export default function AboutPage() {
                     src={agent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80'}
                     alt={agent.name}
                     fill
+                    sizes="96px"
                     className="object-cover"
                   />
                 </div>

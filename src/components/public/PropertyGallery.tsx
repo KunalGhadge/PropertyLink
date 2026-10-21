@@ -113,7 +113,7 @@ export function PropertyGallery({ images, title, videoUrl }: PropertyGalleryProp
               onClick={() => setSelectedIndex(idx)}
               className={`relative flex-shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 transition-all ${
                 selectedIndex === idx
-                  ? 'border-sky-600 ring-2 ring-sky-500/30 scale-102'
+                  ? 'border-[#c5a059] ring-2 ring-[#c5a059]/40 scale-102'
                   : 'border-transparent opacity-70 hover:opacity-100'
               }`}
             >
@@ -179,10 +179,10 @@ export function PropertyGallery({ images, title, videoUrl }: PropertyGalleryProp
                 key={img.id || idx}
                 onClick={() => setSelectedIndex(idx)}
                 className={`relative w-14 h-10 rounded-lg overflow-hidden border-2 shrink-0 ${
-                  selectedIndex === idx ? 'border-sky-500' : 'border-transparent opacity-50'
+                  selectedIndex === idx ? 'border-[#c5a059]' : 'border-transparent opacity-50'
                 }`}
               >
-                <Image src={img.url} alt="" fill className="object-cover" />
+                <Image src={img.url} alt="" fill sizes="56px" className="object-cover" />
               </button>
             ))}
           </div>

@@ -73,6 +73,7 @@ export default function AdminTeamPage() {
                     src={agent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'}
                     alt={agent.name}
                     fill
+                    sizes="56px"
                     className="object-cover"
                   />
                 </div>

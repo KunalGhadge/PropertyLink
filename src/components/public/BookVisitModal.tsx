@@ -80,18 +80,18 @@ export function BookVisitModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
       <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-900 to-sky-950 p-6 text-white relative">
+        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-[#1c1811] p-6 text-white relative">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 text-white/70 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
-          <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <Calendar className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-[#c5a059] text-xs font-bold uppercase tracking-wider mb-1 font-serif">
+            <Calendar className="w-4 h-4 text-[#c5a059]" />
             <span>Free AC Cab Site Visit</span>
           </div>
-          <h2 className="text-lg font-bold text-white line-clamp-1">{propertyTitle}</h2>
+          <h2 className="text-lg font-bold text-white line-clamp-1 font-serif">{propertyTitle}</h2>
           <p className="text-xs text-slate-300 mt-1">Locality: {locality}, Navi Mumbai</p>
         </div>
 
@@ -102,7 +102,7 @@ export function BookVisitModal({
               <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900">Site Visit Scheduled!</h3>
+              <h3 className="text-xl font-bold text-slate-900 font-serif">Site Visit Scheduled!</h3>
               <p className="text-sm text-slate-600 max-w-sm mx-auto">
                 Our property specialist will call you shortly to confirm the pickup point and share the driver details.
               </p>
@@ -138,7 +138,7 @@ export function BookVisitModal({
                   type="text"
                   placeholder="e.g. Anand Mahindra"
                   {...register('customer_name')}
-                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500"
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
                 />
                 {errors.customer_name && (
                   <p className="text-[11px] text-rose-600 mt-1">{errors.customer_name.message}</p>
@@ -156,7 +156,7 @@ export function BookVisitModal({
                     type="tel"
                     placeholder="98201 23456"
                     {...register('customer_phone')}
-                    className="w-full pl-12 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500"
+                    className="w-full pl-12 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
                   />
                 </div>
                 {errors.customer_phone && (
@@ -174,7 +174,7 @@ export function BookVisitModal({
                     type="date"
                     min={tomorrow}
                     {...register('visit_date')}
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
                   />
                 </div>
                 <div>
@@ -183,7 +183,7 @@ export function BookVisitModal({
                   </label>
                   <select
                     {...register('visit_time')}
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500"
+                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
                   >
                     <option value="10:00 AM">10:00 AM - Morning</option>
                     <option value="11:30 AM">11:30 AM - Morning</option>
@@ -203,13 +203,13 @@ export function BookVisitModal({
                   type="text"
                   placeholder="e.g. Free AC cab pickup from Panvel Station / Own vehicle"
                   {...register('notes')}
-                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500"
+                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
                 />
               </div>
 
               {/* Feature Highlights */}
-              <div className="p-3 bg-sky-50/70 border border-sky-100 rounded-xl flex items-center gap-3 text-xs text-sky-800">
-                <Car className="w-5 h-5 text-sky-600 shrink-0" />
+              <div className="p-3 bg-amber-50/80 border border-amber-200/80 rounded-xl flex items-center gap-3 text-xs text-amber-900">
+                <Car className="w-5 h-5 text-[#b38b42] shrink-0" />
                 <span>Complimentary AC cab pickup from nearest station or your doorstep.</span>
               </div>
 

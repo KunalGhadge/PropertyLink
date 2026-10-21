@@ -17,6 +17,7 @@ import {
   Phone,
   Clock,
   ArrowLeft,
+  MessageSquare,
 } from 'lucide-react'
 import { getPropertyBySlug, getSimilarProperties, getSiteSettings, getAgents, incrementPropertyMetric } from '@/lib/data/store'
 import { formatIndianPrice, formatArea } from '@/lib/utils'
@@ -28,6 +29,7 @@ import { PropertyActionButtons } from '@/components/public/PropertyActionButtons
 import { PropertyCard } from '@/components/public/PropertyCard'
 import { LeadForm } from '@/components/public/LeadForm'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
+import { SoftLeadCapturePopup } from '@/components/public/SoftLeadCapturePopup'
 
 interface PropertyDetailPageProps {
   params: Promise<{ slug: string }>
@@ -138,7 +140,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
       </div>
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 w-full flex-1 space-y-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-24 lg:pb-10 w-full flex-1 space-y-10">
         {/* Title & Price Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
           <div className="space-y-2">
@@ -148,9 +150,9 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               {property.featured && <StatusBadge featured />}
               {property.is_new && <StatusBadge isNew />}
               {property.rera_number && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-900 text-amber-300">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-[#0c0f14] text-[#c5a059] border border-[#c5a059]/30">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  {property.rera_number}
+                  MahaRERA: {property.rera_number}
                 </span>
               )}
             </div>
@@ -160,8 +162,8 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
             </h1>
 
             <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-600">
-              <span className="flex items-center gap-1 font-semibold text-sky-700">
-                <MapPin className="w-4 h-4 text-sky-600" />
+              <span className="flex items-center gap-1 font-semibold text-[#b38b42]">
+                <MapPin className="w-4 h-4 text-[#b38b42]" />
                 {property.society_or_project ? `${property.society_or_project}, ` : ''}{property.locality}, {property.city}
               </span>
               <span>•</span>
@@ -280,7 +282,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
                     href={property.map_link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-bold text-sky-600 hover:text-sky-700 underline"
+                    className="text-xs font-bold text-[#b38b42] hover:text-[#9a7532] underline"
                   >
                     Open Google Maps ↗
                   </a>
@@ -328,6 +330,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
                   locality={property.locality}
                   phone={settings.phone_number}
                   whatsappNumber={settings.whatsapp_number}
+                  propertySlug={property.slug}
                   brochureUrl={property.brochure_url}
                   floorPlanUrl={property.floor_plan_url}
                   ownerName={property.owner_name}
@@ -340,17 +343,18 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               {assignedAgent && (
                 <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-md border border-slate-800 space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-slate-800 border-2 border-sky-400 shrink-0">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-slate-800 border-2 border-[#c5a059] shrink-0">
                       <Image
                         src={assignedAgent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'}
                         alt={assignedAgent.name}
                         fill
+                        sizes="48px"
                         className="object-cover"
                       />
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-white">{assignedAgent.name}</h4>
-                      <p className="text-xs text-sky-400">{assignedAgent.designation}</p>
+                      <p className="text-xs text-[#c5a059] font-medium">{assignedAgent.designation}</p>
                       <p className="text-[11px] text-slate-400">{assignedAgent.experience_years}+ Years in Panvel Real Estate</p>
                     </div>
                   </div>
@@ -388,7 +392,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               </div>
               <Link
                 href={`/properties?locality=${property.locality}`}
-                className="text-xs font-bold text-sky-600 hover:text-sky-700 underline"
+                className="text-xs font-bold text-[#b38b42] hover:text-[#9a7532] underline"
               >
                 View all in {property.locality} →
               </Link>
@@ -402,6 +406,40 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
           </div>
         )}
       </main>
+
+      {/* Mobile Sticky Action Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-semibold">Total Price</span>
+          <span className="text-sm sm:text-base font-extrabold text-slate-900 leading-tight block truncate">{priceFormatted}</span>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <a
+            href={`tel:${settings.phone_number.replace(/[^0-9+]/g, '')}`}
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-800 bg-white hover:bg-slate-50 transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>Call</span>
+          </a>
+          <a
+            href={`https://wa.me/${settings.whatsapp_number.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi Rajesh, I am interested in visiting: ${property.title} in ${property.locality} (${priceFormatted}). https://propertylink.in/property/${property.slug}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/20 transition-colors"
+          >
+            <MessageSquare className="w-3.5 h-3.5" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Soft restrained Lead Capture Prompt */}
+      <SoftLeadCapturePopup
+        propertyTitle={property.title}
+        propertyLocality={property.locality}
+        propertyPrice={priceFormatted}
+        propertySlug={property.slug}
+      />
 
       <WhatsAppButton
         phone={settings.whatsapp_number}

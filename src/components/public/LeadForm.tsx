@@ -111,10 +111,13 @@ export function LeadForm({
   }
 
   return (
-    <div className={`bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6 space-y-4 ${className}`}>
+    <div className={`bg-[#fdfbf7] rounded-3xl border border-[#e8e2d5] shadow-luxury p-6 sm:p-8 space-y-5 ${className}`}>
       <div>
-        <h3 className="text-lg font-bold text-slate-900 leading-snug">{title}</h3>
-        {subtitle && <p className="text-xs text-slate-500 mt-1">{subtitle}</p>}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#f4efe6] text-[#b38b42] mb-2 border border-[#e8e2d5]">
+          Direct Broker Consultation
+        </div>
+        <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0c0f14] leading-snug">{title}</h3>
+        {subtitle && <p className="text-xs sm:text-sm text-stone-600 mt-1">{subtitle}</p>}
       </div>
 
       {errorMessage && (
@@ -124,7 +127,7 @@ export function LeadForm({
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Hidden Honeypot Field */}
         <input
           type="text"
@@ -134,99 +137,200 @@ export function LeadForm({
           {...register('honeypot')}
         />
 
+        {/* Purpose Toggle: Buy vs Rent (When not on specific property) */}
+        {!propertyId && (
+          <div>
+            <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
+              I am looking to
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <label className="cursor-pointer">
+                <input
+                  type="radio"
+                  value="buy"
+                  {...register('listing_purpose')}
+                  className="peer sr-only"
+                  defaultChecked
+                />
+                <span className="flex items-center justify-center py-2 px-3 rounded-xl border border-[#e8e2d5] bg-white text-xs font-bold text-stone-700 peer-checked:bg-[#0c0f14] peer-checked:text-white peer-checked:border-[#0c0f14] transition-all">
+                  Buy Property
+                </span>
+              </label>
+              <label className="cursor-pointer">
+                <input
+                  type="radio"
+                  value="rent"
+                  {...register('listing_purpose')}
+                  className="peer sr-only"
+                />
+                <span className="flex items-center justify-center py-2 px-3 rounded-xl border border-[#e8e2d5] bg-white text-xs font-bold text-stone-700 peer-checked:bg-[#0c0f14] peer-checked:text-white peer-checked:border-[#0c0f14] transition-all">
+                  Rent Property
+                </span>
+              </label>
+            </div>
+          </div>
+        )}
+
         {/* Full Name */}
         <div>
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">
-            Your Name <span className="text-rose-500">*</span>
+          <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+            Your Name <span className="text-[#b38b42]">*</span>
           </label>
           <input
             type="text"
-            placeholder="e.g. Rahul Sharma"
+            placeholder="e.g. Rajesh Patil"
             {...register('name')}
-            className={`w-full px-3 py-2 text-sm bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 ${
-              errors.name ? 'border-rose-300 bg-rose-50/50' : 'border-slate-200'
+            className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] ${
+              errors.name ? 'border-rose-300 bg-rose-50/50' : 'border-[#e8e2d5]'
             }`}
           />
           {errors.name && <p className="text-[11px] text-rose-600 mt-1">{errors.name.message}</p>}
         </div>
 
-        {/* Mobile Number */}
-        <div>
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">
-            Mobile Number <span className="text-rose-500">*</span>
-          </label>
-          <div className="relative flex items-center">
-            <span className="absolute left-3 text-xs font-bold text-slate-500">+91</span>
+        {/* Mobile Number OR Email Contact Fields */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+              WhatsApp / Mobile <span className="text-stone-400 font-normal">(or Email)</span>
+            </label>
+            <div className="relative flex items-center">
+              <span className="absolute left-3 text-xs font-bold text-stone-400">+91</span>
+              <input
+                type="tel"
+                placeholder="98201 23456"
+                {...register('phone')}
+                className={`w-full pl-12 pr-3 py-2.5 text-xs sm:text-sm bg-white border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] ${
+                  errors.phone ? 'border-rose-300 bg-rose-50/50' : 'border-[#e8e2d5]'
+                }`}
+              />
+            </div>
+            {errors.phone && <p className="text-[11px] text-rose-600 mt-1">{errors.phone.message}</p>}
+          </div>
+
+          <div>
+            <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+              Email Address <span className="text-stone-400 font-normal">(Optional)</span>
+            </label>
             <input
-              type="tel"
-              placeholder="98201 23456"
-              {...register('phone')}
-              className={`w-full pl-12 pr-3 py-2 text-sm bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 ${
-                errors.phone ? 'border-rose-300 bg-rose-50/50' : 'border-slate-200'
+              type="email"
+              placeholder="name@example.com"
+              {...register('email')}
+              className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] ${
+                errors.email ? 'border-rose-300 bg-rose-50/50' : 'border-[#e8e2d5]'
               }`}
             />
+            {errors.email && <p className="text-[11px] text-rose-600 mt-1">{errors.email.message}</p>}
           </div>
-          {errors.phone && <p className="text-[11px] text-rose-600 mt-1">{errors.phone.message}</p>}
         </div>
 
-        {/* Optional Email & Requirement (when not compact) */}
+        {/* Location & Budget / Property Type (Expanded when not compact) */}
         {!compact && (
-          <>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">
-                Email Address (Optional)
+              <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+                Preferred Area
               </label>
-              <input
-                type="email"
-                placeholder="name@example.com"
-                {...register('email')}
-                className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500"
-              />
-              {errors.email && <p className="text-[11px] text-rose-600 mt-1">{errors.email.message}</p>}
+              <select
+                {...register('preferred_location')}
+                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
+              >
+                <option value="">Any Navi Mumbai Area</option>
+                <option value="Panvel">Panvel</option>
+                <option value="Kharghar">Kharghar</option>
+                <option value="Kamothe">Kamothe</option>
+                <option value="Taloja">Taloja</option>
+                <option value="New Panvel">New Panvel</option>
+                <option value="Seawoods">Seawoods</option>
+                <option value="CBD Belapur">CBD Belapur</option>
+                <option value="Ulwe">Ulwe</option>
+                <option value="Kalamboli">Kalamboli</option>
+              </select>
             </div>
 
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">
-                Your Requirement / Questions
+              <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+                Property Type
               </label>
-              <textarea
-                rows={2}
-                placeholder="e.g. Need ready possession 2 BHK in Panvel, want to visit this Saturday..."
-                {...register('message')}
-                className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 resize-none"
-              />
+              <select
+                {...register('property_type')}
+                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
+              >
+                <option value="">Any Type</option>
+                <option value="flat">1 / 2 / 3 BHK Flat</option>
+                <option value="penthouse">Luxury Penthouse</option>
+                <option value="villa">Row House / Villa</option>
+                <option value="plot">Approved Plot / Land</option>
+                <option value="commercial">Shop / Office</option>
+              </select>
             </div>
-          </>
+
+            <div>
+              <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+                Budget Range
+              </label>
+              <select
+                {...register('budget_range')}
+                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
+              >
+                <option value="">Flexible Budget</option>
+                <option value="Under ₹50 Lakh">Under ₹50 Lakh</option>
+                <option value="₹50L - ₹85L">₹50L - ₹85L</option>
+                <option value="₹85L - ₹1.5 Cr">₹85L - ₹1.5 Cr</option>
+                <option value="₹1.5 Cr - ₹3 Cr">₹1.5 Cr - ₹3 Cr</option>
+                <option value="₹3 Cr+">₹3 Cr+ Ultra Luxury</option>
+              </select>
+            </div>
+          </div>
         )}
+
+        {/* Message / Requirement Context */}
+        <div>
+          <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+            Requirement Details <span className="text-stone-400 font-normal">(Optional)</span>
+          </label>
+          <textarea
+            rows={compact ? 2 : 2}
+            placeholder={
+              propertyTitle
+                ? `Inquiring about ${propertyTitle}. Looking for floor plan & site visit timings...`
+                : "e.g. Looking for a ready 2 BHK near station with car parking. Best builder deals only."
+            }
+            {...register('message')}
+            className="w-full px-3.5 py-2 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] resize-none"
+          />
+        </div>
 
         {/* Submit Button */}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md hover:shadow-lg active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+          className="w-full py-3.5 px-5 rounded-xl bg-[#0c0f14] hover:bg-[#1a202c] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Sending Details...</span>
+              <Loader2 className="w-4 h-4 animate-spin text-[#c5a059]" />
+              <span>Sending Your Details...</span>
             </>
           ) : (
             <>
-              <Send className="w-4 h-4" />
-              <span>Request Callback & Brochure</span>
+              <Send className="w-4 h-4 text-[#c5a059]" />
+              <span>{propertyTitle ? 'Request Site Visit & Floor Plan' : 'Get Matching Options on WhatsApp'}</span>
             </>
           )}
         </button>
+
+        <p className="text-[11px] text-stone-500 text-center">
+          🔒 Zero spam guarantee. Direct response from principal broker within 30 minutes.
+        </p>
       </form>
 
-      {/* WhatsApp Fallback */}
-      <div className="pt-2 border-t border-slate-100 text-center">
-        <p className="text-[11px] text-slate-500 mb-2">Prefer instant reply on WhatsApp?</p>
+      {/* WhatsApp Deep Link fallback */}
+      <div className="pt-3 border-t border-[#e8e2d5] text-center">
         <WhatsAppButton
           propertyTitle={propertyTitle}
           price={priceFormatted}
           location={locality}
-          label="Chat on WhatsApp Directly"
+          label="Prefer Instant Chat on WhatsApp?"
           variant="secondary"
           size="sm"
           className="w-full"

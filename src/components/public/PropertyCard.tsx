@@ -20,18 +20,20 @@ export function PropertyCard({ property, className, priority = false }: Property
   const coverImage = property.images.find((img) => img.is_cover)?.url || property.images[0]?.url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'
 
   const priceText = formatIndianPrice(property.price, property.listing_type, property.rent_period)
-  const propertyUrl = typeof window !== 'undefined' ? `${window.location.origin}/property/${property.slug}` : `/property/${property.slug}`
+  const propertyUrl = `/property/${property.slug}`
 
   const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
+
+    const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}${propertyUrl}` : propertyUrl
 
     if (navigator.share) {
       try {
         await navigator.share({
           title: property.title,
           text: `Check out this property in ${property.locality}: ${priceText}`,
-          url: propertyUrl,
+          url: shareUrl,
         })
         return
       } catch {
@@ -40,7 +42,7 @@ export function PropertyCard({ property, className, priority = false }: Property
     }
 
     try {
-      await navigator.clipboard.writeText(propertyUrl)
+      await navigator.clipboard.writeText(shareUrl)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
@@ -100,56 +102,58 @@ export function PropertyCard({ property, className, priority = false }: Property
       </Link>
 
       {/* Property Details Body */}
-      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between">
+      {/* Property Details Body */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between bg-white">
         <div>
           {/* Locality & Type */}
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-sky-700 uppercase tracking-wider mb-1.5">
-            <MapPin className="w-3.5 h-3.5 shrink-0 text-sky-600" />
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-[#b38b42] uppercase tracking-wider mb-1.5">
+            <MapPin className="w-3.5 h-3.5 shrink-0 text-[#b38b42]" />
             <span className="truncate">{property.locality}, {property.city}</span>
-            <span className="text-slate-300">•</span>
-            <span className="text-slate-500 font-medium capitalize">{property.property_type}</span>
+            <span className="text-stone-300">•</span>
+            <span className="text-stone-500 font-medium capitalize">{property.property_type}</span>
           </div>
 
           {/* Title */}
-          <Link href={`/property/${property.slug}`} className="block group-hover:text-sky-600 transition-colors">
-            <h3 className="font-bold text-slate-900 text-base sm:text-lg line-clamp-1 leading-snug">
+          <Link href={`/property/${property.slug}`} className="block group-hover:text-[#b38b42] transition-colors">
+            <h3 className="font-serif font-bold text-[#0c0f14] text-base sm:text-lg line-clamp-1 leading-snug">
               {property.title}
             </h3>
           </Link>
 
           {/* Society / Landmark */}
           {property.society_or_project && (
-            <p className="text-xs text-slate-500 line-clamp-1 mt-0.5 font-normal">
+            <p className="text-xs text-stone-500 line-clamp-1 mt-0.5 font-normal">
               {property.society_or_project}
             </p>
           )}
 
           {/* Specs Row: BHK, Carpet Area, Furnishing */}
-          <div className="grid grid-cols-3 gap-2 my-3.5 py-2.5 px-3 bg-slate-50 rounded-xl border border-slate-100 text-slate-700">
+          <div className="grid grid-cols-3 gap-2 my-3.5 py-2.5 px-3 bg-[#fbf9f5] rounded-xl border border-[#ede7dc] text-stone-700">
             {property.bhk != null && (
               <div className="flex items-center gap-1.5">
-                <BedDouble className="w-4 h-4 text-slate-400 shrink-0" />
-                <span className="text-xs font-semibold text-slate-800">{property.bhk} BHK</span>
+                <BedDouble className="w-4 h-4 text-[#b38b42] shrink-0" />
+                <span className="text-xs font-semibold text-[#0c0f14]">{property.bhk} BHK</span>
               </div>
             )}
             <div className="flex items-center gap-1.5">
-              <Maximize2 className="w-4 h-4 text-slate-400 shrink-0" />
-              <span className="text-xs font-semibold text-slate-800">{formatArea(property.carpet_area, property.area_unit)}</span>
+              <Maximize2 className="w-4 h-4 text-[#b38b42] shrink-0" />
+              <span className="text-xs font-semibold text-[#0c0f14]">{formatArea(property.carpet_area, property.area_unit)}</span>
             </div>
-            <div className="text-xs font-medium text-slate-600 capitalize truncate flex items-center justify-end">
+            <div className="text-xs font-medium text-stone-600 capitalize truncate flex items-center justify-end">
               {property.furnishing.replace('_', ' ')}
             </div>
           </div>
         </div>
 
         {/* Footer Actions: WhatsApp CTA + View Detail */}
-        <div className="pt-2 border-t border-slate-100 flex items-center gap-2 mt-auto">
+        <div className="pt-2 border-t border-[#ede7dc] flex items-center gap-2 mt-auto">
           <WhatsAppButton
             propertyId={property.id}
             propertyTitle={property.title}
             price={priceText}
             location={`${property.locality}, ${property.city}`}
             propertyUrl={propertyUrl}
+            propertySlug={property.slug}
             size="sm"
             label="WhatsApp"
             className="flex-1"
@@ -157,10 +161,10 @@ export function PropertyCard({ property, className, priority = false }: Property
 
           <Link
             href={`/property/${property.slug}`}
-            className="inline-flex items-center justify-center gap-1 px-3 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors shrink-0"
+            className="inline-flex items-center justify-center gap-1 px-3 py-2 text-xs font-bold text-[#0c0f14] hover:text-[#b38b42] bg-[#f5f1e9] hover:bg-[#ede7dc] rounded-xl transition-colors shrink-0"
           >
             <span>Details</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#b38b42]" />
           </Link>
         </div>
       </div>

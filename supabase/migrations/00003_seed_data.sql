@@ -77,236 +77,224 @@ INSERT INTO public.site_settings (
     'Apex Realty Panvel',
     'Navi Mumbai’s Premier Real Estate Consultancy',
     'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=300&q=80',
-    '#0F172A',
-    '#0284C7',
-    '#25D366',
-    'Find Your Dream Home in Panvel, Navi Mumbai & Kharghar',
-    'Verified premium apartments, golf-view villas, and high-yield properties with 100% MahaRERA transparency and zero hidden brokerage.',
+    '#0C0F14',
+    '#B38B42',
+    '#C5A059',
+    'Find Your Perfect Home in Panvel, Navi Mumbai & Beyond',
+    'Verified listings, honest guidance, and a smoother property journey.',
     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80',
-    'Explore 100+ Properties',
-    'Chat on WhatsApp',
+    'Explore Properties',
+    'WhatsApp Us',
     '14+ Years of Trust & Over 1,200 Happy Homeowners in Navi Mumbai',
-    'Founded by Rajesh Sharma, Apex Realty is Navi Mumbai’s most trusted boutique real estate advisory. We specialize in verified inventory across Panvel, Kharghar, Taloja, Kamothe, and Seawoods. Our commitment is simple: absolute legal clarity, zero buyer brokerage on developer inventory, and end-to-end guidance from site visit to registration.',
+    'Founded by Rajesh Sharma, Apex Realty is Navi Mumbai’s most trusted boutique real estate advisory. We specialize in verified inventory across Panvel, Kharghar, Taloja, Kamothe, Belapur, and Seawoods. Our commitment is simple: absolute legal clarity, zero buyer brokerage on developer inventory, and end-to-end guidance from site visit to registration.',
     'Rajesh Sharma',
     'Founder & Principal Broker',
     14,
     'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
-    ARRAY['Panvel', 'Kharghar', 'Kamothe', 'Taloja Phase 1 & 2', 'Seawoods', 'CBD Belapur', 'New Panvel', 'Ulwe'],
+    ARRAY['Panvel', 'Kharghar', 'Kamothe', 'Taloja', 'Seawoods', 'CBD Belapur', 'New Panvel', 'Ulwe', 'Kalamboli'],
     '+91 98201 23456',
     '+91 98201 23456',
     'contact@apexrealty.in',
     'Shop 12, Ground Floor, Orion Plaza, Sector 15, Old Panvel, Navi Mumbai - 410206',
     'MahaRERA Reg No: A52000012345',
     'Disclaimer: Apex Realty is an authorized marketing partner for registered builders under MahaRERA. Project images, specifications and pricing are subject to revision as per developer guidelines.'
-) ON CONFLICT (agency_id) DO UPDATE SET brand_name = EXCLUDED.brand_name;
+) ON CONFLICT (agency_id) DO NOTHING;
 
--- 4. Insert 10 Realistic Navi Mumbai Properties
+-- 4. Insert 10 Exact Requested Demo Properties
 INSERT INTO public.properties (
     id, agency_id, title, slug, description, property_type, listing_type, status,
-    price, price_unit, bhk, bathrooms, balconies, carpet_area, builtup_area, area_unit,
+    price, price_unit, rent_period, bhk, bathrooms, balconies, carpet_area, builtup_area, area_unit,
     floor_number, total_floors, furnishing, facing, age_of_property, possession_date,
     city, locality, society_or_project, full_address, map_link, amenities,
     rera_number, owner_name, owner_phone, hide_owner_contact, featured, is_new, is_hot_deal,
     view_count, whatsapp_click_count, call_click_count
 ) VALUES 
+-- 1. 2 BHK flat in Kharghar, ₹85 lakh
 (
     '00000000-0000-0000-0000-000000000201',
     '00000000-0000-0000-0000-000000000001',
-    'Godrej Highland - 3 BHK Luxury Deck Residence',
-    'godrej-highland-3-bhk-kharghar-sector-36',
-    'Spectacular 3 BHK high-floor apartment at Godrej Highland, nestled at the foothills of Kharghar hills. Features an expansive sundeck offering unobstructed valley views, Italian marble flooring in living room, premium modular kitchen with Siemens fittings, and access to a 45,000 sq.ft. luxury club with Olympic swimming pool.',
+    'Paradise Sai Crystal - 2 BHK Valley View Flat',
+    '2-bhk-flat-in-kharghar-85-lakh',
+    'Beautiful 2 BHK corner residence in prime Kharghar Sector 35. Overlooking scenic Kharghar hills, this apartment offers cross ventilation, vitrified tiles, granite kitchen platform, and dry balcony. Located 5 minutes from Central Park and Metro station.',
     'flat', 'sale', 'available',
-    18500000, 'crore', 3, 3, 2, 1120, 1480, 'sqft',
-    18, 28, 'semi_furnished', 'East', 'Under Construction', 'Dec 2026',
-    'Navi Mumbai', 'Kharghar', 'Godrej Highland',
-    'Sector 36, Upper Kharghar, Navi Mumbai, Maharashtra 410210',
-    'https://maps.google.com/?q=Kharghar+Sector+36',
-    ARRAY['Infinity Pool', 'Gymnasium', 'Valley View Deck', 'Clubhouse', 'Children Play Area', 'Covered Car Parking', '24x7 Security', 'High Speed Elevators', 'EV Charging Station'],
-    'MahaRERA: P52000028754', 'Mr. Amit Deshmukh', '+91 98200 99887', true,
-    true, true, true, 482, 34, 18
+    8500000, 'lakh', null, 2, 2, 1, 720, 960, 'sqft',
+    14, 22, 'semi_furnished', 'East', '0-1 years', 'Ready to Move',
+    'Navi Mumbai', 'Kharghar', 'Sai Crystal',
+    'Plot 12, Sector 35, Kharghar, Navi Mumbai, Maharashtra 410210',
+    'https://maps.google.com/?q=Kharghar+Sector+35',
+    ARRAY['Swimming Pool', 'Gymnasium', 'Landscape Garden', 'Children Play Area', 'Covered Parking', '24x7 Security', 'High Speed Elevators'],
+    'MahaRERA: P52000021430', 'Mr. Amit Deshmukh', '+91 98200 99887', true,
+    true, true, true, 642, 51, 24
 ),
+-- 2. 3 BHK flat in Panvel, ₹1.25 crore
 (
     '00000000-0000-0000-0000-000000000202',
     '00000000-0000-0000-0000-000000000001',
-    'Hiranandani Fortune City - 2 BHK Forest View',
-    'hiranandani-fortune-city-2-bhk-panvel',
-    'Experience integrated township living at Hiranandani Fortune City, Panvel. This 2 BHK features neoclassical architecture, grand double-height entrance lobby, cross-ventilation, and serene forest views. Minutes from Mumbai-Pune Expressway and upcoming Navi Mumbai International Airport.',
+    'Godrej City Woodland - 3 BHK Premium Deck Residence',
+    '3-bhk-flat-in-panvel-1-25-crore',
+    'Experience golf township living at Godrej City, Panvel. This expansive 3 BHK residence boasts a private sundeck, large living and dining layout, modular kitchen with chimney, and access to a 9-hole golf course, grand clubhouse, and international school inside the township.',
     'flat', 'sale', 'available',
-    9200000, 'lakh', 2, 2, 1, 765, 1020, 'sqft',
-    11, 32, 'unfurnished', 'North-East', '0-1 years', 'Ready to Move',
-    'Navi Mumbai', 'Panvel', 'Hiranandani Fortune City',
-    'Survey No. 30, Bhokarpada, Panvel, Navi Mumbai 410206',
-    'https://maps.google.com/?q=Hiranandani+Fortune+City+Panvel',
-    ARRAY['Landscaped Gardens', 'Swimming Pool', 'Tennis Court', 'Squash Court', 'Mini Theatre', 'School Inside Township', 'Supermarket', '24x7 Power Backup'],
-    'MahaRERA: P52000001511', 'Vikram Singhania', '+91 98211 44556', true,
-    true, false, true, 630, 52, 29
+    12500000, 'crore', null, 3, 3, 2, 1080, 1420, 'sqft',
+    12, 26, 'semi_furnished', 'North-East', 'Under Construction', 'Dec 2026',
+    'Navi Mumbai', 'Panvel', 'Godrej City Woodland',
+    'Thombrewadi, Panvel-Matheran Road, Navi Mumbai 410206',
+    'https://maps.google.com/?q=Godrej+City+Panvel',
+    ARRAY['9-Hole Golf Course', 'Olympic Lap Pool', 'Luxury Clubhouse', 'Squash & Tennis Courts', 'Covered Parking', '24x7 Security'],
+    'MahaRERA: P52000018990', 'Vikram Singhania', '+91 98211 44556', true,
+    true, true, true, 810, 73, 38
 ),
+-- 3. 1 BHK rental in Kalamboli, ₹15,000/month
 (
     '00000000-0000-0000-0000-000000000203',
     '00000000-0000-0000-0000-000000000001',
-    'Marathon Nexzone - 2.5 BHK Panoramic Suite',
-    'marathon-nexzone-2-5-bhk-panvel',
-    'Spacious 2.5 BHK with dedicated work-from-home study room at Marathon Nexzone. Uninterrupted view of scenic hills and easy access to Panvel railway junction. Complete with modern clubhouse, fitness hub, and internal podium garden.',
-    'flat', 'sale', 'available',
-    8400000, 'lakh', 2, 2, 2, 820, 1100, 'sqft',
-    14, 30, 'unfurnished', 'North', '1-5 years', 'Ready to Move',
-    'Navi Mumbai', 'Panvel', 'Marathon Nexzone',
-    'National Highway 4B, JNPT Road, Near Palaspe Phata, Panvel 410206',
-    'https://maps.google.com/?q=Marathon+Nexzone+Panvel',
-    ARRAY['Clubhouse', 'Gym', 'Jogging Track', 'Intercom', 'CCTV Surveillance', 'Solar Water Heating', 'Reserved Parking'],
-    'MahaRERA: P52000000142', 'Suresh Kulkarni', '+91 98334 77881', true,
-    true, false, false, 395, 27, 12
+    'Siddhi Pooja Heights - 1 BHK Modern Rental Apartment',
+    '1-bhk-rental-kalamboli-15000-month',
+    'Well-ventilated 1 BHK flat for rent in Kalamboli Sector 10. Close to Sion-Panvel Highway and D-Mart. Semi-furnished with kitchen cabinets, curtain rods, and water heater. Ideal for working professionals and small families.',
+    'flat', 'rent', 'available',
+    15000, 'absolute', 'monthly', 1, 1, 1, 460, 600, 'sqft',
+    4, 7, 'semi_furnished', 'East', '1-5 years', 'Immediate',
+    'Navi Mumbai', 'Kalamboli', 'Siddhi Pooja Heights',
+    'Sector 10, Kalamboli, Navi Mumbai 410218',
+    'https://maps.google.com/?q=Kalamboli+Sector+10',
+    ARRAY['High Speed Lift', '24x7 Water Supply', 'Security Guard', 'Power Backup', 'CCTV Surveillance'],
+    'MahaRERA: P52000008712', 'Suresh Patil', '+91 98203 11224', true,
+    false, true, false, 420, 38, 19
 ),
+-- 4. Residential plot in Taloja, ₹45 lakh
 (
     '00000000-0000-0000-0000-000000000204',
     '00000000-0000-0000-0000-000000000001',
-    'Sai Miracle - 4 BHK Ultra Luxury Penthouse',
-    'sai-miracle-4-bhk-kharghar-central-park',
-    'Ultra-premium duplex penthouse overlooking Kharghar Central Park and Golf Course. Features private terrace garden, dedicated jacuzzi, servant quarters, private high-speed elevator access, and 3 reserved basement car parks.',
-    'penthouse', 'sale', 'available',
-    34000000, 'crore', 4, 5, 3, 2450, 3200, 'sqft',
-    21, 22, 'fully_furnished', 'East', '0-1 years', 'Ready to Move',
-    'Navi Mumbai', 'Kharghar', 'Sai Miracle',
-    'Sector 35, Near Central Park & Metro Station, Kharghar, Navi Mumbai 410210',
-    'https://maps.google.com/?q=Central+Park+Kharghar',
-    ARRAY['Private Terrace', 'Jacuzzi', 'Servant Quarters', 'Private Elevator', 'Golf Course View', 'Smart Home Automation', '3 Car Parks', 'Infinity Pool'],
-    'MahaRERA: P52000019231', 'Anand Mahindra Group Rep', '+91 99201 00223', true,
-    true, true, false, 820, 48, 31
+    'Greenfield Meadows - G+2 Approved Residential Plot',
+    'residential-plot-taloja-45-lakh',
+    'Rare CIDCO transfer residential plot with clear title in developing Taloja Phase 2. G+2 bungalow construction permitted with 1.5 FSI. 40-feet asphalt road front, underground stormwater drainage, and MSEB electricity poles in place.',
+    'plot', 'sale', 'available',
+    4500000, 'lakh', null, null, 0, 0, 1800, 1800, 'sqft',
+    null, null, 'unfurnished', 'North', 'New', 'Immediate Possession',
+    'Navi Mumbai', 'Taloja', 'Greenfield Meadows Phase 2',
+    'Sector 24, Taloja Phase 2, Navi Mumbai 410208',
+    'https://maps.google.com/?q=Taloja+Phase+2',
+    ARRAY['CIDCO Clear Title', '40ft Wide Road', 'Gated Boundary Wall', 'Water & Power Lines', 'Tree Plantation', 'Bank Loan Available'],
+    'MahaRERA: P52000030114', 'Kailash Mehra', '+91 98205 77889', true,
+    true, true, true, 550, 48, 27
 ),
+-- 5. Shop in Panvel market, ₹90 lakh
 (
     '00000000-0000-0000-0000-000000000205',
     '00000000-0000-0000-0000-000000000001',
-    'Wadhwa Wise City - 1 BHK Smart Lifestyle Home',
-    'wadhwa-wise-city-1-bhk-panvel',
-    'Affordable luxury by The Wadhwa Group. Pure air, natural sunlight (Design.FIT principle), and master-planned township living with retail, healthcare, and schools. Prime investment asset for rental yields.',
-    'flat', 'sale', 'available',
-    4500000, 'lakh', 1, 1, 1, 430, 580, 'sqft',
-    7, 24, 'unfurnished', 'East', '1-5 years', 'Ready to Move',
-    'Navi Mumbai', 'Panvel', 'Wadhwa Wise City',
-    'Old Mumbai-Pune Highway, Bhatan, Panvel 410206',
-    'https://maps.google.com/?q=Wadhwa+Wise+City+Panvel',
-    ARRAY['Landscaped Park', 'Gym', 'Kids Play Area', 'Shuttle Bus to Station', 'Convenience Store', 'Fire Fighting System'],
-    'MahaRERA: P52000016254', 'Sanjay Mehta', '+91 98112 33445', true,
-    false, false, true, 510, 41, 19
+    'Orion Commercial Galleria - Prime High-Street Retail Shop',
+    'shop-panvel-market-90-lakh',
+    'High-footfall ground floor commercial retail shop on the main Panvel railway station access road. Excellent 14-feet frontage with floor-to-ceiling glass shutter, loft provision, and attached private washroom.',
+    'shop', 'sale', 'available',
+    9000000, 'lakh', null, null, 1, 0, 340, 450, 'sqft',
+    0, 4, 'unfurnished', 'West', '0-1 years', 'Ready for Fitouts',
+    'Navi Mumbai', 'Panvel', 'Orion Galleria',
+    'Station Road, Old Panvel Market, Navi Mumbai 410206',
+    'https://maps.google.com/?q=Panvel+Station+Road',
+    ARRAY['14ft Frontage Glass Façade', '3-Phase Heavy Power Connection', 'Attached Washroom', 'Visitor Parking', 'Dedicated Glow-Sign Board Space'],
+    'MahaRERA: P52000014299', 'Deepak Shah', '+91 98201 33445', true,
+    true, false, true, 730, 62, 34
 ),
+-- 6. Office in Belapur, ₹1.8 crore
 (
     '00000000-0000-0000-0000-000000000206',
     '00000000-0000-0000-0000-000000000001',
-    'Paradise Sai Sun City - 2 BHK Garden Facing Flat',
-    'paradise-sai-sun-city-2-bhk-upper-kharghar',
-    'Vastu-compliant 2 BHK apartment in the fast-growing Upper Kharghar hub. Features podium garden views, vitrified tile flooring, granite platform kitchen, and 3-tier safety infrastructure. Quick access to Navi Mumbai Metro.',
-    'flat', 'sale', 'available',
-    6800000, 'lakh', 2, 2, 1, 675, 910, 'sqft',
-    9, 21, 'semi_furnished', 'North-East', 'Under Construction', 'June 2026',
-    'Navi Mumbai', 'Kharghar', 'Sai Sun City',
-    'Upper Kharghar, Near Ghot Camp, Navi Mumbai 410210',
-    'https://maps.google.com/?q=Ghot+Kharghar',
-    ARRAY['Swimming Pool', 'Badminton Court', 'Jogging Track', 'Banquet Hall', '24x7 Security', 'High Speed Lifts'],
-    'MahaRERA: P52000022312', 'Manoj Joshi', '+91 97665 11229', true,
-    true, true, false, 290, 18, 9
+    'CBD Corporate Park - Grade-A IT & Corporate Office',
+    'office-belapur-1-8-crore',
+    'Fully furnished, plug-and-play commercial corporate office space in Sector 15, CBD Belapur. Designed with 24 ergonomic workstations, 2 director cabins, 8-seater conference room with video conferencing, server room, and dry pantry.',
+    'office', 'sale', 'available',
+    18000000, 'crore', null, null, 2, 0, 1150, 1520, 'sqft',
+    8, 18, 'fully_furnished', 'North', '1-5 years', 'Immediate',
+    'Navi Mumbai', 'CBD Belapur', 'CBD Corporate Park Tower B',
+    'Sector 15, CBD Belapur, Navi Mumbai 400614',
+    'https://maps.google.com/?q=CBD+Belapur+Sector+15',
+    ARRAY['Centralized VRV Air Conditioning', '24 Furnished Workstations', 'Conference Room', '2 Reserved Basement Car Parks', '100% Power Backup', 'Access Control Security'],
+    'MahaRERA: P52000019550', 'Anand Kothari', '+91 98202 55667', true,
+    true, false, false, 590, 44, 22
 ),
+-- 7. Villa in New Panvel, ₹2.4 crore
 (
     '00000000-0000-0000-0000-000000000207',
     '00000000-0000-0000-0000-000000000001',
-    'Seawoods Grand Central Enclave - 3 BHK Sea View',
-    'seawoods-grand-central-3-bhk-residence',
-    'Prestigious 3 BHK apartment in prime Seawoods Sector 40. Walking distance from Grand Central Mall and Seawoods railway station. Breathtaking flamingo sanctuary and creek views with ultra-luxury finishes.',
-    'flat', 'sale', 'available',
-    27500000, 'crore', 3, 3, 2, 1480, 1950, 'sqft',
-    16, 26, 'fully_furnished', 'West', '1-5 years', 'Ready to Move',
-    'Navi Mumbai', 'Seawoods', 'Grand Central Enclave',
-    'Sector 40, Seawoods West, Navi Mumbai 400706',
-    'https://maps.google.com/?q=Seawoods+Grand+Central',
-    ARRAY['Flamingo Sanctuary View', 'Designer Lobby', 'Infinity Pool', 'Gym', 'Valet Parking', 'Concierge Service', 'Creek View Deck'],
-    'MahaRERA: P52000011982', 'Naveen Aggarwal', '+91 98205 66778', true,
-    true, false, false, 740, 61, 35
+    'Palm Greens Luxury Estates - 4 BHK Private Garden Villa',
+    'villa-new-panvel-2-4-crore',
+    'Exquisite independent duplex villa nestled inside a secure gated enclave in New Panvel. Features a private landscaped front lawn, plunge pool on terrace, double-height ceiling in the formal living room, Italian marble finishes, separate servant quarter, and 2 covered car parks.',
+    'villa', 'sale', 'available',
+    24000000, 'crore', null, 4, 4, 3, 2850, 3400, 'sqft',
+    1, 2, 'semi_furnished', 'East', 'New', 'Ready to Move',
+    'Navi Mumbai', 'New Panvel', 'Palm Greens Enclave',
+    'Sector 5A, New Panvel East, Navi Mumbai 410206',
+    'https://maps.google.com/?q=New+Panvel+Sector+5A',
+    ARRAY['Private Garden & Lawn', 'Rooftop Plunge Pool', 'Solar Water Heating', '2 Covered Car Parks', 'Clubhouse with Gymnasium', '24x7 Security & CCTV'],
+    'MahaRERA: P52000022391', 'Dr. Sanjay Kelkar', '+91 98209 88112', true,
+    true, true, true, 940, 85, 47
 ),
+-- 8. 2 BHK resale flat in Kamothe, ₹72 lakh
 (
     '00000000-0000-0000-0000-000000000208',
     '00000000-0000-0000-0000-000000000001',
-    'Akshar Silicia - 2 BHK Premium Corner Flat',
-    'akshar-silicia-2-bhk-kamothe-sector-19',
-    'Ready-to-move spacious 2 BHK corner residence in Kamothe Sector 19. Excellent cross-ventilation, close to Khandeshwar Station and MGM Hospital. Ideal for families seeking a mature residential neighborhood.',
+    'Akshar Shreeji Heights - 2 BHK Well-Maintained Resale Flat',
+    '2-bhk-resale-flat-kamothe-72-lakh',
+    'Immaculately maintained 2 BHK resale apartment with CIDCO transfer clearance in Sector 19, Kamothe. Offers dual balconies overlooking the podium garden, modular kitchen, piped gas line, dedicated covered stilt parking, and 7-minute walking distance to Mansarovar railway station.',
     'flat', 'sale', 'available',
-    7900000, 'lakh', 2, 2, 2, 710, 960, 'sqft',
-    6, 14, 'semi_furnished', 'East', '1-5 years', 'Ready to Move',
-    'Navi Mumbai', 'Kamothe', 'Akshar Silicia',
-    'Plot 14, Sector 19, Kamothe, Navi Mumbai 410209',
+    7200000, 'lakh', null, 2, 2, 2, 685, 890, 'sqft',
+    6, 14, 'semi_furnished', 'North-East', '3-5 years', 'Ready to Move',
+    'Navi Mumbai', 'Kamothe', 'Shreeji Heights',
+    'Sector 19, Kamothe, Navi Mumbai 410209',
     'https://maps.google.com/?q=Kamothe+Sector+19',
-    ARRAY['Gym', 'Party Lawn', 'Covered Parking', 'Power Backup', 'Security Guards', 'Intercom'],
-    'MahaRERA: P52000005432', 'Sunil Chavan', '+91 98920 33441', true,
-    false, false, false, 245, 16, 8
+    ARRAY['Covered Stilt Parking', 'CIDCO Transfer Done', 'Piped Natural Gas', 'Podium Garden', 'Children Play Area', 'Bank Loan Approved by SBI & HDFC'],
+    'MahaRERA: P52000007812', 'Manish Rane', '+91 98199 44332', true,
+    true, false, true, 680, 59, 32
 ),
+-- 9. Commercial space in Ulwe, ₹65 lakh
 (
     '00000000-0000-0000-0000-000000000209',
     '00000000-0000-0000-0000-000000000001',
-    'Today Royal Elegance - 1 BHK Budget Friendly Flat',
-    'today-royal-elegance-1-bhk-taloja',
-    'Well-planned 1 BHK apartment near Taloja Metro Station (Line 1). Low maintenance society, zero stamp duty benefits for select units, and excellent rental yield from MIDC & IT workforce.',
-    'flat', 'sale', 'available',
-    3800000, 'lakh', 1, 1, 1, 445, 600, 'sqft',
-    4, 12, 'unfurnished', 'North', '0-1 years', 'Ready to Move',
-    'Navi Mumbai', 'Taloja', 'Today Royal Elegance',
-    'Sector 24, Taloja Phase 1, Navi Mumbai 410208',
-    'https://maps.google.com/?q=Taloja+Phase+1',
-    ARRAY['Metro Connectivity', 'Children Play Area', 'Rooftop Gazebo', 'Lift with Generator Backup', 'Fire Safety System'],
-    'MahaRERA: P52000008912', 'Ramesh Jadhav', '+91 98207 88990', true,
-    false, true, true, 410, 31, 14
+    'Delta Horizon - Multi-Utility Commercial Showroom / Clinic',
+    'commercial-space-ulwe-65-lakh',
+    'First floor corner commercial showroom or clinic space in rapid-growth Ulwe Sector 19. Just 2 minutes from Bamandongri railway station and Atal Setu (MTHL) corridor. High visual visibility, wide staircase, elevator, and ample open parking for clients.',
+    'shop', 'sale', 'available',
+    6500000, 'lakh', null, null, 1, 0, 520, 680, 'sqft',
+    1, 12, 'unfurnished', 'North-West', 'New', 'Ready for Possession',
+    'Navi Mumbai', 'Ulwe', 'Delta Horizon',
+    'Sector 19, Ulwe, Navi Mumbai 410206',
+    'https://maps.google.com/?q=Ulwe+Sector+19',
+    ARRAY['Corner Frontage', 'Customer Car Parking', '3-Phase Power', 'Elevator Access', 'Attached Washroom', 'Near Atal Setu Connector'],
+    'MahaRERA: P52000016345', 'Girish Thakkar', '+91 98204 99001', true,
+    false, true, false, 480, 36, 17
 ),
+-- 10. 4 BHK penthouse in Seawoods, ₹3.2 crore
 (
     '00000000-0000-0000-0000-000000000210',
     '00000000-0000-0000-0000-000000000001',
-    'Indiabulls Greens - 3 BHK Club Class Apartment',
-    'indiabulls-greens-3-bhk-panvel',
-    'Luxurious 3 BHK apartment with large master suite, wooden flooring, and double balconies. Located inside Indiabulls Greens, a 50-acre gated township with CBSE school, medical clinic, and Olympic-sized clubhouse.',
-    'flat', 'sale', 'available',
-    11500000, 'crore', 3, 3, 2, 1050, 1420, 'sqft',
-    12, 34, 'semi_furnished', 'East', '5-10 years', 'Ready to Move',
-    'Navi Mumbai', 'Panvel', 'Indiabulls Greens',
-    'Sector 2, Kon Village, Old Panvel, Navi Mumbai 410206',
-    'https://maps.google.com/?q=Indiabulls+Greens+Panvel',
-    ARRAY['Olympic Pool', 'Cricket Ground', 'Supermarket', 'Gymnasium', 'School on Campus', '24x7 Security', 'Covered Car Park'],
-    'MahaRERA: P52000003104', 'Kiran Shah', '+91 98218 44332', true,
-    true, false, false, 590, 42, 22
+    'Grand Central Crest - 4 BHK Ultra-Luxury Sea View Penthouse',
+    '4-bhk-penthouse-seawoods-3-2-crore',
+    'The pinnacle of luxury in Seawoods Sector 40. Top-floor duplex penthouse commanding panoramic, unobstructed views of the Arabian Sea and flamingo sanctuary. Boasts a private rooftop entertainment deck, double-height grand salon, Italian Statuario marble, smart home automation, and 3 covered basement parking slots.',
+    'penthouse', 'sale', 'available',
+    32000000, 'crore', null, 4, 5, 3, 2400, 3100, 'sqft',
+    24, 24, 'fully_furnished', 'West', '1-3 years', 'Ready to Move',
+    'Navi Mumbai', 'Seawoods', 'Grand Central Crest',
+    'Sector 40, Seawoods West, Navi Mumbai 400706',
+    'https://maps.google.com/?q=Seawoods+Sector+40',
+    ARRAY['Flamingo Sanctuary & Sea View', 'Private Rooftop Deck', 'Smart Home Automation', '3 Covered Basement Parks', 'Infinity Lap Pool', 'Concierge & Valet Service'],
+    'MahaRERA: P52000029100', 'Naveen Aggarwal', '+91 98205 66778', true,
+    true, false, true, 1120, 98, 53
 )
 ON CONFLICT (id) DO NOTHING;
 
 -- 5. Insert Property Images
 INSERT INTO public.property_images (property_id, agency_id, url, alt_text, display_order, is_cover) VALUES
--- Godrej Highland
-('00000000-0000-0000-0000-000000000201', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', 'Godrej Highland Elevation', 0, true),
-('00000000-0000-0000-0000-000000000201', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80', 'Living Room with Balcony Deck', 1, false),
-('00000000-0000-0000-0000-000000000201', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80', 'Master Bedroom with Views', 2, false),
-
--- Hiranandani Fortune City
-('00000000-0000-0000-0000-000000000202', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80', 'Hiranandani Towers View', 0, true),
-('00000000-0000-0000-0000-000000000202', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80', 'Modern Living Space', 1, false),
-
--- Marathon Nexzone
-('00000000-0000-0000-0000-000000000203', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80', 'Marathon Nexzone Podium', 0, true),
-('00000000-0000-0000-0000-000000000203', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80', 'Spacious Interiors', 1, false),
-
--- Sai Miracle Penthouse
-('00000000-0000-0000-0000-000000000204', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80', 'Sai Miracle Penthouse View', 0, true),
-('00000000-0000-0000-0000-000000000204', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80', 'Grand Double Height Living Hall', 1, false),
-
--- Wadhwa Wise City
-('00000000-0000-0000-0000-000000000205', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80', 'Wadhwa Wise City Exterior', 0, true),
-
--- Paradise Sai Sun City
-('00000000-0000-0000-0000-000000000206', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80', 'Sai Sun City Clubhouse & Garden', 0, true),
-
--- Seawoods Grand Central Enclave
-('00000000-0000-0000-0000-000000000207', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80', 'Seawoods Luxury Tower', 0, true),
-
--- Akshar Silicia
-('00000000-0000-0000-0000-000000000208', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80', 'Akshar Silicia Living Space', 0, true),
-
--- Today Royal Elegance
-('00000000-0000-0000-0000-000000000209', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80', 'Today Royal Elegance Complex', 0, true),
-
--- Indiabulls Greens
-('00000000-0000-0000-0000-000000000210', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80', 'Indiabulls Greens Panvel', 0, true);
+('00000000-0000-0000-0000-000000000201', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', 'Sai Crystal Kharghar Living', 0, true),
+('00000000-0000-0000-0000-000000000201', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80', 'Balcony Deck', 1, false),
+('00000000-0000-0000-0000-000000000202', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80', 'Godrej City Panvel Elevation', 0, true),
+('00000000-0000-0000-0000-000000000203', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80', 'Kalamboli Apartment Living', 0, true),
+('00000000-0000-0000-0000-000000000204', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80', 'Taloja Residential Plot Layout', 0, true),
+('00000000-0000-0000-0000-000000000205', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80', 'Panvel Commercial Retail Galleria', 0, true),
+('00000000-0000-0000-0000-000000000206', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80', 'Belapur Office Interior', 0, true),
+('00000000-0000-0000-0000-000000000207', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80', 'Palm Greens Villa Façade', 0, true),
+('00000000-0000-0000-0000-000000000208', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80', 'Kamothe Resale Flat Living', 0, true),
+('00000000-0000-0000-0000-000000000209', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80', 'Ulwe Commercial Building', 0, true),
+('00000000-0000-0000-0000-000000000210', '00000000-0000-0000-0000-000000000001', 'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80', 'Seawoods Penthouse Living & Terrace', 0, true)
+ON CONFLICT (id) DO NOTHING;
 
 -- 6. Insert Testimonials
 INSERT INTO public.testimonials (
@@ -314,20 +302,20 @@ INSERT INTO public.testimonials (
 ) VALUES 
 (
     '00000000-0000-0000-0000-000000000001',
-    'Dr. Sameer & Neha Joshi',
-    'Bought 3 BHK in Godrej Highland, Kharghar',
+    'Dr. Anand Deshpande',
+    'Bought 3 BHK in Panvel',
     5,
-    'Rajesh ji and the Apex Realty team made our dream home purchase effortless. They arranged 3 private site visits, verified every MahaRERA document, and negotiated an unbelievable deal with Godrej developers. Truly the most trustworthy broker in Navi Mumbai!',
-    '3 BHK Flat',
+    'Rajesh and his team at Apex Realty were transparent from day one. Zero hidden charges, accurate title verification, and free AC cab visits made buying our home in Godrej City completely stress-free.',
+    'Residential Apartment',
     1
 ),
 (
     '00000000-0000-0000-0000-000000000001',
-    'Abhishek Verma (Senior VP, HDFC Bank)',
-    'Bought 2 BHK in Hiranandani Fortune City, Panvel',
+    'Neha & Siddharth Rao',
+    'Bought 2 BHK in Kharghar',
     5,
-    'I was skeptical about navigating Panvel property developments, but Rahul from Apex Realty gave clear comparisons on price per sq.ft, upcoming airport infrastructure timelines, and rental yield. Zero brokerage on new launch was a big plus.',
-    '2 BHK Flat',
+    'Being first-time buyers in Navi Mumbai, we were cautious about legal clearances. Apex Realty verified the MahaRERA documents and negotiated the best direct developer deal without any brokerage on our launch booking.',
+    'Residential Apartment',
     2
 ),
 (
@@ -335,10 +323,11 @@ INSERT INTO public.testimonials (
     'Priyanka & Saurabh Sen',
     'Bought 2 BHK in Kamothe',
     5,
-    'Transparent, patient, and highly professional. Apex Realty handled the entire bank loan sanction through SBI within 5 working days. Highly recommend them for anyone searching in Kamothe and Panvel.',
-    '2 BHK Flat',
+    'Found an amazing resale unit in Kamothe within our budget. The broker assisted with CIDCO transfer documentation and seamless SBI home loan disbursal in just 10 days.',
+    'Resale Apartment',
     3
-);
+)
+ON CONFLICT (id) DO NOTHING;
 
 -- 7. Insert Realistic Leads
 INSERT INTO public.leads (
@@ -348,80 +337,76 @@ INSERT INTO public.leads (
 (
     '00000000-0000-0000-0000-000000000001',
     '00000000-0000-0000-0000-000000000201',
-    'Vikas Mahajan',
-    '+91 98202 11223',
-    'vikas.mahajan@gmail.com',
-    'Looking for a 3 BHK in Kharghar with ready possession or 2026 delivery. Need parking for 2 cars.',
-    15000000, 20000000, 'Kharghar', 'website_form', 'interested',
-    'Spoke on WhatsApp. Interested in Godrej Highland higher floor with deck.'
+    'Sameer Joshi',
+    '+91 98200 12345',
+    'sameer.joshi@gmail.com',
+    'Interested in 2 BHK at Kharghar. Would like to schedule an accompanied site visit this Saturday.',
+    7500000,
+    9000000,
+    'Kharghar',
+    'website_form',
+    'site_visit_scheduled',
+    'Pre-approved home loan from HDFC. Prefers morning visit.'
 ),
 (
     '00000000-0000-0000-0000-000000000001',
     '00000000-0000-0000-0000-000000000202',
-    'Sneha Rane',
-    '+91 98190 33445',
-    'sneha.rane@tcs.com',
-    'Interested in Hiranandani Fortune City 2 BHK. Want to check bank loan eligibility.',
-    8000000, 10000000, 'Panvel', 'whatsapp', 'site_visit_scheduled',
-    'Site visit scheduled for upcoming Sunday 11 AM.'
+    'Kavita Menon',
+    '+91 98190 55443',
+    'kavita.menon@outlook.com',
+    'Looking for 3 BHK flat in Panvel near golf course. Please share floor plans.',
+    11000000,
+    13500000,
+    'Panvel',
+    'whatsapp',
+    'interested',
+    'Sent PDF brochure on WhatsApp. Client interested in mid-level floors.'
 ),
 (
     '00000000-0000-0000-0000-000000000001',
-    '00000000-0000-0000-0000-000000000204',
-    'Kunal Singhania',
-    '+91 99300 77665',
-    'kunal@singhaniaholdings.com',
-    'Looking for luxury duplex or penthouse facing Central Park. Budget up to 4 Cr.',
-    30000000, 40000000, 'Kharghar', 'property_page', 'negotiation',
-    'High value client. Offered Sai Miracle penthouse. In token negotiation stage.'
-),
-(
-    '00000000-0000-0000-0000-000000000001',
-    '00000000-0000-0000-0000-000000000209',
-    'Deepak Gaikwad',
-    '+91 97680 99001',
-    'deepak.gaikwad@rediffmail.com',
-    'Need budget 1 BHK under 40 Lakhs near Taloja metro station.',
-    3500000, 4000000, 'Taloja', 'landing_page', 'new',
-    'New inquiry captured via mobile landing page quick search.'
-),
-(
-    '00000000-0000-0000-0000-000000000001',
-    '00000000-0000-0000-0000-000000000207',
-    'Capt. Rohit Mehra',
-    '+91 98210 55443',
-    'rohit.mehra@merchantnavy.org',
-    'Merchant navy officer looking for sea view residence in Seawoods.',
-    25000000, 30000000, 'Seawoods', 'whatsapp', 'won',
-    'Successfully closed! Booked unit 1602 at Seawoods Grand Central.'
-);
+    '00000000-0000-0000-0000-000000000210',
+    'Manish Merchant',
+    '+91 99201 88776',
+    'm.merchant@globaltrade.in',
+    'Enquiring about the Seawoods Sea View penthouse. Ready for immediate purchase if title is 100% clear.',
+    30000000,
+    35000000,
+    'Seawoods',
+    'property_page',
+    'negotiation',
+    'High net-worth buyer. Offer placed at 3.10 Cr, discussing with seller.'
+)
+ON CONFLICT (id) DO NOTHING;
 
 -- 8. Insert Site Visits
 INSERT INTO public.site_visits (
-    agency_id, property_id, customer_name, customer_phone, customer_email,
+    id, agency_id, property_id, customer_name, customer_phone, customer_email,
     visit_date, visit_time, status, assigned_agent_id, notes
 ) VALUES
 (
-    '00000000-0000-0000-0000-000000000001',
-    '00000000-0000-0000-0000-000000000202',
-    'Sneha Rane',
-    '+91 98190 33445',
-    'sneha.rane@tcs.com',
-    CURRENT_DATE + INTERVAL '2 days',
-    '11:00 AM',
-    'confirmed',
-    '00000000-0000-0000-0000-0000000102',
-    'Pick up requested from Panvel station ticket counter'
-),
-(
+    '00000000-0000-0000-0000-000000000401',
     '00000000-0000-0000-0000-000000000001',
     '00000000-0000-0000-0000-000000000201',
-    'Vikas Mahajan',
-    '+91 98202 11223',
-    'vikas.mahajan@gmail.com',
-    CURRENT_DATE + INTERVAL '3 days',
-    '04:30 PM',
+    'Sameer Joshi',
+    '+91 98200 12345',
+    'sameer.joshi@gmail.com',
+    CURRENT_DATE + INTERVAL '2 days',
+    '11:00 AM',
     'scheduled',
-    '00000000-0000-0000-0000-0000000101',
-    'Client arriving by own car at Godrej Highland sales gallery'
-);
+    '00000000-0000-0000-0000-000000000101',
+    'AC Cab pickup from Kharghar railway station booked.'
+),
+(
+    '00000000-0000-0000-0000-000000000402',
+    '00000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0000-000000000207',
+    'Vikram Chawla',
+    '+91 98222 33441',
+    'vikram.c@chawla.com',
+    CURRENT_DATE + INTERVAL '3 days',
+    '04:00 PM',
+    'confirmed',
+    '00000000-0000-0000-0000-000000000101',
+    'Accompanied villa tour for family. Bring master plan map.'
+)
+ON CONFLICT (id) DO NOTHING;

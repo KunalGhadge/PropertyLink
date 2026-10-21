@@ -44,7 +44,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
           {/* Center Links (hidden on mobile, visible md+) */}
           <div className="hidden md:flex items-center gap-8 text-sm">
             <Link
-              href="#residences"
+              href="#flow-art"
               className="text-white hover:text-gray-300 transition-colors"
             >
               Story
@@ -107,7 +107,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
                   Start a Chat
                 </button>
                 <a
-                  href="#residences"
+                  href="#flow-art"
                   className="liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-all cursor-pointer text-center inline-block"
                 >
                   Explore Now

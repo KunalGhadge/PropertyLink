@@ -13,7 +13,7 @@ import FlowArt, { FlowSection } from '@/components/scroll/FlowArt';
  */
 export function FlowArtSection() {
   return (
-    <div className="relative w-full overflow-hidden">
+    <div id="flow-art" className="relative w-full overflow-hidden scroll-mt-0">
       <FlowArt>
         {/* Section 01: Terracotta / Orange */}
         <FlowSection style={{ backgroundColor: '#E85A2B', color: '#000' }}>

@@ -75,15 +75,15 @@ export default function FlowArt({ className, children }: FlowArtProps) {
       });
 
       // Pin the outer container and scrub through rotating each container in from 30°
-      const totalScrollHeight = (sections.length - 1) * 100;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
           scrub: 1,
           start: 'top top',
-          end: `+=${totalScrollHeight}%`,
+          end: () => `+=${(sections.length - 1) * (window.innerHeight || 800)}`,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -115,6 +115,9 @@ export default function FlowArt({ className, children }: FlowArtProps) {
           `step-${i}`
         );
       }
+
+      // Ensure ScrollTrigger accurately knows layout after render
+      ScrollTrigger.refresh();
 
       return () => {
         ScrollTrigger.getAll().forEach((st) => {

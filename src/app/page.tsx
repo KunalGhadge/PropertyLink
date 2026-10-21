@@ -73,6 +73,12 @@ export default function HomePage() {
         phoneNumber={settings.phone_number}
       />
 
+      {/* ========================================================================= */}
+      {/* FLOW ART 3D PIN-ON-SCROLL SECTION (Can be easily removed or commented out) */}
+      {/* ========================================================================= */}
+      <FlowArtSection />
+      {/* ========================================================================= */}
+
       {/* 3. Category Navigation in Clean Monochrome Layout */}
       <section className="py-16 sm:py-20 bg-neutral-50 border-y border-neutral-200/80">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
@@ -121,15 +127,9 @@ export default function HomePage() {
       </section>
 
       {/* 4. Live Interactive Property Discovery with Search and Filters */}
-      <div className="py-12 bg-white">
+      <div id="properties-section" className="py-12 bg-white">
         <HomeLiveListings initialProperties={allProperties} />
       </div>
-
-      {/* ========================================================================= */}
-      {/* FLOW ART 3D PIN-ON-SCROLL SECTION (Can be easily removed or commented out) */}
-      {/* ========================================================================= */}
-      <FlowArtSection />
-      {/* ========================================================================= */}
 
       {/* 5. Trust & Quality Standards */}
       <section className="py-20 sm:py-28 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 border-t border-neutral-100">

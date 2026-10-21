@@ -57,6 +57,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fontSans.variable} ${fontSerif.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen bg-[#fdfbf7] text-[#0c0f14] antialiased font-sans selection:bg-[#c5a059]/20 selection:text-[#0c0f14]">
         <QueryProvider>{children}</QueryProvider>
       </body>

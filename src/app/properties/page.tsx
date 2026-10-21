@@ -50,17 +50,17 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
       <Navbar settings={settings} />
 
       {/* Header Banner */}
-      <div className="pt-28 pb-10 sm:pb-14 bg-[#0c0f14] text-white border-b border-[#c5a059]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pt-28 pb-10 sm:pb-14 bg-black text-white border-b border-neutral-800">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold text-[#c5a059] uppercase tracking-wider block">
-                Panvel & Navi Mumbai Real Estate Portfolio
+              <span className="text-xs uppercase font-medium tracking-widest text-neutral-400 block">
+                Portfolio Inventory
               </span>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight">
+              <h1 className="text-3xl sm:text-5xl font-normal text-white tracking-tight">
                 {locality ? `Verified Properties in ${locality}` : 'All Verified Properties'}
               </h1>
-              <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-2xl font-normal">
+              <p className="text-xs sm:text-sm text-neutral-400 mt-1 max-w-2xl font-light">
                 Showing {properties.length} verified listings with 100% legal title scrutiny, transparent developer pricing, and zero buyer brokerage on new launches.
               </p>
             </div>
@@ -76,7 +76,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
       </div>
 
       {/* Main Content Layout: Sidebar + Grid */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <main className="flex-1 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar (Sticky on desktop) */}
           <div className="lg:col-span-1">
@@ -88,13 +88,13 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
           {/* Properties Grid */}
           <div className="lg:col-span-3 space-y-6">
             {/* Quick Filter Active Tags */}
-            <div className="flex items-center justify-between bg-white px-5 py-3.5 rounded-2xl border border-[#e8e2d5] shadow-xs text-xs text-stone-600">
-              <span className="font-serif font-bold text-[#0c0f14] text-sm">
+            <div className="flex items-center justify-between bg-white px-5 py-3.5 rounded-xl border border-neutral-200 text-xs text-neutral-600">
+              <span className="font-medium text-black text-sm">
                 {properties.length} {properties.length === 1 ? 'property' : 'properties'} found
               </span>
               <div className="flex items-center gap-2">
-                <span className="text-stone-400">Sort:</span>
-                <span className="font-bold text-[#0c0f14] capitalize">
+                <span className="text-neutral-400">Sort:</span>
+                <span className="font-medium text-black capitalize">
                   {sort === 'price_asc'
                     ? 'Price: Low to High'
                     : sort === 'price_desc'

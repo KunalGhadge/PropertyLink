@@ -52,18 +52,17 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
       <Navbar settings={settings} />
 
       {/* Header Banner */}
-      <div className="pt-28 pb-12 sm:pb-16 bg-[#0c0f14] text-white border-b border-[#c5a059]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pt-28 pb-12 sm:pb-16 bg-black text-white border-b border-neutral-800">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1c222c] border border-[#c5a059]/30 text-[#dfba73] text-xs font-semibold backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5 text-[#c5a059]" />
-                <span>Buy Verified Properties • Panvel & Navi Mumbai</span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight">
+              <span className="text-xs uppercase font-medium tracking-widest text-neutral-400 block">
+                Acquisitions & Purchases • Navi Mumbai
+              </span>
+              <h1 className="text-3xl sm:text-5xl font-normal text-white tracking-tight">
                 {locality ? `Homes for Sale in ${locality}` : 'Properties for Sale in Navi Mumbai'}
               </h1>
-              <p className="text-sm sm:text-base text-stone-300 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-neutral-400 font-light leading-relaxed">
                 Browse handpicked 1, 2, 3 BHK apartments, penthouses, villas, and commercial spaces with complete title clearance, direct builder pricing, and zero buyer brokerage on new launches.
               </p>
             </div>
@@ -77,21 +76,21 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
           </div>
 
           {/* Buyer Trust Highlights */}
-          <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-stone-300">
+          <div className="mt-8 pt-6 border-t border-neutral-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-neutral-400 font-light">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-white shrink-0" />
               <span>100% MahaRERA Verified</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#c5a059] shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
               <span>Zero Brokerage on Developer Inventory</span>
             </div>
             <div className="flex items-center gap-2">
-              <KeyRound className="w-4 h-4 text-emerald-400 shrink-0" />
+              <KeyRound className="w-4 h-4 text-white shrink-0" />
               <span>Free Doorstep AC Site Visits</span>
             </div>
             <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-[#c5a059] shrink-0" />
+              <Building2 className="w-4 h-4 text-white shrink-0" />
               <span>Pre-Approved Bank Loans (SBI, HDFC)</span>
             </div>
           </div>
@@ -99,7 +98,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
       </div>
 
       {/* Main Content Layout: Sidebar + Grid */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <main className="flex-1 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar (Sticky on desktop) */}
           <div className="lg:col-span-1">

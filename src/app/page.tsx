@@ -64,6 +64,12 @@ export default function HomePage() {
       {/* 1. Exact Full-screen Video Hero Section with Liquid Glass Navbar */}
       <HeroSection settings={settings} />
 
+      {/* ========================================================================= */}
+      {/* FLOW ART 3D PIN-ON-SCROLL SECTION (Can be easily removed or commented out) */}
+      {/* ========================================================================= */}
+      <FlowArtSection />
+      {/* ========================================================================= */}
+
       {/* 2. Architectural Sections: "Discover space you truly belong in",
           "Guiding you toward the residence of your dreams", and "Exclusive collection"
           Exactly matching the user's attached screenshot */}
@@ -72,12 +78,6 @@ export default function HomePage() {
         whatsappNumber={settings.whatsapp_number}
         phoneNumber={settings.phone_number}
       />
-
-      {/* ========================================================================= */}
-      {/* FLOW ART 3D PIN-ON-SCROLL SECTION (Can be easily removed or commented out) */}
-      {/* ========================================================================= */}
-      <FlowArtSection />
-      {/* ========================================================================= */}
 
       {/* 3. Category Navigation in Clean Monochrome Layout */}
       <section className="py-16 sm:py-20 bg-neutral-50 border-y border-neutral-200/80">

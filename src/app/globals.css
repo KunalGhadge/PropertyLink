@@ -31,7 +31,7 @@ body {
 }
 
 .font-serif {
-  font-family: var(--font-serif), Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .font-sans {

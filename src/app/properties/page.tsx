@@ -115,22 +115,22 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
               </div>
             ) : (
               /* Empty State with WhatsApp fallback */
-              <div className="bg-white rounded-3xl border border-[#e8e2d5] p-8 sm:p-12 text-center space-y-5 shadow-xs">
-                <div className="w-16 h-16 rounded-full bg-[#f5f1e9] flex items-center justify-center mx-auto text-[#b38b42]">
+              <div className="bg-white rounded-3xl border border-neutral-200 p-8 sm:p-12 text-center space-y-5 shadow-xs">
+                <div className="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center mx-auto text-neutral-800">
                   <Search className="w-8 h-8" />
                 </div>
                 <div className="max-w-md mx-auto space-y-2">
-                  <h3 className="text-xl font-serif font-bold text-[#0c0f14]">
+                  <h3 className="text-xl font-bold text-neutral-950 tracking-tight">
                     No properties match your exact filters
                   </h3>
-                  <p className="text-xs sm:text-sm text-stone-600">
+                  <p className="text-xs sm:text-sm text-neutral-500">
                     We frequently have off-market resale inventory and unlisted pre-launch units in Panvel and Kharghar. Share your requirement and we will send suitable options on WhatsApp.
                   </p>
                 </div>
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <Link
                     href="/properties"
-                    className="px-5 py-2.5 rounded-xl bg-[#f5f1e9] hover:bg-[#ede7dc] text-[#0c0f14] text-xs font-bold transition-colors"
+                    className="px-5 py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-xs font-medium transition-colors"
                   >
                     Clear All Filters
                   </Link>

@@ -78,32 +78,32 @@ export function BookVisitModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-neutral-200 animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-[#1c1811] p-6 text-white relative">
+        <div className="bg-neutral-950 p-6 text-white relative">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-white/70 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            className="absolute top-4 right-4 p-2 text-neutral-400 hover:text-white rounded-full bg-neutral-900 hover:bg-neutral-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
-          <div className="flex items-center gap-2 text-[#c5a059] text-xs font-bold uppercase tracking-wider mb-1 font-serif">
-            <Calendar className="w-4 h-4 text-[#c5a059]" />
+          <div className="flex items-center gap-2 text-neutral-400 text-xs font-semibold uppercase tracking-wider mb-1">
+            <Calendar className="w-4 h-4 text-neutral-400" />
             <span>Free AC Cab Site Visit</span>
           </div>
-          <h2 className="text-lg font-bold text-white line-clamp-1 font-serif">{propertyTitle}</h2>
-          <p className="text-xs text-slate-300 mt-1">Locality: {locality}, Navi Mumbai</p>
+          <h2 className="text-lg font-bold text-white line-clamp-1">{propertyTitle}</h2>
+          <p className="text-xs text-neutral-400 mt-1">Locality: {locality}, Navi Mumbai</p>
         </div>
 
         {/* Content */}
         <div className="p-6">
           {isSuccess ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-sm">
+              <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 font-serif">Site Visit Scheduled!</h3>
-              <p className="text-sm text-slate-600 max-w-sm mx-auto">
+              <h3 className="text-xl font-bold text-neutral-950 tracking-tight">Site Visit Scheduled!</h3>
+              <p className="text-sm text-neutral-500 max-w-sm mx-auto">
                 Our property specialist will call you shortly to confirm the pickup point and share the driver details.
               </p>
               <div className="pt-4">
@@ -112,7 +112,7 @@ export function BookVisitModal({
                     setIsSuccess(false)
                     onClose()
                   }}
-                  className="px-6 py-2.5 bg-slate-900 text-white font-semibold rounded-xl text-sm"
+                  className="px-6 py-2.5 bg-black hover:bg-neutral-800 text-white font-medium rounded-xl text-sm transition-colors"
                 >
                   Done
                 </button>
@@ -131,14 +131,14 @@ export function BookVisitModal({
 
               {/* Name */}
               <div>
-                <label className="text-xs font-bold uppercase text-slate-600 block mb-1">
+                <label className="text-xs font-semibold uppercase text-neutral-700 block mb-1">
                   Full Name <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Anand Mahindra"
                   {...register('customer_name')}
-                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50/70 border border-neutral-200 rounded-xl focus:border-neutral-900 focus:bg-white focus:outline-none text-neutral-950 transition-colors"
                 />
                 {errors.customer_name && (
                   <p className="text-[11px] text-rose-600 mt-1">{errors.customer_name.message}</p>
@@ -147,16 +147,16 @@ export function BookVisitModal({
 
               {/* Phone */}
               <div>
-                <label className="text-xs font-bold uppercase text-slate-600 block mb-1">
+                <label className="text-xs font-semibold uppercase text-neutral-700 block mb-1">
                   Phone Number <span className="text-rose-500">*</span>
                 </label>
                 <div className="relative flex items-center">
-                  <span className="absolute left-3 text-xs font-bold text-slate-500">+91</span>
+                  <span className="absolute left-3 text-xs font-bold text-neutral-400">+91</span>
                   <input
                     type="tel"
                     placeholder="98201 23456"
                     {...register('customer_phone')}
-                    className="w-full pl-12 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
+                    className="w-full pl-12 pr-3 py-2.5 text-xs sm:text-sm bg-neutral-50/70 border border-neutral-200 rounded-xl focus:border-neutral-900 focus:bg-white focus:outline-none text-neutral-950 transition-colors"
                   />
                 </div>
                 {errors.customer_phone && (
@@ -167,23 +167,23 @@ export function BookVisitModal({
               {/* Date & Time Slot */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-bold uppercase text-slate-600 block mb-1">
+                  <label className="text-xs font-semibold uppercase text-neutral-700 block mb-1">
                     Visit Date
                   </label>
                   <input
                     type="date"
                     min={tomorrow}
                     {...register('visit_date')}
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
+                    className="w-full px-3.5 py-2 text-xs bg-neutral-50/70 border border-neutral-200 rounded-xl focus:border-neutral-900 focus:bg-white focus:outline-none text-neutral-950 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold uppercase text-slate-600 block mb-1">
+                  <label className="text-xs font-semibold uppercase text-neutral-700 block mb-1">
                     Time Slot
                   </label>
                   <select
                     {...register('visit_time')}
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
+                    className="w-full px-3.5 py-2 text-xs bg-neutral-50/70 border border-neutral-200 rounded-xl focus:border-neutral-900 focus:bg-white focus:outline-none text-neutral-950 transition-colors"
                   >
                     <option value="10:00 AM">10:00 AM - Morning</option>
                     <option value="11:30 AM">11:30 AM - Morning</option>
@@ -196,20 +196,20 @@ export function BookVisitModal({
 
               {/* Notes / Station Pickup */}
               <div>
-                <label className="text-xs font-bold uppercase text-slate-600 block mb-1">
+                <label className="text-xs font-semibold uppercase text-neutral-700 block mb-1">
                   Pickup Preference / Notes (Optional)
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Free AC cab pickup from Panvel Station / Own vehicle"
                   {...register('notes')}
-                  className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#c5a059]"
+                  className="w-full px-3.5 py-2 text-xs sm:text-sm bg-neutral-50/70 border border-neutral-200 rounded-xl focus:border-neutral-900 focus:bg-white focus:outline-none text-neutral-950 transition-colors"
                 />
               </div>
 
               {/* Feature Highlights */}
-              <div className="p-3 bg-amber-50/80 border border-amber-200/80 rounded-xl flex items-center gap-3 text-xs text-amber-900">
-                <Car className="w-5 h-5 text-[#b38b42] shrink-0" />
+              <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-xl flex items-center gap-3 text-xs text-neutral-800">
+                <Car className="w-5 h-5 text-neutral-600 shrink-0" />
                 <span>Complimentary AC cab pickup from nearest station or your doorstep.</span>
               </div>
 
@@ -217,11 +217,11 @@ export function BookVisitModal({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+                className="w-full py-3 px-4 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 active:scale-98"
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin text-neutral-300" />
                     <span>Confirming Slot...</span>
                   </>
                 ) : (

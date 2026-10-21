@@ -40,18 +40,18 @@ export function AdminSidebar({
   ]
 
   return (
-    <aside className="w-64 bg-slate-950 text-slate-300 flex flex-col justify-between border-r border-slate-900 shrink-0 min-h-screen">
+    <aside className="w-64 bg-neutral-950 text-neutral-400 flex flex-col justify-between border-r border-neutral-900 shrink-0 min-h-screen">
       <div className="p-5 space-y-6">
         {/* Brand Header */}
-        <div className="flex items-center gap-3 pb-5 border-b border-slate-800">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#b38b42] to-[#c5a059] flex items-center justify-center text-[#0c0f14] font-black shadow-md font-serif text-lg">
+        <div className="flex items-center gap-3 pb-5 border-b border-neutral-900">
+          <div className="w-9 h-9 rounded-xl bg-white text-black font-extrabold flex items-center justify-center text-xs tracking-tight shadow-sm shrink-0">
             PL
           </div>
           <div className="overflow-hidden">
-            <span className="font-bold text-white text-sm truncate block font-serif">
+            <span className="font-semibold text-white text-sm truncate block tracking-tight">
               {agencyName}
             </span>
-            <span className="text-[10px] uppercase font-bold text-[#c5a059] tracking-wider flex items-center gap-1">
+            <span className="text-[10px] uppercase font-medium text-neutral-400 tracking-wider flex items-center gap-1.5 mt-0.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Broker Operations
             </span>
@@ -67,17 +67,17 @@ export function AdminSidebar({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all ${
                   isActive
-                    ? 'bg-[#c5a059] text-[#0c0f14] font-bold shadow-md shadow-[#c5a059]/20'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                    ? 'bg-white text-black font-semibold shadow-xs'
+                    : 'text-neutral-400 hover:text-white hover:bg-neutral-900/80 font-medium'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#0c0f14]' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-black' : 'text-neutral-400'}`} />
                   <span>{item.label}</span>
                 </div>
-                {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#0c0f14]/80" />}
+                {isActive && <ChevronRight className="w-3.5 h-3.5 text-neutral-400" />}
               </Link>
             )
           })}
@@ -85,25 +85,25 @@ export function AdminSidebar({
       </div>
 
       {/* Footer Info & Public Site Link */}
-      <div className="p-4 border-t border-slate-900 space-y-2">
+      <div className="p-4 border-t border-neutral-900 space-y-2">
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-colors"
+          className="flex items-center justify-between px-3 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-200 hover:text-white text-xs font-medium transition-colors border border-neutral-800/80"
         >
           <span className="flex items-center gap-2">
-            <ExternalLink className="w-3.5 h-3.5 text-[#c5a059]" />
+            <ExternalLink className="w-3.5 h-3.5 text-neutral-400" />
             View Public Site
           </span>
-          <span className="text-[10px] text-slate-500 font-normal">Live ↗</span>
+          <span className="text-[10px] text-neutral-500 font-normal">Live ↗</span>
         </Link>
 
-        <div className="pt-2 px-1 flex items-center justify-between text-[11px] text-slate-500">
+        <div className="pt-2 px-1 flex items-center justify-between text-[11px] text-neutral-500">
           <span className="flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-            Tenant: Apex Realty
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            Apex Realty
           </span>
-          <Link href="/admin/login" className="hover:text-slate-300">
+          <Link href="/admin/login" className="hover:text-neutral-300">
             Sign out
           </Link>
         </div>

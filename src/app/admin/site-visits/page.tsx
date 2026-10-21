@@ -153,10 +153,10 @@ export default function AdminSiteVisitsPage() {
                     href={waUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-xl bg-[#25D366] text-white hover:bg-[#20ba5a]"
+                    className="p-2 rounded-xl bg-neutral-950 text-white hover:bg-neutral-800 border border-neutral-800 transition-colors"
                     title="Send WhatsApp confirmation"
                   >
-                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <MessageCircle className="w-4 h-4 text-emerald-400 fill-current" />
                   </a>
                 </div>
               </div>

@@ -376,9 +376,9 @@ export default function AdminLeadsPage() {
                   })}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-white font-medium border border-neutral-900 transition-colors shadow-xs"
                 >
-                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <MessageCircle className="w-4 h-4 text-emerald-400 fill-current" />
                   <span>Open WhatsApp</span>
                 </a>
               </div>

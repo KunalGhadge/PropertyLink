@@ -30,32 +30,32 @@ export default function AdminGuidePage() {
             <BookOpen className="w-3.5 h-3.5" />
             1-Page Operations Manual
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-serif">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Broker Launch & Operations Guide
           </h1>
-          <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
+          <p className="text-neutral-300 text-sm max-w-2xl leading-relaxed">
             Welcome to your private property inventory and client conversion platform. This 1-page operational guide explains how to manage listings, handle high-intent leads, and operate your digital agency.
           </p>
 
           <div className="pt-2 flex flex-wrap gap-3">
             <Link
               href="/admin/properties/new"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#c5a059] hover:bg-[#b38b42] text-[#0c0f14] text-xs font-bold transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-neutral-100 text-black text-xs font-semibold transition-all shadow-sm"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Add First Property</span>
             </Link>
             <Link
               href="/admin/leads"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all border border-slate-700"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold transition-all border border-neutral-800"
             >
-              <Users2 className="w-4 h-4 text-[#c5a059]" />
+              <Users2 className="w-4 h-4 text-neutral-300" />
               <span>View Inbound Leads</span>
             </Link>
             <Link
               href="/"
               target="_blank"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 text-xs font-medium transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-neutral-200 text-xs font-medium transition-all"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>Open Public Site</span>
@@ -67,18 +67,18 @@ export default function AdminGuidePage() {
       {/* Guide Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Step 1: Listing Creation */}
-        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4">
-          <div className="w-10 h-10 rounded-2xl bg-amber-50 text-[#b38b42] flex items-center justify-center font-bold text-base border border-amber-200">
+        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-4">
+          <div className="w-10 h-10 rounded-2xl bg-neutral-100 text-neutral-900 flex items-center justify-center font-bold text-base border border-neutral-200">
             1
           </div>
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-[#b38b42]" />
+          <h2 className="text-lg font-bold text-neutral-950 flex items-center gap-2">
+            <Building2 className="w-5 h-5 text-neutral-800" />
             Adding & Publishing Properties
           </h2>
-          <p className="text-xs text-slate-600 leading-relaxed">
+          <p className="text-xs text-neutral-600 leading-relaxed">
             Your inventory is your primary business asset. Maintain high quality standards so buyers trust the listing instantly:
           </p>
-          <ul className="space-y-2 text-xs text-slate-700">
+          <ul className="space-y-2 text-xs text-neutral-700">
             <li className="flex items-start gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span><strong>Indian Pricing Format:</strong> Enter the price in numeric INR (e.g., 8500000); the system automatically displays ₹85 Lakh or ₹1.25 Cr.</span>
@@ -99,7 +99,7 @@ export default function AdminGuidePage() {
           <div className="pt-2">
             <Link
               href="/admin/properties"
-              className="text-xs font-bold text-[#b38b42] hover:text-[#9a7532] inline-flex items-center gap-1"
+              className="text-xs font-semibold text-neutral-900 hover:text-black inline-flex items-center gap-1 underline"
             >
               Go to Property Manager <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -220,10 +220,10 @@ export default function AdminGuidePage() {
       </div>
 
       {/* Trust & Best Practices Banner */}
-      <div className="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
+      <div className="bg-neutral-950 text-white p-6 sm:p-8 rounded-3xl border border-neutral-800 space-y-4">
         <div className="flex items-center gap-3">
-          <Sparkles className="w-6 h-6 text-[#c5a059]" />
-          <h3 className="text-lg font-bold text-white font-serif">
+          <Sparkles className="w-6 h-6 text-white" />
+          <h3 className="text-lg font-bold text-white tracking-tight">
             Broker Pro-Tips for Maximum Conversions
           </h3>
         </div>

@@ -90,12 +90,12 @@ export function WhatsAppButton({
         onClick={handleClick}
         aria-label="Chat on WhatsApp"
         className={cn(
-          'fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] text-white font-semibold shadow-2xl hover:bg-[#20ba5a] active:scale-95 transition-all duration-200 border-2 border-white/80 group',
+          'fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-neutral-950/95 text-white shadow-2xl hover:bg-black active:scale-95 transition-all duration-200 border border-neutral-800/80 backdrop-blur-md group',
           className
         )}
       >
-        <MessageCircle className="w-6 h-6 fill-current group-hover:scale-110 transition-transform" />
-        <span className="hidden sm:inline font-medium">Chat with Broker</span>
+        <MessageCircle className="w-4 h-4 text-emerald-400 fill-current group-hover:scale-110 transition-transform" />
+        <span className="text-xs font-medium tracking-tight">Chat with Broker</span>
       </a>
     )
   }
@@ -109,19 +109,19 @@ export function WhatsAppButton({
         onClick={handleClick}
         aria-label="Chat on WhatsApp"
         className={cn(
-          'inline-flex items-center justify-center p-2 rounded-xl bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors duration-150',
+          'inline-flex items-center justify-center p-2 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 transition-colors duration-150 border border-neutral-200/60',
           className
         )}
       >
-        <MessageCircle className="w-5 h-5 fill-current" />
+        <MessageCircle className="w-4 h-4 text-emerald-500 fill-current" />
       </a>
     )
   }
 
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-xs gap-1.5',
-    md: 'px-4 py-2.5 text-sm gap-2',
-    lg: 'px-6 py-3.5 text-base gap-2.5 font-bold',
+    sm: 'px-3.5 py-1.5 text-xs gap-1.5 rounded-lg',
+    md: 'px-4 py-2.5 text-xs sm:text-sm gap-2 rounded-xl',
+    lg: 'px-6 py-3.5 text-sm sm:text-base gap-2.5 font-medium rounded-xl',
   }
 
   return (
@@ -131,15 +131,15 @@ export function WhatsAppButton({
       rel="noopener noreferrer"
       onClick={handleClick}
       className={cn(
-        'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-150 shadow-sm active:scale-98',
+        'inline-flex items-center justify-center font-medium transition-all duration-150 active:scale-98 shadow-xs',
         variant === 'primary'
-          ? 'bg-[#25D366] text-white hover:bg-[#20ba5a] hover:shadow-md'
-          : 'bg-emerald-50 text-[#128C7E] border border-emerald-200 hover:bg-emerald-100',
+          ? 'bg-neutral-950 text-white hover:bg-neutral-800 border border-neutral-900'
+          : 'bg-neutral-100 text-neutral-900 border border-neutral-200 hover:bg-neutral-200/80',
         sizeClasses[size],
         className
       )}
     >
-      <MessageCircle className="w-4 h-4 fill-current shrink-0" />
+      <MessageCircle className="w-4 h-4 text-emerald-400 fill-current shrink-0" />
       <span>{label}</span>
     </a>
   )

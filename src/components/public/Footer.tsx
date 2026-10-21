@@ -30,30 +30,30 @@ export function Footer({ settings }: FooterProps) {
   ]
 
   return (
-    <footer className="bg-[#0c0f14] text-stone-300 pt-16 pb-12 border-t border-stone-800">
+    <footer className="bg-neutral-950 text-neutral-300 pt-16 pb-12 border-t border-neutral-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-neutral-800/80">
           {/* Brand Info & RERA (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1e2430] to-[#0c0f14] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] shadow-md">
+              <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white shadow-md">
                 <Building2 className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xl font-serif font-bold text-white tracking-tight block">
+                <span className="text-xl font-bold text-white tracking-tight block">
                   {brandName}
                 </span>
-                <span className="text-[10px] uppercase font-bold text-[#b38b42] tracking-widest block">
+                <span className="text-[10px] uppercase font-semibold text-neutral-400 tracking-widest block">
                   Navi Mumbai Advisory
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-stone-400 leading-relaxed">
+            <p className="text-xs text-neutral-400 leading-relaxed">
               Navi Mumbai’s trusted boutique real estate advisory. Curated inventory across Panvel, Kharghar, Taloja, Kamothe, and Seawoods with 100% legal clarity and zero buyer brokerage on developer launches.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-stone-900 border border-stone-800 text-stone-200 text-xs font-semibold">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-200 text-xs font-medium">
               <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-400" />
               <span>{reraNumber}</span>
             </div>
@@ -71,7 +71,7 @@ export function Footer({ settings }: FooterProps) {
 
           {/* Popular Locations (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-stone-200 uppercase tracking-widest">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-widest">
               Areas Served
             </h4>
             <div className="flex flex-wrap gap-1.5 pt-1">
@@ -79,55 +79,55 @@ export function Footer({ settings }: FooterProps) {
                 <Link
                   key={area}
                   href={`/properties?locality=${encodeURIComponent(area)}`}
-                  className="px-2.5 py-1 rounded-lg bg-stone-900/80 hover:bg-stone-800 text-stone-300 hover:text-white text-xs border border-stone-800 transition-colors"
+                  className="px-2.5 py-1 rounded-lg bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white text-xs border border-neutral-800 transition-colors"
                 >
                   {area}
                 </Link>
               ))}
             </div>
-            <p className="text-[11px] text-stone-500 pt-2">
+            <p className="text-[11px] text-neutral-500 pt-2">
               All properties accompanied by local area specialists with doorstep site visits.
             </p>
           </div>
 
           {/* Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold text-stone-200 uppercase tracking-widest">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-widest">
               Navigation
             </h4>
-            <ul className="space-y-2 text-xs text-stone-400">
+            <ul className="space-y-2 text-xs text-neutral-400">
               <li>
-                <Link href="/properties" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/properties" className="hover:text-white transition-colors">
                   All Properties
                 </Link>
               </li>
               <li>
-                <Link href="/buy" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/buy" className="hover:text-white transition-colors">
                   Buy Flats & Plots
                 </Link>
               </li>
               <li>
-                <Link href="/rent" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/rent" className="hover:text-white transition-colors">
                   Rental Residences
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/about" className="hover:text-white transition-colors">
                   About Our Agency
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/contact" className="hover:text-white transition-colors">
                   Contact & Office
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/privacy-policy" className="hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-[#c5a059] transition-colors">
+                <Link href="/terms" className="hover:text-white transition-colors">
                   Terms of Service
                 </Link>
               </li>
@@ -136,22 +136,22 @@ export function Footer({ settings }: FooterProps) {
 
           {/* Contact Details (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-stone-200 uppercase tracking-widest">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-widest">
               Office & Direct Contact
             </h4>
-            <div className="space-y-2.5 text-xs text-stone-400">
+            <div className="space-y-2.5 text-xs text-neutral-400">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#c5a059] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-neutral-500 shrink-0 mt-0.5" />
                 <span>{address}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#c5a059] shrink-0" />
+                <Phone className="w-4 h-4 text-neutral-500 shrink-0" />
                 <a href={`tel:${phone}`} className="hover:text-white transition-colors">
                   {phone}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#c5a059] shrink-0" />
+                <Mail className="w-4 h-4 text-neutral-500 shrink-0" />
                 <a href={`mailto:${email}`} className="hover:text-white transition-colors">
                   {email}
                 </a>
@@ -160,15 +160,15 @@ export function Footer({ settings }: FooterProps) {
 
             {/* Social Links */}
             <div className="pt-3">
-              <span className="text-[11px] text-stone-500 uppercase tracking-wider block mb-2 font-bold">
+              <span className="text-[11px] text-neutral-500 uppercase tracking-wider block mb-2 font-semibold">
                 Follow Updates
               </span>
-              <div className="flex items-center gap-3 text-xs text-stone-400">
+              <div className="flex items-center gap-3 text-xs text-neutral-400">
                 <a
                   href="https://facebook.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#c5a059] transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   Facebook
                 </a>
@@ -177,7 +177,7 @@ export function Footer({ settings }: FooterProps) {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#c5a059] transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   Instagram
                 </a>
@@ -186,7 +186,7 @@ export function Footer({ settings }: FooterProps) {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#c5a059] transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   YouTube
                 </a>
@@ -197,21 +197,21 @@ export function Footer({ settings }: FooterProps) {
 
         {/* Disclaimer & Copyright */}
         <div className="pt-8 space-y-4 text-center md:text-left">
-          <p className="text-[11px] text-stone-500 leading-relaxed max-w-5xl">
+          <p className="text-[11px] text-neutral-500 leading-relaxed max-w-5xl">
             {disclaimer}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 pt-4 border-t border-stone-800 gap-2">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 pt-4 border-t border-neutral-900 gap-2">
             <p>© {new Date().getFullYear()} {brandName}. All rights reserved.</p>
             <div className="flex items-center gap-4">
-              <Link href="/privacy-policy" className="hover:text-stone-300 transition-colors">
+              <Link href="/privacy-policy" className="hover:text-neutral-300 transition-colors">
                 Privacy
               </Link>
               <span>•</span>
-              <Link href="/terms" className="hover:text-stone-300 transition-colors">
+              <Link href="/terms" className="hover:text-neutral-300 transition-colors">
                 Terms
               </Link>
               <span>•</span>
-              <Link href="/admin" className="hover:text-[#c5a059] transition-colors">
+              <Link href="/admin" className="hover:text-white transition-colors">
                 Broker Portal
               </Link>
             </div>

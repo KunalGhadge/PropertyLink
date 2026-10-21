@@ -15,11 +15,11 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-amber-500 to-rose-600 text-white shadow-sm',
+          'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-950 text-white border border-neutral-800 shadow-xs',
           className
         )}
       >
-        <Flame className="w-3.5 h-3.5 fill-current animate-pulse" />
+        <Flame className="w-3.5 h-3.5 text-rose-400 fill-current" />
         Hot Deal
       </span>
     )
@@ -29,11 +29,11 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-900/90 text-amber-300 backdrop-blur-sm border border-amber-400/40 shadow-sm',
+          'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-black text-white border border-neutral-800 shadow-xs',
           className
         )}
       >
-        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+        <Sparkles className="w-3.5 h-3.5 text-neutral-300" />
         Featured
       </span>
     )
@@ -43,11 +43,11 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-sm',
+          'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-950 text-white border border-neutral-800 shadow-xs',
           className
         )}
       >
-        <Sparkles className="w-3.5 h-3.5" />
+        <Sparkles className="w-3.5 h-3.5 text-neutral-300" />
         New Launch
       </span>
     )
@@ -58,11 +58,11 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
       return (
         <span
           className={cn(
-            'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200',
+            'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 border border-neutral-200/80',
             className
           )}
         >
-          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
           Available
         </span>
       )
@@ -70,11 +70,11 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
       return (
         <span
           className={cn(
-            'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200',
+            'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-700 border border-neutral-200/80',
             className
           )}
         >
-          <Clock className="w-3 h-3 text-amber-600" />
+          <Clock className="w-3 h-3 text-neutral-500" />
           In Talks
         </span>
       )
@@ -82,7 +82,7 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
       return (
         <span
           className={cn(
-            'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-700 border border-rose-200',
+            'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-500 border border-neutral-200',
             className
           )}
         >
@@ -93,7 +93,7 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
       return (
         <span
           className={cn(
-            'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200',
+            'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-600 border border-neutral-200',
             className
           )}
         >
@@ -104,7 +104,7 @@ export function StatusBadge({ status, featured, isNew, isHotDeal, className }: S
       return (
         <span
           className={cn(
-            'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500 border border-gray-200',
+            'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-400 border border-neutral-200',
             className
           )}
         >

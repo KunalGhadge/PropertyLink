@@ -34,7 +34,7 @@ export function AdminNavbar({ title = 'Overview', onMenuToggle }: AdminNavbarPro
         {/* Quick Add Property Button */}
         <Link
           href="/admin/properties/new"
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#c5a059] hover:bg-[#b38b42] text-[#0c0f14] font-bold text-xs shadow-sm transition-all"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-black hover:bg-neutral-800 text-white font-medium text-xs shadow-xs transition-all active:scale-98"
         >
           <Plus className="w-4 h-4" />
           <span className="hidden sm:inline">Add Property</span>
@@ -44,9 +44,9 @@ export function AdminNavbar({ title = 'Overview', onMenuToggle }: AdminNavbarPro
         <Link
           href="/"
           target="_blank"
-          className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs transition-colors"
+          className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-800 font-medium text-xs transition-colors"
         >
-          <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+          <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
           <span>View Site</span>
         </Link>
 

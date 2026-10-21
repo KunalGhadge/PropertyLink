@@ -70,17 +70,17 @@ export function SearchBar({
 
   return (
     <div
-      className={`w-full bg-[#fdfbf7] backdrop-blur-md rounded-2xl md:rounded-3xl shadow-[0_20px_50px_rgba(12,15,20,0.14)] border border-[#e8e2d5] p-4 sm:p-6 ${className}`}
+      className={`w-full bg-white rounded-2xl md:rounded-3xl shadow-sm border border-neutral-200 p-4 sm:p-6 ${className}`}
     >
       {/* Buy / Rent Switch Tabs */}
       <div className="flex items-center gap-2 mb-4">
         <button
           type="button"
           onClick={() => setListingType('sale')}
-          className={`px-5 sm:px-7 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${
+          className={`px-5 sm:px-7 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
             listingType === 'sale'
-              ? 'bg-[#0c0f14] text-white shadow-md'
-              : 'bg-[#f4efe6] text-stone-700 hover:bg-[#ede7dc]'
+              ? 'bg-black text-white shadow-xs'
+              : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
           }`}
         >
           Buy Property
@@ -88,10 +88,10 @@ export function SearchBar({
         <button
           type="button"
           onClick={() => setListingType('rent')}
-          className={`px-5 sm:px-7 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${
+          className={`px-5 sm:px-7 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
             listingType === 'rent'
-              ? 'bg-[#0c0f14] text-white shadow-md'
-              : 'bg-[#f4efe6] text-stone-700 hover:bg-[#ede7dc]'
+              ? 'bg-black text-white shadow-xs'
+              : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
           }`}
         >
           Rent Flat / Shop
@@ -101,15 +101,15 @@ export function SearchBar({
       <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 items-end">
         {/* Locality Dropdown */}
         <div className="space-y-1">
-          <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider flex items-center gap-1">
-            <MapPin className="w-3.5 h-3.5 text-[#b38b42]" />
+          <label className="text-[11px] font-semibold text-neutral-600 uppercase tracking-wider flex items-center gap-1">
+            <MapPin className="w-3.5 h-3.5 text-neutral-400" />
             Location
           </label>
           <div className="relative">
             <select
               value={locality}
               onChange={(e) => setLocality(e.target.value)}
-              className="w-full bg-white hover:bg-[#faf8f4] border border-[#e8e2d5] rounded-xl px-3 py-2.5 text-xs sm:text-sm font-semibold text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all cursor-pointer shadow-xs"
+              className="w-full bg-neutral-50/70 hover:bg-white border border-neutral-200 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-medium text-neutral-900 focus:outline-none focus:border-black transition-all cursor-pointer shadow-xs"
             >
               {localities.map((loc) => (
                 <option key={loc.value} value={loc.value}>
@@ -122,14 +122,14 @@ export function SearchBar({
 
         {/* BHK Selector */}
         <div className="space-y-1">
-          <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider flex items-center gap-1">
-            <Home className="w-3.5 h-3.5 text-[#b38b42]" />
+          <label className="text-[11px] font-semibold text-neutral-600 uppercase tracking-wider flex items-center gap-1">
+            <Home className="w-3.5 h-3.5 text-neutral-400" />
             BHK Config
           </label>
           <select
             value={bhk}
             onChange={(e) => setBhk(e.target.value)}
-            className="w-full bg-white hover:bg-[#faf8f4] border border-[#e8e2d5] rounded-xl px-3 py-2.5 text-xs sm:text-sm font-semibold text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all cursor-pointer shadow-xs"
+            className="w-full bg-neutral-50/70 hover:bg-white border border-neutral-200 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-medium text-neutral-900 focus:outline-none focus:border-black transition-all cursor-pointer shadow-xs"
           >
             <option value="all">Any BHK</option>
             <option value="1">1 BHK</option>
@@ -141,14 +141,14 @@ export function SearchBar({
 
         {/* Property Type */}
         <div className="space-y-1">
-          <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider flex items-center gap-1">
-            <Layers className="w-3.5 h-3.5 text-[#b38b42]" />
+          <label className="text-[11px] font-semibold text-neutral-600 uppercase tracking-wider flex items-center gap-1">
+            <Layers className="w-3.5 h-3.5 text-neutral-400" />
             Property Type
           </label>
           <select
             value={propertyType}
             onChange={(e) => setPropertyType(e.target.value)}
-            className="w-full bg-white hover:bg-[#faf8f4] border border-[#e8e2d5] rounded-xl px-3 py-2.5 text-xs sm:text-sm font-semibold text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all cursor-pointer shadow-xs"
+            className="w-full bg-neutral-50/70 hover:bg-white border border-neutral-200 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-medium text-neutral-900 focus:outline-none focus:border-black transition-all cursor-pointer shadow-xs"
           >
             <option value="all">All Types</option>
             <option value="flat">Apartment / Flat</option>
@@ -162,14 +162,14 @@ export function SearchBar({
 
         {/* Budget Range */}
         <div className="space-y-1">
-          <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider flex items-center gap-1">
-            <IndianRupee className="w-3.5 h-3.5 text-emerald-600" />
+          <label className="text-[11px] font-semibold text-neutral-600 uppercase tracking-wider flex items-center gap-1">
+            <IndianRupee className="w-3.5 h-3.5 text-neutral-400" />
             Budget Range
           </label>
           <select
             value={budgetRange}
             onChange={(e) => setBudgetRange(e.target.value)}
-            className="w-full bg-white hover:bg-[#faf8f4] border border-[#e8e2d5] rounded-xl px-3 py-2.5 text-xs sm:text-sm font-semibold text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-[#c5a059] transition-all cursor-pointer shadow-xs"
+            className="w-full bg-neutral-50/70 hover:bg-white border border-neutral-200 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-medium text-neutral-900 focus:outline-none focus:border-black transition-all cursor-pointer shadow-xs"
           >
             {budgetOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -183,9 +183,9 @@ export function SearchBar({
         <div>
           <button
             type="submit"
-            className="w-full h-[42px] sm:h-[44px] flex items-center justify-center gap-2 px-6 rounded-xl bg-gold-gradient hover:opacity-95 text-[#0c0f14] font-extrabold text-sm shadow-md hover:shadow-lg active:scale-98 transition-all duration-150 cursor-pointer"
+            className="w-full h-[42px] sm:h-[44px] flex items-center justify-center gap-2 px-6 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-sm shadow-xs active:scale-98 transition-all duration-150 cursor-pointer"
           >
-            <Search className="w-4 h-4 shrink-0 text-[#0c0f14]" />
+            <Search className="w-4 h-4 shrink-0 text-white" />
             <span>Search</span>
           </button>
         </div>

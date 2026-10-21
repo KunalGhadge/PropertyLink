@@ -173,29 +173,29 @@ export default function AdminPropertiesPage() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-stone-200/90 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-neutral-200/90 shadow-xs">
         <div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#c5a059]" />
-            <span className="text-xs uppercase tracking-wider font-bold text-[#b38b42]">
+            <span className="w-2 h-2 rounded-full bg-neutral-900" />
+            <span className="text-xs uppercase tracking-wider font-semibold text-neutral-500">
               Inventory Management
             </span>
           </div>
-          <h2 className="text-2xl font-serif font-bold text-stone-900 tracking-tight mt-1">
+          <h2 className="text-2xl font-bold text-neutral-950 tracking-tight mt-1">
             Properties & Listings
           </h2>
-          <p className="text-xs text-stone-500 mt-1">
+          <p className="text-xs text-neutral-500 mt-1">
             Add new listings, update Indian pricing (Lakhs/Crores), toggle featured badges, or duplicate records.
           </p>
         </div>
 
         <div className="flex items-center gap-3 self-start sm:self-auto">
           {/* View mode toggle */}
-          <div className="flex items-center bg-stone-100 p-1 rounded-xl border border-stone-200">
+          <div className="flex items-center bg-neutral-100 p-1 rounded-xl border border-neutral-200">
             <button
               onClick={() => setViewMode('table')}
-              className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
-                viewMode === 'table' ? 'bg-white text-stone-900 shadow-xs' : 'text-stone-500 hover:text-stone-900'
+              className={`p-1.5 rounded-lg text-xs font-semibold transition-all ${
+                viewMode === 'table' ? 'bg-white text-black shadow-xs' : 'text-neutral-500 hover:text-black'
               }`}
               title="Table View"
             >
@@ -203,8 +203,8 @@ export default function AdminPropertiesPage() {
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
-                viewMode === 'grid' ? 'bg-white text-stone-900 shadow-xs' : 'text-stone-500 hover:text-stone-900'
+              className={`p-1.5 rounded-lg text-xs font-semibold transition-all ${
+                viewMode === 'grid' ? 'bg-white text-black shadow-xs' : 'text-neutral-500 hover:text-black'
               }`}
               title="Grid View"
             >
@@ -214,7 +214,7 @@ export default function AdminPropertiesPage() {
 
           <Link
             href="/admin/properties/new"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-[#c5a059] text-white font-bold text-xs shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-xs shadow-sm transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Add Property</span>
@@ -223,17 +223,17 @@ export default function AdminPropertiesPage() {
       </div>
 
       {/* Tabs: Active vs Archived */}
-      <div className="flex items-center gap-2 border-b border-stone-200">
+      <div className="flex items-center gap-2 border-b border-neutral-200">
         <button
           onClick={() => {
             setActiveTab('active')
             setCurrentPage(1)
             setSelectedIds([])
           }}
-          className={`pb-3 px-3 text-xs font-bold border-b-2 transition-all cursor-pointer ${
+          className={`pb-3 px-3 text-xs font-semibold border-b-2 transition-all cursor-pointer ${
             activeTab === 'active'
-              ? 'border-stone-900 text-stone-900'
-              : 'border-transparent text-stone-500 hover:text-stone-800'
+              ? 'border-neutral-900 text-neutral-950'
+              : 'border-transparent text-neutral-400 hover:text-neutral-800'
           }`}
         >
           Active Listings ({activeCount})
@@ -244,10 +244,10 @@ export default function AdminPropertiesPage() {
             setCurrentPage(1)
             setSelectedIds([])
           }}
-          className={`pb-3 px-3 text-xs font-bold border-b-2 transition-all cursor-pointer flex items-center gap-1.5 ${
+          className={`pb-3 px-3 text-xs font-semibold border-b-2 transition-all cursor-pointer flex items-center gap-1.5 ${
             activeTab === 'archived'
-              ? 'border-[#c5a059] text-[#b38b42]'
-              : 'border-transparent text-stone-500 hover:text-stone-800'
+              ? 'border-neutral-900 text-neutral-950'
+              : 'border-transparent text-neutral-400 hover:text-neutral-800'
           }`}
         >
           <span>Trash / Archived ({archivedCount})</span>

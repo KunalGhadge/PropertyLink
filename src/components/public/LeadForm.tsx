@@ -111,13 +111,13 @@ export function LeadForm({
   }
 
   return (
-    <div className={`bg-[#fdfbf7] rounded-3xl border border-[#e8e2d5] shadow-luxury p-6 sm:p-8 space-y-5 ${className}`}>
+    <div className={`bg-white rounded-3xl border border-neutral-200 shadow-sm p-6 sm:p-8 space-y-5 ${className}`}>
       <div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#f4efe6] text-[#b38b42] mb-2 border border-[#e8e2d5]">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-neutral-100 text-neutral-800 mb-2 border border-neutral-200/80">
           Direct Broker Consultation
         </div>
-        <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0c0f14] leading-snug">{title}</h3>
-        {subtitle && <p className="text-xs sm:text-sm text-stone-600 mt-1">{subtitle}</p>}
+        <h3 className="text-xl sm:text-2xl font-bold text-neutral-950 tracking-tight leading-snug">{title}</h3>
+        {subtitle && <p className="text-xs sm:text-sm text-neutral-500 mt-1">{subtitle}</p>}
       </div>
 
       {errorMessage && (
@@ -140,7 +140,7 @@ export function LeadForm({
         {/* Purpose Toggle: Buy vs Rent (When not on specific property) */}
         {!propertyId && (
           <div>
-            <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
+            <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-600 block mb-1.5">
               I am looking to
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -152,7 +152,7 @@ export function LeadForm({
                   className="peer sr-only"
                   defaultChecked
                 />
-                <span className="flex items-center justify-center py-2 px-3 rounded-xl border border-[#e8e2d5] bg-white text-xs font-bold text-stone-700 peer-checked:bg-[#0c0f14] peer-checked:text-white peer-checked:border-[#0c0f14] transition-all">
+                <span className="flex items-center justify-center py-2 px-3 rounded-xl border border-neutral-200 bg-neutral-50 text-xs font-semibold text-neutral-700 peer-checked:bg-black peer-checked:text-white peer-checked:border-black transition-all">
                   Buy Property
                 </span>
               </label>
@@ -163,7 +163,7 @@ export function LeadForm({
                   {...register('listing_purpose')}
                   className="peer sr-only"
                 />
-                <span className="flex items-center justify-center py-2 px-3 rounded-xl border border-[#e8e2d5] bg-white text-xs font-bold text-stone-700 peer-checked:bg-[#0c0f14] peer-checked:text-white peer-checked:border-[#0c0f14] transition-all">
+                <span className="flex items-center justify-center py-2 px-3 rounded-xl border border-neutral-200 bg-neutral-50 text-xs font-semibold text-neutral-700 peer-checked:bg-black peer-checked:text-white peer-checked:border-black transition-all">
                   Rent Property
                 </span>
               </label>
@@ -173,15 +173,15 @@ export function LeadForm({
 
         {/* Full Name */}
         <div>
-          <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
-            Your Name <span className="text-[#b38b42]">*</span>
+          <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
+            Your Name <span className="text-rose-500">*</span>
           </label>
           <input
             type="text"
             placeholder="e.g. Rajesh Patil"
             {...register('name')}
-            className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] ${
-              errors.name ? 'border-rose-300 bg-rose-50/50' : 'border-[#e8e2d5]'
+            className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50/60 border rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 transition-colors ${
+              errors.name ? 'border-rose-300 bg-rose-50/50' : 'border-neutral-200'
             }`}
           />
           {errors.name && <p className="text-[11px] text-rose-600 mt-1">{errors.name.message}</p>}
@@ -190,17 +190,17 @@ export function LeadForm({
         {/* Mobile Number OR Email Contact Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
-              WhatsApp / Mobile <span className="text-stone-400 font-normal">(or Email)</span>
+            <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
+              WhatsApp / Mobile <span className="text-neutral-400 font-normal">(or Email)</span>
             </label>
             <div className="relative flex items-center">
-              <span className="absolute left-3 text-xs font-bold text-stone-400">+91</span>
+              <span className="absolute left-3 text-xs font-bold text-neutral-400">+91</span>
               <input
                 type="tel"
                 placeholder="98201 23456"
                 {...register('phone')}
-                className={`w-full pl-12 pr-3 py-2.5 text-xs sm:text-sm bg-white border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] ${
-                  errors.phone ? 'border-rose-300 bg-rose-50/50' : 'border-[#e8e2d5]'
+                className={`w-full pl-12 pr-3 py-2.5 text-xs sm:text-sm bg-neutral-50/60 border rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 transition-colors ${
+                  errors.phone ? 'border-rose-300 bg-rose-50/50' : 'border-neutral-200'
                 }`}
               />
             </div>
@@ -208,15 +208,15 @@ export function LeadForm({
           </div>
 
           <div>
-            <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
-              Email Address <span className="text-stone-400 font-normal">(Optional)</span>
+            <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
+              Email Address <span className="text-neutral-400 font-normal">(Optional)</span>
             </label>
             <input
               type="email"
               placeholder="name@example.com"
               {...register('email')}
-              className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-white border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] ${
-                errors.email ? 'border-rose-300 bg-rose-50/50' : 'border-[#e8e2d5]'
+              className={`w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50/60 border rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 transition-colors ${
+                errors.email ? 'border-rose-300 bg-rose-50/50' : 'border-neutral-200'
               }`}
             />
             {errors.email && <p className="text-[11px] text-rose-600 mt-1">{errors.email.message}</p>}
@@ -227,12 +227,12 @@ export function LeadForm({
         {!compact && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+              <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
                 Preferred Area
               </label>
               <select
                 {...register('preferred_location')}
-                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
+                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-neutral-50/60 border border-neutral-200 rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 transition-colors"
               >
                 <option value="">Any Navi Mumbai Area</option>
                 <option value="Panvel">Panvel</option>
@@ -248,12 +248,12 @@ export function LeadForm({
             </div>
 
             <div>
-              <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+              <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
                 Property Type
               </label>
               <select
                 {...register('property_type')}
-                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
+                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-neutral-50/60 border border-neutral-200 rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 transition-colors"
               >
                 <option value="">Any Type</option>
                 <option value="flat">1 / 2 / 3 BHK Flat</option>
@@ -265,12 +265,12 @@ export function LeadForm({
             </div>
 
             <div>
-              <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
+              <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
                 Budget Range
               </label>
               <select
                 {...register('budget_range')}
-                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14]"
+                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-neutral-50/60 border border-neutral-200 rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 transition-colors"
               >
                 <option value="">Flexible Budget</option>
                 <option value="Under ₹50 Lakh">Under ₹50 Lakh</option>
@@ -285,8 +285,8 @@ export function LeadForm({
 
         {/* Message / Requirement Context */}
         <div>
-          <label className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1">
-            Requirement Details <span className="text-stone-400 font-normal">(Optional)</span>
+          <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-700 block mb-1">
+            Requirement Details <span className="text-neutral-400 font-normal">(Optional)</span>
           </label>
           <textarea
             rows={compact ? 2 : 2}
@@ -296,7 +296,7 @@ export function LeadForm({
                 : "e.g. Looking for a ready 2 BHK near station with car parking. Best builder deals only."
             }
             {...register('message')}
-            className="w-full px-3.5 py-2 text-xs sm:text-sm bg-white border border-[#e8e2d5] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c5a059] text-[#0c0f14] resize-none"
+            className="w-full px-3.5 py-2 text-xs sm:text-sm bg-neutral-50/60 border border-neutral-200 rounded-xl focus:outline-none focus:bg-white focus:border-neutral-900 text-neutral-950 resize-none transition-colors"
           />
         </div>
 
@@ -304,28 +304,28 @@ export function LeadForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3.5 px-5 rounded-xl bg-[#0c0f14] hover:bg-[#1a202c] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+          className="w-full py-3.5 px-5 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm shadow-sm active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin text-[#c5a059]" />
+              <Loader2 className="w-4 h-4 animate-spin text-neutral-300" />
               <span>Sending Your Details...</span>
             </>
           ) : (
             <>
-              <Send className="w-4 h-4 text-[#c5a059]" />
+              <Send className="w-4 h-4 text-neutral-300" />
               <span>{propertyTitle ? 'Request Site Visit & Floor Plan' : 'Get Matching Options on WhatsApp'}</span>
             </>
           )}
         </button>
 
-        <p className="text-[11px] text-stone-500 text-center">
+        <p className="text-[11px] text-neutral-500 text-center">
           🔒 Zero spam guarantee. Direct response from principal broker within 30 minutes.
         </p>
       </form>
 
       {/* WhatsApp Deep Link fallback */}
-      <div className="pt-3 border-t border-[#e8e2d5] text-center">
+      <div className="pt-3 border-t border-neutral-100 text-center">
         <WhatsAppButton
           propertyTitle={propertyTitle}
           price={priceFormatted}

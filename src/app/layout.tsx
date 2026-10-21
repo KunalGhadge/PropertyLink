@@ -65,7 +65,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-[#fdfbf7] text-[#0c0f14] antialiased font-sans selection:bg-[#c5a059]/20 selection:text-[#0c0f14]">
+      <body className="min-h-screen bg-white text-black antialiased font-sans selection:bg-black/10 selection:text-black overflow-x-hidden">
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

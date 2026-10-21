@@ -7,8 +7,6 @@ import { Footer } from '@/components/public/Footer'
 import { PropertyCard } from '@/components/public/PropertyCard'
 import { FilterSidebar } from '@/components/public/FilterSidebar'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
-import { LeadForm } from '@/components/public/LeadForm'
-import { SoftLeadCapturePopup } from '@/components/public/SoftLeadCapturePopup'
 import { Search, ShieldCheck, CheckCircle2, Building2, KeyRound, Sparkles } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -48,7 +46,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
   })
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fdfbf7]">
+    <div className="min-h-screen flex flex-col bg-neutral-50">
       <Navbar settings={settings} />
 
       {/* Header Banner */}
@@ -110,13 +108,13 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
           {/* Properties Grid */}
           <div className="lg:col-span-3 space-y-6">
             {/* Quick Filter Active Tags */}
-            <div className="flex items-center justify-between bg-white px-5 py-3.5 rounded-2xl border border-[#e8e2d5] shadow-xs text-xs text-stone-600">
-              <span className="font-serif font-bold text-[#0c0f14] text-sm">
+            <div className="flex items-center justify-between bg-white px-5 py-3.5 rounded-2xl border border-neutral-200 shadow-xs text-xs text-neutral-600">
+              <span className="font-sans font-semibold text-black text-sm">
                 {properties.length} {properties.length === 1 ? 'property' : 'properties'} for sale
               </span>
               <div className="flex items-center gap-2">
-                <span className="text-stone-400">Sort:</span>
-                <span className="font-bold text-[#0c0f14] capitalize">
+                <span className="text-neutral-400">Sort:</span>
+                <span className="font-semibold text-black capitalize">
                   {sort === 'price_asc'
                     ? 'Price: Low to High'
                     : sort === 'price_desc'
@@ -137,13 +135,13 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
               </div>
             ) : (
               /* Empty State with WhatsApp fallback */
-              <div className="bg-white rounded-3xl border border-[#e8e2d5] p-8 sm:p-12 text-center space-y-5 shadow-xs">
-                <div className="w-16 h-16 rounded-full bg-[#f5f1e9] flex items-center justify-center mx-auto text-[#b38b42]">
+              <div className="bg-white rounded-2xl border border-neutral-200 p-8 sm:p-12 text-center space-y-5 shadow-xs">
+                <div className="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center mx-auto text-black">
                   <Search className="w-8 h-8" />
                 </div>
                 <div className="max-w-md mx-auto space-y-2">
-                  <h3 className="text-xl font-serif font-bold text-[#0c0f14]">No exact sale matches right now</h3>
-                  <p className="text-xs sm:text-sm text-stone-600">
+                  <h3 className="text-xl font-sans font-semibold text-black">No exact sale matches right now</h3>
+                  <p className="text-xs sm:text-sm text-neutral-600">
                     We frequently have off-market developer units and unlisted resale flats in Panvel & Kharghar. Share your requirement and we will send suitable options on WhatsApp.
                   </p>
                 </div>
@@ -160,32 +158,37 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
           </div>
         </div>
 
-        {/* Lead Capture Section */}
-        <div className="mt-16 pt-12 border-t border-[#e8e2d5]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-bold text-[#b38b42] uppercase tracking-wider block">
-                Exclusive Off-Market Inventory
+        {/* Direct Advisory Section (Zero form, 1-click WhatsApp/Call) */}
+        <div className="mt-16 pt-12 border-t border-neutral-200">
+          <div className="bg-neutral-50 rounded-2xl p-6 sm:p-10 border border-neutral-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="max-w-2xl space-y-2">
+              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 block">
+                Direct Advisory & Off-Market Access
               </span>
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#0c0f14]">
-                Looking to buy a home in Panvel or Kharghar?
+              <h2 className="text-2xl sm:text-3xl font-normal text-black tracking-tight">
+                Looking to buy in Panvel or Kharghar corridor?
               </h2>
-              <p className="text-sm text-stone-600 leading-relaxed font-normal">
-                Share your budget, preferred configuration, and possession timeline. Our principal broker will send you matching developer inventory with special payment plans and zero buyer commission.
+              <p className="text-sm text-neutral-600 font-light leading-relaxed">
+                Skip the endless browsing. Connect directly with our principal broker on WhatsApp for verified launches, unlisted resale opportunities, and accompanied doorstep AC cab site visits with zero buyer commission.
               </p>
             </div>
-            <div className="lg:col-span-5">
-              <LeadForm
-                title="Get Curated Property Shortlist"
-                subtitle="Direct WhatsApp response with photos, floor plans & developer offers."
-                source="website_form"
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full sm:w-auto">
+              <WhatsAppButton
+                phone={settings.whatsapp_number}
+                size="md"
+                label="Chat on WhatsApp"
+                customMessage="Hi Rajesh, I am looking to buy a verified property in Navi Mumbai. Please share matching options."
               />
+              <a
+                href={`tel:${settings.phone_number.replace(/\s+/g, '')}`}
+                className="px-6 py-3 rounded-xl border border-neutral-300 text-black text-xs font-semibold uppercase tracking-wider hover:bg-black hover:text-white hover:border-black transition-colors text-center"
+              >
+                Call Advisor
+              </a>
             </div>
           </div>
         </div>
       </main>
-
-      <SoftLeadCapturePopup />
 
       <WhatsAppButton
         phone={settings.whatsapp_number}

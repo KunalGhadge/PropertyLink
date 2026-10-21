@@ -22,7 +22,6 @@ import { Footer } from '@/components/public/Footer'
 import { HeroSection } from '@/components/public/HeroSection'
 import { ArchitecturalHeroShowcase } from '@/components/public/ArchitecturalHeroShowcase'
 import { HomeLiveListings } from '@/components/public/HomeLiveListings'
-import { LeadForm } from '@/components/public/LeadForm'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
 
 export default function HomePage() {
@@ -285,44 +284,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Low Friction Consultation Lead Capture */}
-      <section className="py-20 bg-neutral-50 border-t border-neutral-200/80">
+      {/* 8. Direct Private Consultation & Concierge */}
+      <section className="py-20 sm:py-24 bg-neutral-50 border-t border-neutral-200/80">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 block">
-                Direct Consultation
-              </span>
-              <h3 className="text-3xl sm:text-4xl font-normal text-black tracking-tight leading-snug">
-                Looking for a home in Panvel, Kharghar, or Navi Mumbai?
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-600 font-light leading-relaxed">
-                Share your criteria and receive handpicked, verified options on WhatsApp. We provide direct builder pricing, legal scrutiny, and accompanied AC cab visits with zero buyer brokerage on new launches.
-              </p>
+          <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-neutral-200/90 shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 text-black text-xs font-medium tracking-wide">
+                  <Sparkles className="w-3.5 h-3.5 text-black" />
+                  <span>VIP Buyer Advisory</span>
+                </div>
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-black tracking-tight leading-tight">
+                  Looking for a verified home in Navi Mumbai?
+                </h3>
+                <p className="text-sm sm:text-base text-neutral-600 font-light leading-relaxed max-w-xl">
+                  Skip the clunky forms and automated bots. Connect directly with our principal broker on WhatsApp for handpicked off-market inventory, transparent carpet prices, and accompanied AC cab visits with zero buyer commission.
+                </p>
 
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-700 font-light">
-                  <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
-                  <span>Complimentary AC cab site visit from your doorstep or station</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-700 font-light">
-                  <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
-                  <span>Bank loan pre-approval through SBI, HDFC & ICICI</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-700 font-light">
-                  <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
-                  <span>100% legal title verification by our in-house advocate</span>
+                <div className="space-y-3 pt-2">
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-700 font-light">
+                    <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
+                    <span>Complimentary AC cab site visit from your doorstep or station</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-700 font-light">
+                    <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
+                    <span>Bank loan pre-approval through SBI, HDFC & ICICI</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs sm:text-sm text-neutral-700 font-light">
+                    <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
+                    <span>100% legal title verification by our in-house advocate</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Lead Form */}
-            <div className="lg:col-span-5">
-              <LeadForm
-                title="Get Matching Properties on WhatsApp"
-                subtitle="Share your requirement below; we will send curated options within 30 minutes."
-                source="landing_page"
-              />
+              {/* Direct WhatsApp & Call Action Box */}
+              <div className="lg:col-span-5 bg-neutral-950 text-white rounded-2xl p-7 sm:p-8 space-y-6">
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 block mb-1">
+                    Direct Contact Channel
+                  </span>
+                  <h4 className="text-xl font-normal text-white tracking-tight">
+                    Instant Advisory Access
+                  </h4>
+                  <p className="text-xs text-neutral-400 mt-1 font-light">
+                    Direct response within 15 minutes • No spam guarantee
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  <WhatsAppButton
+                    phone={settings.whatsapp_number}
+                    size="lg"
+                    label="Chat with Rajesh on WhatsApp"
+                    className="w-full justify-center"
+                    customMessage="Hi Rajesh, I am looking for a verified home in Navi Mumbai. Please share curated options."
+                  />
+
+                  <a
+                    href={`tel:${settings.phone_number.replace(/\s+/g, '')}`}
+                    className="w-full py-3.5 px-6 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-white/20"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span>Call Direct: {settings.phone_number}</span>
+                  </a>
+                </div>
+
+                <div className="pt-4 border-t border-neutral-800 text-[11px] text-neutral-400 font-light flex items-center justify-between">
+                  <span>MahaRERA: {settings.rera_number}</span>
+                  <span>Panvel & Kharghar</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

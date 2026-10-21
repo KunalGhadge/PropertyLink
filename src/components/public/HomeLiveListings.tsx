@@ -131,44 +131,44 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
   }
 
   return (
-    <section id="listings" className="py-16 sm:py-24 bg-white border-t border-[#e8e2d5]">
+    <section id="listings" className="py-16 sm:py-24 bg-white border-t border-neutral-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4efe6] text-[#b38b42] text-xs font-bold uppercase tracking-wider mb-2 border border-[#e8e2d5]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 text-neutral-900 text-xs font-semibold uppercase tracking-wider mb-2 border border-neutral-200">
               <Building2 className="w-3.5 h-3.5" />
-              Direct Broker Inventory
+              <span>Direct Broker Inventory</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[#0c0f14] tracking-tight">
-              Live Property Listings
+            <h2 className="text-2xl sm:text-4xl font-normal text-black tracking-tight">
+              Live Property Discovery
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-1 max-w-xl">
-              Filter by budget, locality, and configuration to find your ideal home or commercial space.
+            <p className="text-sm sm:text-base text-neutral-600 font-light mt-1 max-w-xl">
+              Filter by budget, locality, and configuration to find your ideal residence or investment.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700">
-              Showing <strong className="text-slate-950 font-bold">{filteredProperties.length}</strong> {filteredProperties.length === 1 ? 'property' : 'properties'}
+            <span className="text-xs font-medium px-3 py-1.5 rounded-xl bg-neutral-100 text-neutral-700">
+              Showing <strong className="text-black font-semibold">{filteredProperties.length}</strong> {filteredProperties.length === 1 ? 'property' : 'properties'}
             </span>
 
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold py-2 px-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold py-2 px-3.5 rounded-xl border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-800 shadow-sm transition-colors cursor-pointer"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#b38b42]" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-black" />
               <span>{showAdvanced ? 'Hide Filters' : 'More Filters'}</span>
             </button>
           </div>
         </div>
 
         {/* Primary Filter Bar */}
-        <div className="bg-[#fdfbf7] p-4 sm:p-5 rounded-2xl border border-[#e8e2d5] shadow-sm space-y-4 mb-8">
+        <div className="bg-neutral-50/70 p-4 sm:p-5 rounded-2xl border border-neutral-200/90 shadow-sm space-y-4 mb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {/* Search Input */}
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400" />
               <input
                 type="text"
                 placeholder="Society, project, or landmark..."
@@ -179,7 +179,7 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
                     setVisibleCount(ITEMS_PER_PAGE)
                   })
                 }}
-                className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
+                className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-black"
               />
             </div>
 
@@ -192,7 +192,7 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
                   setVisibleCount(ITEMS_PER_PAGE)
                 })
               }}
-              className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
+              className="w-full px-3 py-2.5 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-1 focus:ring-black"
             >
               <option value="all">Buy & Rent (All)</option>
               <option value="sale">For Sale (Buy)</option>
@@ -208,7 +208,7 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
                   setVisibleCount(ITEMS_PER_PAGE)
                 })
               }}
-              className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
+              className="w-full px-3 py-2.5 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-1 focus:ring-black"
             >
               <option value="all">All Localities</option>
               {localities.filter((loc) => loc !== 'all').map((loc) => (
@@ -227,7 +227,7 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
                     setSortBy(e.target.value)
                   })
                 }}
-                className="w-full px-3 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#c5a059]"
+                className="w-full px-3 py-2.5 rounded-xl bg-white border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-1 focus:ring-black"
               >
                 <option value="newest">Sort: Newest First</option>
                 <option value="price_asc">Price: Low to High</option>
@@ -359,27 +359,27 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
           </div>
         ) : filteredProperties.length === 0 ? (
           /* Empty State */
-          <div className="bg-white rounded-3xl border border-dashed border-[#e8e2d5] p-10 sm:p-16 text-center space-y-4 max-w-xl mx-auto shadow-sm">
-            <div className="w-16 h-16 rounded-full bg-[#f4efe6] text-[#b38b42] flex items-center justify-center mx-auto shadow-inner">
-              <Building2 className="w-8 h-8" />
+          <div className="bg-white rounded-3xl border border-dashed border-neutral-300 p-8 sm:p-14 text-center space-y-4 max-w-xl mx-auto shadow-sm">
+            <div className="w-14 h-14 rounded-full bg-neutral-100 text-black flex items-center justify-center mx-auto">
+              <Building2 className="w-7 h-7" />
             </div>
-            <h3 className="text-xl font-serif font-bold text-slate-900">
+            <h3 className="text-xl font-normal text-black tracking-tight">
               No matching properties right now
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              We frequently receive unlisted developer inventory and resale units that match custom requirements. Send your exact requirement directly to our broker on WhatsApp.
+            <p className="text-xs sm:text-sm text-neutral-600 font-light leading-relaxed">
+              We frequently receive unlisted developer launches and private resale inventory that match custom requirements. Connect directly with Rajesh Sharma on WhatsApp.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <WhatsAppButton
                 phone="+91 98201 23456"
                 customMessage="Hi Rajesh, I am looking for a property in Navi Mumbai with specific requirements. Could you please share relevant options?"
-                label="Send Requirement on WhatsApp"
+                label="Inquire on WhatsApp"
                 size="md"
                 className="w-full sm:w-auto"
               />
               <button
                 onClick={handleReset}
-                className="px-5 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-colors w-full sm:w-auto"
+                className="px-5 py-2.5 rounded-xl border border-neutral-200 hover:bg-neutral-50 text-neutral-800 text-xs font-semibold transition-colors w-full sm:w-auto cursor-pointer"
               >
                 Clear Filters
               </button>
@@ -399,7 +399,7 @@ export function HomeLiveListings({ initialProperties }: HomeLiveListingsProps) {
               <div className="mt-12 text-center">
                 <button
                   onClick={handleLoadMore}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[#0c0f14] hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all active:scale-95"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-xs uppercase tracking-wider shadow-sm transition-all active:scale-98 cursor-pointer"
                 >
                   <span>Load More Properties ({filteredProperties.length - visibleCount} remaining)</span>
                 </button>

@@ -46,12 +46,12 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
   })
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fdfbf7]">
+    <div className="min-h-screen flex flex-col bg-neutral-50">
       <Navbar settings={settings} />
 
       {/* Header Banner */}
       <div className="pt-28 pb-10 sm:pb-14 bg-black text-white border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
               <span className="text-xs uppercase font-medium tracking-widest text-neutral-400 block">
@@ -76,7 +76,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
       </div>
 
       {/* Main Content Layout: Sidebar + Grid */}
-      <main className="flex-1 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-10 w-full">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar (Sticky on desktop) */}
           <div className="lg:col-span-1">

@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PropertyWithImages } from '@/types'
 import { PropertyCard } from './PropertyCard'
-import { BookVisitModal } from './BookVisitModal'
 
 interface ArchitecturalHeroShowcaseProps {
   properties: PropertyWithImages[]
@@ -18,16 +17,16 @@ export function ArchitecturalHeroShowcase({
   whatsappNumber = '+91 98201 23456',
   phoneNumber = '+91 98201 23456',
 }: ArchitecturalHeroShowcaseProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const topProperties = properties.slice(0, 3)
   const sampleProp = topProperties[0] || properties[0]
 
   const handleBookCall = () => {
-    setIsModalOpen(true)
+    const text = encodeURIComponent('Hi Rajesh, I would like to book a private real estate consultation call for Navi Mumbai residences.')
+    window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${text}`, '_blank')
   }
 
   const handleFreeConsult = () => {
-    const text = encodeURIComponent('Hi Rajesh, I would like to book a private real estate consultation for Navi Mumbai properties.')
+    const text = encodeURIComponent('Hi Rajesh, I would like to get a curated portfolio recommendation.')
     window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${text}`, '_blank')
   }
 
@@ -152,17 +151,6 @@ export function ArchitecturalHeroShowcase({
           </div>
         </div>
       </section>
-
-      {/* Modal for Book a Call / Site Visit */}
-      {sampleProp && (
-        <BookVisitModal
-          propertyId={sampleProp.id}
-          propertyTitle={sampleProp.title}
-          locality={sampleProp.locality}
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
     </div>
   )
 }

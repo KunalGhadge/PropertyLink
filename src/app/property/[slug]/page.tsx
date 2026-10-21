@@ -18,6 +18,7 @@ import {
   Clock,
   ArrowLeft,
   MessageSquare,
+  FileText,
 } from 'lucide-react'
 import { getPropertyBySlug, getSimilarProperties, getSiteSettings, getAgents, incrementPropertyMetric } from '@/lib/data/store'
 import { formatIndianPrice, formatArea } from '@/lib/utils'
@@ -27,9 +28,7 @@ import { PropertyGallery } from '@/components/public/PropertyGallery'
 import { StatusBadge } from '@/components/public/StatusBadge'
 import { PropertyActionButtons } from '@/components/public/PropertyActionButtons'
 import { PropertyCard } from '@/components/public/PropertyCard'
-import { LeadForm } from '@/components/public/LeadForm'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
-import { SoftLeadCapturePopup } from '@/components/public/SoftLeadCapturePopup'
 
 interface PropertyDetailPageProps {
   params: Promise<{ slug: string }>
@@ -366,17 +365,59 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
                 </div>
               )}
 
-              {/* Lead Form */}
-              <LeadForm
-                propertyId={property.id}
-                propertyTitle={property.title}
-                locality={property.locality}
-                priceFormatted={priceFormatted}
-                title="Request Priority Site Visit"
-                subtitle="Leave your contact below to get callback & floor plans."
-                source="property_page"
-                compact
-              />
+              {/* Direct VIP Action Card (Zero Forms) */}
+              <div className="bg-white rounded-2xl p-6 border border-neutral-200/90 shadow-sm space-y-5">
+                <div>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 block mb-1">
+                    Direct Inquiry
+                  </span>
+                  <h4 className="text-base font-semibold text-black tracking-tight">
+                    Interested in this Property?
+                  </h4>
+                  <p className="text-xs text-neutral-500 font-light mt-0.5 leading-relaxed">
+                    Connect directly with the broker. Receive floor plans, title documents, and pricing breakdown on WhatsApp.
+                  </p>
+                </div>
+
+                <div className="space-y-2.5">
+                  <WhatsAppButton
+                    phone={settings.whatsapp_number}
+                    size="md"
+                    label="Inquire via WhatsApp"
+                    className="w-full justify-center"
+                    customMessage={`Hi Rajesh, I am interested in: ${property.title} in ${property.locality} (${priceFormatted}). Please share details.`}
+                  />
+
+                  <a
+                    href={`tel:${settings.phone_number.replace(/\s+/g, '')}`}
+                    className="w-full py-2.5 px-4 rounded-xl border border-neutral-300 hover:border-black text-black text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call Broker ({settings.phone_number})</span>
+                  </a>
+
+                  <a
+                    href={`https://wa.me/${settings.whatsapp_number.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi Rajesh, please share the official brochure and floor plan PDF for ${property.title} (${property.locality}).`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 px-4 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-medium transition-colors flex items-center justify-center gap-2"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-neutral-600" />
+                    <span>Get Brochure on WhatsApp</span>
+                  </a>
+                </div>
+
+                <div className="pt-3 border-t border-neutral-100 space-y-1.5 text-[11px] text-neutral-500 font-light">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Free AC cab pickup for site visits</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>100% legal title & RERA scrutiny</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -433,14 +474,6 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
           </a>
         </div>
       </div>
-
-      {/* Soft restrained Lead Capture Prompt */}
-      <SoftLeadCapturePopup
-        propertyTitle={property.title}
-        propertyLocality={property.locality}
-        propertyPrice={priceFormatted}
-        propertySlug={property.slug}
-      />
 
       <WhatsAppButton
         phone={settings.whatsapp_number}

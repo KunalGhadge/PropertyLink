@@ -136,7 +136,7 @@ export function PropertyCard({ property, className = '', priority = false }: Pro
       </p>
 
       {/* 4. Minimalist Specifications Bar (Matching attached image) */}
-      <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-neutral-600 font-light pt-2 border-t border-neutral-200/80">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] sm:text-xs text-neutral-600 font-light pt-2 border-t border-neutral-200/80">
         <div className="flex items-center gap-1.5 shrink-0">
           <Maximize2 className="w-3.5 h-3.5 text-neutral-400 stroke-[1.5]" />
           <span>{formatArea(property.carpet_area, property.area_unit)}</span>

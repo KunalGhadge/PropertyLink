@@ -4,7 +4,6 @@ import { MapPin, Phone, Mail, Clock, ShieldCheck, Car, Building2 } from 'lucide-
 import { getSiteSettings } from '@/lib/data/store'
 import { Navbar } from '@/components/public/Navbar'
 import { Footer } from '@/components/public/Footer'
-import { LeadForm } from '@/components/public/LeadForm'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
 
 export const metadata: Metadata = {
@@ -113,14 +112,56 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Lead Form Right Column */}
-          <div className="lg:col-span-5">
-            <LeadForm
-              title="Send Us Your Requirement"
-              subtitle="Fill in your details and a property advisor will call you."
-              source="website_form"
-              className="shadow-xl"
-            />
+          {/* Direct Concierge Desk (Zero Forms) */}
+          <div className="lg:col-span-5 bg-white rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-sm space-y-8">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 block mb-2">
+                Fast-Track Channel
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-normal text-black tracking-tight">
+                Direct Principal Broker Access
+              </h3>
+              <p className="text-sm text-neutral-600 font-light mt-2 leading-relaxed">
+                We respect your time and privacy. No lengthy web forms, no telemarketers. Connect directly with Rajesh Sharma on WhatsApp or call now.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <WhatsAppButton
+                phone={settings.whatsapp_number}
+                size="lg"
+                label="Open WhatsApp Chat"
+                className="w-full justify-center"
+                customMessage="Hi Rajesh, I would like to schedule a property consultation."
+              />
+
+              <a
+                href={`tel:${settings.phone_number.replace(/\s+/g, '')}`}
+                className="w-full py-4 px-6 rounded-xl bg-black hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2.5 shadow-sm"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call {settings.phone_number}</span>
+              </a>
+
+              <a
+                href={`mailto:${settings.email}`}
+                className="w-full py-3.5 px-6 rounded-xl border border-neutral-300 hover:border-black text-black text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Email {settings.email}</span>
+              </a>
+            </div>
+
+            <div className="pt-6 border-t border-neutral-100 space-y-3">
+              <div className="flex items-center gap-2.5 text-xs text-neutral-600 font-light">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>MahaRERA: {settings.rera_number} (100% verified agency)</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs text-neutral-600 font-light">
+                <Clock className="w-4 h-4 text-neutral-500 shrink-0" />
+                <span>Working Hours: Mon – Sun, 9:00 AM – 8:30 PM</span>
+              </div>
+            </div>
           </div>
         </div>
       </main>

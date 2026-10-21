@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import { Phone, Calendar, Share2, Check, Download, FileText } from 'lucide-react'
 import { WhatsAppButton } from './WhatsAppButton'
-import { BookVisitModal } from './BookVisitModal'
 import { formatPhoneNumber } from '@/lib/utils'
 
 interface PropertyActionButtonsProps {
@@ -35,7 +34,6 @@ export function PropertyActionButtons({
   ownerPhone,
   hideOwnerContact = true,
 }: PropertyActionButtonsProps) {
-  const [isVisitModalOpen, setIsVisitModalOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -48,9 +46,14 @@ export function PropertyActionButtons({
     }
   }
 
+  const handleBookVisitWhatsApp = () => {
+    const text = `Hi Rajesh, I would like to schedule a site visit for: ${propertyTitle} in ${locality} (${priceFormatted}). Please share available slots.\n${window.location.href}`
+    window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(text)}`, '_blank')
+  }
+
   const handleShareWhatsApp = () => {
-    const text = `Take a look at this property in ${locality}: ${propertyTitle} (${priceFormatted})\n${window.location.href}`
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank')
+    const text = `Take a look at this verified property: ${propertyTitle} in ${locality} (${priceFormatted})\n${window.location.href}`
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank')
   }
 
   return (
@@ -81,8 +84,8 @@ export function PropertyActionButtons({
           </a>
 
           <button
-            onClick={() => setIsVisitModalOpen(true)}
-            className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl border border-neutral-300 hover:border-black bg-white hover:bg-neutral-50 text-black font-medium text-xs sm:text-sm transition-all shadow-xs active:scale-98"
+            onClick={handleBookVisitWhatsApp}
+            className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl border border-neutral-300 hover:border-black bg-white hover:bg-neutral-50 text-black font-medium text-xs sm:text-sm transition-all shadow-xs active:scale-98 cursor-pointer"
           >
             <Calendar className="w-4 h-4 text-neutral-700" />
             <span>Book Visit</span>
@@ -142,15 +145,6 @@ export function PropertyActionButtons({
           </div>
         )}
       </div>
-
-      {/* Book Visit Modal */}
-      <BookVisitModal
-        propertyId={propertyId}
-        propertyTitle={propertyTitle}
-        locality={locality}
-        isOpen={isVisitModalOpen}
-        onClose={() => setIsVisitModalOpen(false)}
-      />
     </>
   )
 }

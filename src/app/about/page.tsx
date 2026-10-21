@@ -1,7 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/image'
 import { ShieldCheck, Award, Users, CheckCircle2, MapPin, Phone, Mail, Building2 } from 'lucide-react'
 import { getSiteSettings, getAgents } from '@/lib/data/store'
 import { Navbar } from '@/components/public/Navbar'

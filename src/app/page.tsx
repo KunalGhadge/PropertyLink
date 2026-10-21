@@ -24,7 +24,6 @@ import { ArchitecturalHeroShowcase } from '@/components/public/ArchitecturalHero
 import { HomeLiveListings } from '@/components/public/HomeLiveListings'
 import { LeadForm } from '@/components/public/LeadForm'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
-import { FlowArtSection } from '@/components/public/FlowArtSection'
 
 export default function HomePage() {
   const settings = getSiteSettings()
@@ -63,12 +62,6 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col bg-white text-black selection:bg-black/10 selection:text-black">
       {/* 1. Exact Full-screen Video Hero Section with Liquid Glass Navbar */}
       <HeroSection settings={settings} />
-
-      {/* ========================================================================= */}
-      {/* FLOW ART 3D PIN-ON-SCROLL SECTION (Can be easily removed or commented out) */}
-      {/* ========================================================================= */}
-      <FlowArtSection />
-      {/* ========================================================================= */}
 
       {/* 2. Architectural Sections: "Discover space you truly belong in",
           "Guiding you toward the residence of your dreams", and "Exclusive collection"

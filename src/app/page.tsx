@@ -24,6 +24,7 @@ import { ArchitecturalHeroShowcase } from '@/components/public/ArchitecturalHero
 import { HomeLiveListings } from '@/components/public/HomeLiveListings'
 import { LeadForm } from '@/components/public/LeadForm'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
+import { FlowArtSection } from '@/components/public/FlowArtSection'
 
 export default function HomePage() {
   const settings = getSiteSettings()
@@ -123,6 +124,12 @@ export default function HomePage() {
       <div className="py-12 bg-white">
         <HomeLiveListings initialProperties={allProperties} />
       </div>
+
+      {/* ========================================================================= */}
+      {/* FLOW ART 3D PIN-ON-SCROLL SECTION (Can be easily removed or commented out) */}
+      {/* ========================================================================= */}
+      <FlowArtSection />
+      {/* ========================================================================= */}
 
       {/* 5. Trust & Quality Standards */}
       <section className="py-20 sm:py-28 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 border-t border-neutral-100">

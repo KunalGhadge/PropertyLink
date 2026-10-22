@@ -25,10 +25,8 @@ import { formatIndianPrice, formatArea } from '@/lib/utils'
 import { Navbar } from '@/components/public/Navbar'
 import { Footer } from '@/components/public/Footer'
 import { PropertyGallery } from '@/components/public/PropertyGallery'
-import { StatusBadge } from '@/components/public/StatusBadge'
 import { PropertyActionButtons } from '@/components/public/PropertyActionButtons'
 import { PropertyCard } from '@/components/public/PropertyCard'
-import { WhatsAppButton } from '@/components/public/WhatsAppButton'
 
 interface PropertyDetailPageProps {
   params: Promise<{ slug: string }>
@@ -108,7 +106,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-white text-black">
       {/* RealEstateListing Structured Data */}
       <script
         type="application/ld+json"
@@ -117,74 +115,83 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
 
       <Navbar settings={settings} />
 
-      {/* Breadcrumb Bar */}
-      <div className="pt-24 pb-4 bg-white border-b border-slate-200">
+      {/* Clean Breadcrumb Bar */}
+      <div className="pt-24 pb-3 bg-white border-b border-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <Link href="/" className="hover:text-slate-900">
+          <div className="flex items-center gap-2 text-xs text-neutral-400 font-light">
+            <Link href="/" className="hover:text-black transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/properties" className="hover:text-slate-900">
+            <Link href="/properties" className="hover:text-black transition-colors">
               Properties
             </Link>
             <span>/</span>
-            <Link href={`/properties?locality=${property.locality}`} className="hover:text-slate-900">
+            <Link href={`/properties?locality=${property.locality}`} className="hover:text-black transition-colors">
               {property.locality}
             </Link>
-            <span>/</span>
-            <span className="text-slate-900 truncate max-w-xs">{property.title}</span>
           </div>
         </div>
       </div>
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-24 lg:pb-10 w-full flex-1 space-y-10">
-        {/* Title & Price Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-          <div className="space-y-2">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-32 lg:pb-16 w-full flex-1 space-y-8">
+        {/* Clean Spacious Title & Price Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-neutral-100">
+          <div className="space-y-2.5 max-w-3xl">
+            {/* Minimal Understated Tags (Max 2 clean pills) */}
             <div className="flex flex-wrap items-center gap-2">
-              <StatusBadge status={property.status} />
-              {property.is_hot_deal && <StatusBadge isHotDeal />}
-              {property.featured && <StatusBadge featured />}
-              {property.is_new && <StatusBadge isNew />}
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-neutral-100 text-neutral-800 border border-neutral-200">
+                {property.status === 'sold' ? 'Sold Out' : property.listing_type === 'rent' ? 'For Rent' : 'For Sale'}
+              </span>
               {property.rera_number && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-950 text-neutral-200 border border-neutral-800">
-                  <ShieldCheck className="w-3.5 h-3.5 text-neutral-300" />
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-neutral-900 text-white">
+                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
                   MahaRERA: {property.rera_number.replace(/^MahaRERA:?\s*/i, '')}
+                </span>
+              )}
+              {property.is_hot_deal && (
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-neutral-100 text-neutral-700">
+                  Featured
                 </span>
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            {/* Spacious, Elegant Title */}
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-black tracking-tight leading-snug">
               {property.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-600">
-              <span className="flex items-center gap-1 font-medium text-neutral-900">
-                <MapPin className="w-4 h-4 text-neutral-600" />
+            {/* Breathing Location & Specs Subtitle */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-neutral-500 font-light">
+              <span className="flex items-center gap-1 font-medium text-black">
+                <MapPin className="w-4 h-4 text-neutral-500 shrink-0" />
                 {property.society_or_project ? `${property.society_or_project}, ` : ''}{property.locality}, {property.city}
               </span>
               <span>•</span>
-              <span className="capitalize">{property.property_type}</span>
+              <span>{property.bhk} BHK</span>
               <span>•</span>
-              <span className="flex items-center gap-1 text-slate-500">
+              <span>{formatArea(property.carpet_area, property.area_unit)}</span>
+              <span>•</span>
+              <span className="capitalize">{property.furnishing.replace('_', ' ')}</span>
+              <span>•</span>
+              <span className="flex items-center gap-1 text-neutral-400">
                 <Eye className="w-3.5 h-3.5" />
                 {property.view_count} views
               </span>
             </div>
           </div>
 
-          {/* Price Tag */}
-          <div className="bg-black text-white p-5 rounded-2xl shadow-xl border border-neutral-800 self-start lg:self-auto text-left lg:text-right min-w-[240px]">
-            <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium block">
+          {/* Clean Price Display */}
+          <div className="flex flex-col lg:items-end justify-center pt-2 lg:pt-0 shrink-0">
+            <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium">
               {property.listing_type === 'rent' ? 'Expected Monthly Rent' : 'All-Inclusive Pricing'}
             </span>
-            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-white block mt-1">
+            <span className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-black tracking-tight mt-0.5">
               {priceFormatted}
             </span>
-            <span className="text-xs text-neutral-400 font-normal block mt-1 flex items-center lg:justify-end gap-1.5">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Zero Buyer Brokerage Guaranteed
+            <span className="text-xs text-emerald-600 font-medium mt-0.5 flex items-center gap-1.5">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Zero Buyer Brokerage
             </span>
           </div>
         </div>
@@ -201,67 +208,69 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
             />
 
             {/* Quick Specs Overview Grid */}
-            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
-              <h2 className="text-base font-bold text-slate-900 mb-4">Property Specifications</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Configuration</span>
-                  <span className="text-sm font-bold text-slate-900">{property.bhk || 0} BHK</span>
+            <div className="bg-neutral-50/70 rounded-2xl border border-neutral-200 p-6 shadow-xs">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">
+                Property Specifications
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Configuration</span>
+                  <span className="text-sm font-semibold text-black">{property.bhk || 0} BHK</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Carpet Area</span>
-                  <span className="text-sm font-bold text-slate-900">{formatArea(property.carpet_area, property.area_unit)}</span>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Carpet Area</span>
+                  <span className="text-sm font-semibold text-black">{formatArea(property.carpet_area, property.area_unit)}</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Floor Level</span>
-                  <span className="text-sm font-bold text-slate-900">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Floor Level</span>
+                  <span className="text-sm font-semibold text-black">
                     {property.floor_number ? `${property.floor_number} of ${property.total_floors}` : 'Mid Floor'}
                   </span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Furnishing</span>
-                  <span className="text-sm font-bold text-slate-900 capitalize">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Furnishing</span>
+                  <span className="text-sm font-semibold text-black capitalize">
                     {property.furnishing.replace('_', ' ')}
                   </span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Facing / Vastu</span>
-                  <span className="text-sm font-bold text-slate-900">{property.facing || 'East Facing'}</span>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Facing / Vastu</span>
+                  <span className="text-sm font-semibold text-black">{property.facing || 'East Facing'}</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Possession</span>
-                  <span className="text-sm font-bold text-slate-900">{property.possession_date || 'Ready to Move'}</span>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Possession</span>
+                  <span className="text-sm font-semibold text-black">{property.possession_date || 'Ready to Move'}</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Bathrooms</span>
-                  <span className="text-sm font-bold text-slate-900">{property.bathrooms} Baths</span>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Bathrooms</span>
+                  <span className="text-sm font-semibold text-black">{property.bathrooms} Baths</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                  <span className="text-slate-500 block mb-0.5">Balconies</span>
-                  <span className="text-sm font-bold text-slate-900">{property.balconies} Balconies</span>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Balconies</span>
+                  <span className="text-sm font-semibold text-black">{property.balconies} Balconies</span>
                 </div>
               </div>
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-              <h2 className="text-lg font-bold text-slate-900">About the Property</h2>
-              <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line space-y-3 font-normal">
+            <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-8 shadow-xs space-y-4">
+              <h2 className="text-base font-semibold text-black tracking-tight">About this Residence</h2>
+              <div className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line space-y-3 font-light">
                 {property.description}
               </div>
             </div>
 
             {/* Amenities Grid */}
             {property.amenities && property.amenities.length > 0 && (
-              <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-                <h2 className="text-lg font-bold text-slate-900">Amenities & Lifestyle Features</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-8 shadow-xs space-y-4">
+                <h2 className="text-base font-semibold text-black tracking-tight">Amenities & Lifestyle Features</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {property.amenities.map((amenity) => (
                     <div
                       key={amenity}
-                      className="flex items-center gap-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm font-semibold text-slate-800"
+                      className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-50 border border-neutral-100 text-xs font-medium text-neutral-800"
                     >
-                      <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-black shrink-0" />
                       <span>{amenity}</span>
                     </div>
                   ))}
@@ -270,18 +279,18 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
             )}
 
             {/* Location & Map Section */}
-            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
+            <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-8 shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900">Location & Neighborhood</h2>
-                  <p className="text-xs text-slate-500 mt-0.5">{property.full_address || `${property.locality}, Navi Mumbai`}</p>
+                  <h2 className="text-base font-semibold text-black tracking-tight">Location & Neighborhood</h2>
+                  <p className="text-xs text-neutral-500 mt-0.5">{property.full_address || `${property.locality}, Navi Mumbai`}</p>
                 </div>
                 {property.map_link && (
                   <a
                     href={property.map_link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-bold text-[#b38b42] hover:text-[#9a7532] underline"
+                    className="text-xs font-semibold text-black hover:underline"
                   >
                     Open Google Maps ↗
                   </a>
@@ -289,7 +298,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               </div>
 
               {/* Map Embed or placeholder preview */}
-              <div className="relative aspect-[16/7] w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 flex items-center justify-center">
+              <div className="relative aspect-[16/7] w-full rounded-xl overflow-hidden border border-neutral-200 bg-neutral-100 flex items-center justify-center">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60377.34638641982!2d73.078426!3d19.015243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e84f67c54159%3A0xb366b5791fe93077!2sPanvel%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   className="w-full h-full border-0"
@@ -299,29 +308,36 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               </div>
 
               {/* Landmark Connectivity Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-slate-600">
-                <div className="p-3 bg-slate-50 rounded-xl">
-                  <span className="font-bold text-slate-900 block mb-0.5">Upcoming Airport</span>
-                  <span>15 Mins via Amra Marg / Expressway</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 text-xs text-neutral-600">
+                <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100">
+                  <span className="font-semibold text-black block mb-0.5">Upcoming Airport</span>
+                  <span className="text-neutral-500">15 Mins via Amra Marg / Expressway</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-xl">
-                  <span className="font-bold text-slate-900 block mb-0.5">Railway / Metro</span>
-                  <span>5-8 Mins from nearest transit hub</span>
+                <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100">
+                  <span className="font-semibold text-black block mb-0.5">Railway / Metro</span>
+                  <span className="text-neutral-500">5-8 Mins from nearest transit hub</span>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-xl">
-                  <span className="font-bold text-slate-900 block mb-0.5">Schools & Hospitals</span>
-                  <span>DPS, MGM & Ryan within 3 km radius</span>
+                <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100">
+                  <span className="font-semibold text-black block mb-0.5">Schools & Hospitals</span>
+                  <span className="text-neutral-500">DPS, MGM & Ryan within 3 km radius</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column (4 cols) Sticky CTAs & Lead Capture */}
+          {/* Right Column (4 cols) Sticky CTAs & Verified Advisory Card */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="sticky top-24 space-y-6">
-              {/* Main Actions Box */}
-              <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xl space-y-4">
-                <h3 className="text-base font-bold text-slate-900">Direct Broker Actions</h3>
+            <div className="sticky top-24 space-y-5">
+              {/* Primary Direct Broker Actions Card */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-6 shadow-xs space-y-4">
+                <div className="pb-2 border-b border-neutral-100 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-base font-semibold text-black tracking-tight">Direct Broker Inquiry</h3>
+                    <p className="text-xs text-neutral-500 font-light mt-0.5">Zero Buyer Brokerage • Verified Title</p>
+                  </div>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" title="Broker active online" />
+                </div>
+
                 <PropertyActionButtons
                   propertyId={property.id}
                   propertyTitle={property.title}
@@ -339,98 +355,41 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               </div>
 
               {/* Agent Profile Card */}
-              {/* Agent Profile Card */}
               {assignedAgent && (
-                <div className="bg-neutral-950 text-white rounded-3xl p-6 shadow-md border border-neutral-800/80 space-y-4">
+                <div className="bg-neutral-950 text-white rounded-2xl p-5 shadow-xs border border-neutral-800 space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-neutral-900 border border-neutral-700 shrink-0">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden bg-neutral-900 border border-neutral-700 shrink-0">
                       <Image
                         src={assignedAgent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'}
                         alt={assignedAgent.name}
                         fill
-                        sizes="48px"
+                        sizes="44px"
                         className="object-cover"
                       />
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-white">{assignedAgent.name}</h4>
-                      <p className="text-xs text-neutral-400 font-medium">{assignedAgent.designation}</p>
-                      <p className="text-[11px] text-neutral-500">{assignedAgent.experience_years}+ Years in Panvel Real Estate</p>
+                      <p className="text-xs text-neutral-400 font-light">{assignedAgent.designation} • {assignedAgent.experience_years}+ Yrs</p>
                     </div>
                   </div>
-
-                  <div className="pt-2 border-t border-neutral-800/80 text-xs text-neutral-300">
-                    <p>“I accompany every buyer personally. No pushy sales, just honest advice and verified titles.”</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Direct VIP Action Card (Zero Forms) */}
-              <div className="bg-white rounded-2xl p-6 border border-neutral-200/90 shadow-sm space-y-5">
-                <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 block mb-1">
-                    Direct Inquiry
-                  </span>
-                  <h4 className="text-base font-semibold text-black tracking-tight">
-                    Interested in this Property?
-                  </h4>
-                  <p className="text-xs text-neutral-500 font-light mt-0.5 leading-relaxed">
-                    Connect directly with the broker. Receive floor plans, title documents, and pricing breakdown on WhatsApp.
+                  <p className="text-xs text-neutral-400 font-light pt-2 border-t border-neutral-800">
+                    “Personal accompanied site visits in AC cab. Transparent paperwork & RERA scrutiny.”
                   </p>
                 </div>
-
-                <div className="space-y-2.5">
-                  <WhatsAppButton
-                    phone={settings.whatsapp_number}
-                    size="md"
-                    label="Inquire via WhatsApp"
-                    className="w-full justify-center"
-                    customMessage={`Hi Rajesh, I am interested in: ${property.title} in ${property.locality} (${priceFormatted}). Please share details.`}
-                  />
-
-                  <a
-                    href={`tel:${settings.phone_number.replace(/\s+/g, '')}`}
-                    className="w-full py-2.5 px-4 rounded-xl border border-neutral-300 hover:border-black text-black text-xs font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    <span>Call Broker ({settings.phone_number})</span>
-                  </a>
-
-                  <a
-                    href={`https://wa.me/${settings.whatsapp_number.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi Rajesh, please share the official brochure and floor plan PDF for ${property.title} (${property.locality}).`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 px-4 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-medium transition-colors flex items-center justify-center gap-2"
-                  >
-                    <FileText className="w-3.5 h-3.5 text-neutral-600" />
-                    <span>Get Brochure on WhatsApp</span>
-                  </a>
-                </div>
-
-                <div className="pt-3 border-t border-neutral-100 space-y-1.5 text-[11px] text-neutral-500 font-light">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>Free AC cab pickup for site visits</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>100% legal title & RERA scrutiny</span>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Similar Properties Section */}
         {similarProperties.length > 0 && (
-          <div className="pt-10 border-t border-slate-200 space-y-6">
+          <div className="pt-12 border-t border-neutral-100 space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                <h3 className="text-xl sm:text-2xl font-normal text-black tracking-tight">
                   Similar Properties in {property.locality}
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">Explore other verified options nearby</p>
+                <p className="text-xs text-neutral-500 font-light mt-0.5">Explore curated residences nearby</p>
               </div>
               <Link
                 href={`/properties?locality=${property.locality}`}
@@ -449,8 +408,8 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
         )}
       </main>
 
-      {/* Mobile Sticky Action Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-neutral-200 px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3">
+      {/* Mobile Sticky Action Bar (Clean, zero overlap, high z-index) */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-neutral-200 px-4 py-3 shadow-[0_-4px_25px_rgba(0,0,0,0.06)] flex items-center justify-between gap-3">
         <div className="min-w-0">
           <span className="text-[10px] text-neutral-500 uppercase tracking-wider block font-semibold">Total Price</span>
           <span className="text-sm sm:text-base font-bold text-black leading-tight block truncate">{priceFormatted}</span>
@@ -458,7 +417,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
         <div className="flex items-center gap-2 shrink-0">
           <a
             href={`tel:${settings.phone_number.replace(/[^0-9+]/g, '')}`}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-neutral-300 text-xs font-medium text-black bg-white hover:bg-neutral-50 transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-neutral-300 text-xs font-medium text-black bg-white hover:bg-neutral-50 transition-colors"
           >
             <Phone className="w-3.5 h-3.5" />
             <span>Call</span>
@@ -467,18 +426,13 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
             href={`https://wa.me/${settings.whatsapp_number.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hi Rajesh, I am interested in visiting: ${property.title} in ${property.locality} (${priceFormatted}). https://propertylink.in/property/${property.slug}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium text-white bg-black hover:bg-neutral-800 transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-medium text-white bg-black hover:bg-neutral-800 transition-colors shadow-xs"
           >
             <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
             <span>WhatsApp</span>
           </a>
         </div>
       </div>
-
-      <WhatsAppButton
-        phone={settings.whatsapp_number}
-        variant="floating"
-      />
 
       <Footer settings={settings} />
     </div>

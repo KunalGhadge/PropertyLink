@@ -90,12 +90,13 @@ export function WhatsAppButton({
         onClick={handleClick}
         aria-label="Chat on WhatsApp"
         className={cn(
-          'fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-neutral-950/95 text-white shadow-2xl hover:bg-black active:scale-95 transition-all duration-200 border border-neutral-800/80 backdrop-blur-md group',
+          'fixed bottom-5 right-5 z-40 flex items-center justify-center rounded-full bg-neutral-950 text-white shadow-2xl hover:bg-black active:scale-95 transition-all duration-200 border border-neutral-800/80 backdrop-blur-md group',
+          'w-12 h-12 sm:w-auto sm:h-auto sm:px-4 sm:py-2.5 sm:gap-2.5',
           className
         )}
       >
-        <MessageCircle className="w-4 h-4 text-emerald-400 fill-current group-hover:scale-110 transition-transform" />
-        <span className="text-xs font-medium tracking-tight">Chat with Broker</span>
+        <MessageCircle className="w-5 h-5 text-emerald-400 fill-current group-hover:scale-110 transition-transform shrink-0" />
+        <span className="hidden sm:inline text-xs font-medium tracking-tight">Chat with Broker</span>
       </a>
     )
   }

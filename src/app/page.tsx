@@ -157,54 +157,92 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Broker Profile & Credentials (Clean Architectural Luxury) */}
-      <section className="py-16 sm:py-24 bg-neutral-50/70 border-y border-neutral-200/80 text-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Broker Portrait */}
-            <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="relative w-full max-w-[280px] sm:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-100 shadow-sm">
+      {/* 6. Founder & Principal Broker Section (Standout, Prestigious, Executive Advisory) */}
+      <section className="py-20 sm:py-28 bg-[#0c0d10] text-white border-y border-neutral-800/80 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Left: Founder Portrait with Executive Presentation */}
+            <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
+              <div className="relative w-full max-w-[320px] sm:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-700/80 bg-neutral-900 shadow-2xl group">
                 <Image
                   src={settings.broker_photo_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80'}
                   alt={settings.broker_name || 'Rajesh Sharma'}
                   fill
-                  sizes="(max-width: 768px) 280px, 400px"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 320px, 420px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-102"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+
+                {/* Floating Verified Badge */}
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white text-[11px] font-medium">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>MahaRERA: {(settings.rera_number || 'A52000012345').replace(/^MahaRERA:?\s*/i, '')}</span>
+                </div>
+
+                {/* Bottom Overlay Identity */}
+                <div className="absolute bottom-5 left-5 right-5 text-white">
+                  <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-widest block mb-0.5">
+                    Founder & Principal Advisor
+                  </span>
+                  <h4 className="text-xl sm:text-2xl font-normal tracking-tight text-white">
+                    {settings.broker_name}
+                  </h4>
+                  <p className="text-xs text-neutral-300 font-light mt-0.5">
+                    14+ Years Dedicated Panvel & Kharghar Corridor
+                  </p>
+                </div>
               </div>
-              <div className="text-center sm:text-left mt-3">
-                <h4 className="text-base sm:text-lg font-medium text-black">{settings.broker_name}</h4>
-                <p className="text-xs text-neutral-500 font-light">
-                  {settings.broker_designation} • {settings.broker_experience_years}+ Years Experience
-                </p>
+
+              {/* Direct Guarantee Tag */}
+              <div className="hidden sm:flex items-center gap-2 mt-4 text-xs text-neutral-400 font-light">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Zero Buyer Brokerage Guaranteed on Developer Launches</span>
               </div>
             </div>
 
-            {/* Broker Information */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-neutral-200 text-neutral-800 text-xs font-medium tracking-wide">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>MahaRERA: {settings.rera_number}</span>
+            {/* Right: Authoritative Personal Philosophy & Standout Proof */}
+            <div className="lg:col-span-7 space-y-6">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 block mb-2">
+                  Who You Work With
+                </span>
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight leading-tight">
+                  Direct founder advisory.<br />
+                  <span className="text-neutral-400">No telemarketers. No junior agents.</span>
+                </h3>
               </div>
 
-              <h3 className="text-2xl sm:text-4xl font-normal text-black tracking-tight leading-snug">
-                {settings.about_title}
-              </h3>
-
-              <p className="text-sm sm:text-base text-neutral-600 font-light leading-relaxed">
-                {settings.about_description}
+              {/* Personal Statement Quote */}
+              <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed border-l-2 border-white/30 pl-4 py-1 italic">
+                “When you acquire a home in Navi Mumbai, you are committing a lifetime of savings. I personally scrutinize every title deed, accompany you on site visits in my private AC cab, and negotiate developer pricing directly for you.”
               </p>
 
-              {/* Areas Served Chips */}
-              <div>
-                <span className="text-xs uppercase font-medium tracking-wider text-neutral-400 block mb-2">
-                  Micro-Markets Served
+              {/* 3 Standout High-Confidence Numbers */}
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/10 text-center sm:text-left">
+                  <span className="text-xl sm:text-3xl font-light text-white block tracking-tight">14+</span>
+                  <span className="text-[10px] sm:text-[11px] text-neutral-400 font-light mt-0.5 block leading-tight">Years Local Advisory</span>
+                </div>
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/10 text-center sm:text-left">
+                  <span className="text-xl sm:text-3xl font-light text-white block tracking-tight">1,200+</span>
+                  <span className="text-[10px] sm:text-[11px] text-neutral-400 font-light mt-0.5 block leading-tight">Families Housed</span>
+                </div>
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/10 text-center sm:text-left">
+                  <span className="text-xl sm:text-3xl font-light text-white block tracking-tight">0%</span>
+                  <span className="text-[10px] sm:text-[11px] text-neutral-400 font-light mt-0.5 block leading-tight">Buyer Commission</span>
+                </div>
+              </div>
+
+              {/* Micro-markets covered */}
+              <div className="pt-1">
+                <span className="text-[11px] uppercase font-medium tracking-wider text-neutral-400 block mb-2">
+                  Specialized Micro-Markets
                 </span>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {settings.areas_served.map((area) => (
                     <span
                       key={area}
-                      className="px-3 py-1 rounded-full bg-white text-neutral-700 text-xs font-normal border border-neutral-200 hover:border-black transition-colors"
+                      className="px-3 py-1 rounded-full bg-white/5 text-neutral-300 text-xs font-light border border-white/10 hover:border-white/30 transition-colors"
                     >
                       {area}
                     </span>
@@ -213,20 +251,21 @@ export default function HomePage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                <WhatsAppButton
+                  phone={settings.whatsapp_number}
+                  size="lg"
+                  label="Consult Directly with Rajesh"
+                  customMessage={`Hi ${settings.broker_name}, I would like to consult with you directly regarding verified properties in Navi Mumbai.`}
+                  className="justify-center"
+                />
                 <a
                   href={`tel:${settings.phone_number.replace(/\s+/g, '')}`}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-neutral-300 hover:border-black text-black font-semibold text-xs uppercase tracking-wider transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 hover:border-white text-white font-medium text-xs uppercase tracking-wider transition-colors"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>Call {settings.phone_number}</span>
                 </a>
-                <WhatsAppButton
-                  phone={settings.whatsapp_number}
-                  size="md"
-                  label="Enquire on WhatsApp"
-                  className="justify-center"
-                />
               </div>
             </div>
           </div>

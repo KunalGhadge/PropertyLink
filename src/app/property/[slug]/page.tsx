@@ -354,26 +354,38 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
                 />
               </div>
 
-              {/* Agent Profile Card */}
+              {/* Dedicated Advisor Profile Card (Standout, High Trust) */}
               {assignedAgent && (
-                <div className="bg-neutral-50 rounded-2xl p-4 border border-neutral-200/80 space-y-2.5">
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-neutral-200 border border-neutral-300 shrink-0">
+                <div className="bg-[#0c0d10] text-white rounded-2xl p-5 border border-neutral-800 space-y-3.5 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-widest">
+                      Your Dedicated Advisor
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[10px] text-emerald-400 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      MahaRERA Verified
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3.5">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-neutral-800 border border-neutral-700 shrink-0">
                       <Image
                         src={assignedAgent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'}
                         alt={assignedAgent.name}
                         fill
-                        sizes="40px"
+                        sizes="48px"
                         className="object-cover"
                       />
                     </div>
-                    <div>
-                      <h4 className="text-xs font-semibold text-black">{assignedAgent.name}</h4>
-                      <p className="text-[11px] text-neutral-500 font-light">{assignedAgent.designation} • {assignedAgent.experience_years}+ Yrs Experience</p>
+                    <div className="min-w-0">
+                      <h4 className="text-sm font-medium text-white truncate">{assignedAgent.name}</h4>
+                      <p className="text-xs text-neutral-400 font-light truncate">{assignedAgent.designation}</p>
+                      <p className="text-[10px] text-neutral-500 mt-0.5">{assignedAgent.experience_years}+ Years Local Market Advisory</p>
                     </div>
                   </div>
-                  <p className="text-[11px] text-neutral-500 font-light pt-2 border-t border-neutral-200/60 leading-relaxed">
-                    “Personal accompanied site visits in AC cab. 100% transparent paperwork & title scrutiny.”
+
+                  <p className="text-xs text-neutral-300 font-light pt-2.5 border-t border-neutral-800 leading-relaxed italic">
+                    “Personal accompanied site visits in private AC cab. 100% legal scrutiny & zero buyer brokerage.”
                   </p>
                 </div>
               )}

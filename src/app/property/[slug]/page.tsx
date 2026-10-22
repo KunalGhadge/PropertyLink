@@ -356,24 +356,24 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
 
               {/* Agent Profile Card */}
               {assignedAgent && (
-                <div className="bg-neutral-950 text-white rounded-2xl p-5 shadow-xs border border-neutral-800 space-y-3">
+                <div className="bg-neutral-50 rounded-2xl p-4 border border-neutral-200/80 space-y-2.5">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-11 h-11 rounded-full overflow-hidden bg-neutral-900 border border-neutral-700 shrink-0">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-neutral-200 border border-neutral-300 shrink-0">
                       <Image
                         src={assignedAgent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'}
                         alt={assignedAgent.name}
                         fill
-                        sizes="44px"
+                        sizes="40px"
                         className="object-cover"
                       />
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-white">{assignedAgent.name}</h4>
-                      <p className="text-xs text-neutral-400 font-light">{assignedAgent.designation} • {assignedAgent.experience_years}+ Yrs</p>
+                      <h4 className="text-xs font-semibold text-black">{assignedAgent.name}</h4>
+                      <p className="text-[11px] text-neutral-500 font-light">{assignedAgent.designation} • {assignedAgent.experience_years}+ Yrs Experience</p>
                     </div>
                   </div>
-                  <p className="text-xs text-neutral-400 font-light pt-2 border-t border-neutral-800">
-                    “Personal accompanied site visits in AC cab. Transparent paperwork & RERA scrutiny.”
+                  <p className="text-[11px] text-neutral-500 font-light pt-2 border-t border-neutral-200/60 leading-relaxed">
+                    “Personal accompanied site visits in AC cab. 100% transparent paperwork & title scrutiny.”
                   </p>
                 </div>
               )}

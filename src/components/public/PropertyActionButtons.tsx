@@ -57,94 +57,77 @@ export function PropertyActionButtons({
   }
 
   return (
-    <>
-      <div className="space-y-3">
-        {/* Primary WhatsApp Enquiry */}
-        <WhatsAppButton
-          propertyId={propertyId}
-          propertyTitle={propertyTitle}
-          price={priceFormatted}
-          location={locality}
-          phone={whatsappNumber}
-          propertySlug={propertySlug}
-          propertyUrl={propertySlug ? `/property/${propertySlug}` : undefined}
-          label="Enquire on WhatsApp"
-          size="lg"
-          className="w-full shadow-md"
-        />
+    <div className="space-y-3">
+      {/* Primary WhatsApp Action */}
+      <WhatsAppButton
+        propertyId={propertyId}
+        propertyTitle={propertyTitle}
+        price={priceFormatted}
+        location={locality}
+        phone={whatsappNumber}
+        propertySlug={propertySlug}
+        propertyUrl={propertySlug ? `/property/${propertySlug}` : undefined}
+        label="Chat on WhatsApp"
+        size="lg"
+        className="w-full bg-black text-white hover:bg-neutral-800 rounded-xl py-3.5 text-xs font-semibold uppercase tracking-wider shadow-xs"
+      />
 
-        {/* Call Broker & Book Visit Row */}
-        <div className="grid grid-cols-2 gap-2.5">
+      {/* Call Direct & Schedule Visit Row */}
+      <div className="grid grid-cols-2 gap-2">
+        <a
+          href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
+          className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-black font-medium text-xs transition-colors"
+        >
+          <Phone className="w-3.5 h-3.5 text-neutral-600" />
+          <span>Call Advisor</span>
+        </a>
+
+        <button
+          onClick={handleBookVisitWhatsApp}
+          className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-black font-medium text-xs transition-colors cursor-pointer"
+        >
+          <Calendar className="w-3.5 h-3.5 text-neutral-600" />
+          <span>Book Visit</span>
+        </button>
+      </div>
+
+      {/* Secondary Utilities: Brochure & Share */}
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500 font-light">
+        {brochureUrl ? (
           <a
-            href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
-            className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-black hover:bg-neutral-800 text-white font-medium text-xs sm:text-sm transition-all shadow-xs active:scale-98"
+            href={brochureUrl}
+            download
+            className="inline-flex items-center gap-1 text-neutral-700 hover:text-black font-medium transition-colors"
           >
-            <Phone className="w-4 h-4 text-neutral-300" />
-            <span>Call Broker</span>
+            <Download className="w-3.5 h-3.5 text-neutral-400" />
+            <span>Brochure PDF</span>
           </a>
-
-          <button
-            onClick={handleBookVisitWhatsApp}
-            className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl border border-neutral-300 hover:border-black bg-white hover:bg-neutral-50 text-black font-medium text-xs sm:text-sm transition-all shadow-xs active:scale-98 cursor-pointer"
-          >
-            <Calendar className="w-4 h-4 text-neutral-700" />
-            <span>Book Visit</span>
-          </button>
-        </div>
-
-        {/* Share & Copy Link */}
-        <div className="grid grid-cols-2 gap-2.5 pt-1">
-          <button
-            onClick={handleShareWhatsApp}
-            className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/60 hover:bg-neutral-100 text-neutral-800 text-xs font-medium transition-colors"
-          >
-            <Share2 className="w-3.5 h-3.5 text-neutral-600" />
-            <span>Share on WhatsApp</span>
-          </button>
-
+        ) : (
           <button
             onClick={handleCopy}
-            className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/60 hover:bg-neutral-100 text-neutral-800 text-xs font-medium transition-colors"
+            className="inline-flex items-center gap-1 text-neutral-700 hover:text-black font-medium transition-colors cursor-pointer"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5 text-neutral-500" />}
-            <span>{copied ? 'Link Copied!' : 'Copy Link'}</span>
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5 text-neutral-400" />}
+            <span>{copied ? 'Link Copied' : 'Copy Link'}</span>
           </button>
-        </div>
-
-        {/* Downloads */}
-        {(brochureUrl || floorPlanUrl) && (
-          <div className="pt-3 border-t border-neutral-100 flex items-center gap-2">
-            {brochureUrl && (
-              <a
-                href={brochureUrl}
-                download
-                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-medium text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded-xl transition-colors"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Brochure PDF</span>
-              </a>
-            )}
-            {floorPlanUrl && (
-              <a
-                href={floorPlanUrl}
-                download
-                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-medium text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded-xl transition-colors"
-              >
-                <FileText className="w-3.5 h-3.5" />
-                <span>Floor Plan</span>
-              </a>
-            )}
-          </div>
         )}
 
-        {/* Owner Contact (Controlled by Broker) */}
-        {!hideOwnerContact && ownerPhone && (
-          <div className="mt-3 p-3 bg-neutral-50 border border-neutral-200 rounded-xl text-xs text-neutral-800">
-            <span className="font-semibold block">Owner Contact:</span>
-            <span>{ownerName || 'Property Owner'}: {formatPhoneNumber(ownerPhone)}</span>
-          </div>
-        )}
+        <button
+          onClick={handleShareWhatsApp}
+          className="inline-flex items-center gap-1 text-neutral-700 hover:text-black font-medium transition-colors cursor-pointer"
+        >
+          <Share2 className="w-3.5 h-3.5 text-neutral-400" />
+          <span>Share Property</span>
+        </button>
       </div>
-    </>
+
+      {/* Owner Contact (if visible) */}
+      {!hideOwnerContact && ownerPhone && (
+        <div className="mt-3 p-3 bg-neutral-50 border border-neutral-200 rounded-xl text-xs text-neutral-800">
+          <span className="font-semibold block">Owner: {ownerName || 'Direct Owner'}</span>
+          <span className="text-neutral-500">{formatPhoneNumber(ownerPhone)}</span>
+        </div>
+      )}
+    </div>
   )
 }

@@ -12,8 +12,8 @@ interface AnimatedHeadingProps {
 export function AnimatedHeading({
   text,
   className = 'text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-4',
-  charDelay = 30,
-  initialDelay = 200,
+  charDelay = 25,
+  initialDelay = 150,
 }: AnimatedHeadingProps) {
   const [isTriggered, setIsTriggered] = useState(false)
   const lines = text.split('\n')
@@ -25,30 +25,47 @@ export function AnimatedHeading({
     return () => clearTimeout(timer)
   }, [initialDelay])
 
+  let globalCharIndex = 0
+
   return (
-    <h1 className={className} style={{ letterSpacing: '-0.04em' }}>
-      {lines.map((line, lineIndex) => (
-        <span key={lineIndex} className="block overflow-hidden">
-          {Array.from(line).map((char, charIndex) => {
-            const delay =
-              lineIndex * line.length * charDelay + charIndex * charDelay
-            return (
-              <span
-                key={charIndex}
-                className="inline-block transition-all duration-500"
-                style={{
-                  transitionDelay: `${delay}ms`,
-                  opacity: isTriggered ? 1 : 0,
-                  transform: isTriggered ? 'translateX(0)' : 'translateX(-18px)',
-                  transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </span>
-            )
-          })}
-        </span>
-      ))}
+    <h1 className={className} style={{ letterSpacing: '-0.03em' }}>
+      {lines.map((line, lineIndex) => {
+        const words = line.split(' ')
+        return (
+          <span key={lineIndex} className="block overflow-hidden">
+            {words.map((word, wordIndex) => {
+              const chars = Array.from(word)
+              return (
+                <span
+                  key={wordIndex}
+                  className="inline-block whitespace-nowrap mr-[0.28em] last:mr-0"
+                >
+                  {chars.map((char) => {
+                    const delay = globalCharIndex * charDelay + lineIndex * 100
+                    globalCharIndex++
+                    return (
+                      <span
+                        key={globalCharIndex}
+                        className="inline-block transition-all duration-500 ease-out"
+                        style={{
+                          transitionDelay: `${delay}ms`,
+                          opacity: isTriggered ? 1 : 0,
+                          transform: isTriggered
+                            ? 'translate3d(0, 0, 0)'
+                            : 'translate3d(0, 18px, 0)',
+                          transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                        }}
+                      >
+                        {char}
+                      </span>
+                    )
+                  })}
+                </span>
+              )
+            })}
+          </span>
+        )
+      })}
     </h1>
   )
 }

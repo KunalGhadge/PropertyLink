@@ -167,14 +167,15 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             {/* Left: Founder Portrait with Executive Presentation */}
-            <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
-              <ScrollReveal direction="left" delay={40}>
-                <div className="relative w-full max-w-[320px] sm:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-700/80 bg-neutral-900 shadow-2xl group">
+            <div className="lg:col-span-5 w-full flex flex-col items-center lg:items-start">
+              <ScrollReveal direction="up" delay={40} className="w-full flex flex-col items-center lg:items-start">
+                <div className="relative w-[280px] sm:w-[340px] h-[380px] sm:h-[440px] rounded-2xl overflow-hidden border border-neutral-700/80 bg-neutral-900 shadow-2xl group shrink-0">
                   <Image
                     src={settings.broker_photo_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80'}
                     alt={settings.broker_name || 'Rajesh Sharma'}
                     fill
-                    sizes="(max-width: 768px) 320px, 420px"
+                    sizes="(max-width: 640px) 280px, 340px"
+                    priority
                     className="object-cover transition-transform duration-700 group-hover:scale-102"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
@@ -199,8 +200,8 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Direct Guarantee Tag */}
-                <div className="hidden sm:flex items-center gap-2 mt-4 text-xs text-neutral-400 font-light">
+                {/* Direct Guarantee Tag (Visible on mobile & desktop) */}
+                <div className="flex items-center gap-2 mt-4 text-xs text-neutral-400 font-light text-center sm:text-left">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Zero Buyer Brokerage Guaranteed on Developer Launches</span>
                 </div>

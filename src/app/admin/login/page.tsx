@@ -10,7 +10,6 @@ export default function AdminLoginPage() {
   const [email, setEmail] = useState('admin@apexrealty.in')
   const [password, setPassword] = useState('Admin@PropertyLink2026!')
   const [isLoading, setIsLoading] = useState(false)
-  const [role, setRole] = useState<'broker_admin' | 'agent'>('broker_admin')
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,17 +26,6 @@ export default function AdminLoginPage() {
     }, 350)
   }
 
-  const setRoleSelection = (selectedRole: 'broker_admin' | 'agent') => {
-    setRole(selectedRole)
-    if (selectedRole === 'broker_admin') {
-      setEmail('admin@apexrealty.in')
-      setPassword('Admin@PropertyLink2026!')
-    } else {
-      setEmail('agent.rahul@apexrealty.in')
-      setPassword('agent123')
-    }
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-neutral-950 text-white relative">
       <div className="w-full max-w-sm sm:max-w-md bg-[#0e1014] border border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
@@ -47,7 +35,7 @@ export default function AdminLoginPage() {
             <Building2 className="w-5 h-5" />
           </div>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 block">
-            Apex Realty Panvel • Advisor Operations
+            Apex Realty Panvel • Operations Portal
           </span>
           <h1 className="text-2xl font-normal text-white tracking-tight">
             Broker Portal Sign In
@@ -55,32 +43,6 @@ export default function AdminLoginPage() {
           <p className="text-xs text-neutral-400 font-light">
             Authorized management for property inventory, buyer leads, and site settings.
           </p>
-        </div>
-
-        {/* Role Selector Pill */}
-        <div className="grid grid-cols-2 p-1 bg-neutral-900 rounded-xl border border-neutral-800 text-xs">
-          <button
-            type="button"
-            onClick={() => setRoleSelection('broker_admin')}
-            className={`py-2 px-3 rounded-lg font-medium transition-all cursor-pointer ${
-              role === 'broker_admin'
-                ? 'bg-white text-black shadow-xs font-semibold'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            Principal Broker
-          </button>
-          <button
-            type="button"
-            onClick={() => setRoleSelection('agent')}
-            className={`py-2 px-3 rounded-lg font-medium transition-all cursor-pointer ${
-              role === 'agent'
-                ? 'bg-white text-black shadow-xs font-semibold'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            Area Consultant
-          </button>
         </div>
 
         {/* Single, Clean Login Form */}

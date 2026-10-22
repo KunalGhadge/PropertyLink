@@ -59,11 +59,11 @@ export function PropertyCard({ property, className = '', priority = false }: Pro
   }
 
   return (
-    <article className={`group flex flex-col bg-transparent ${className}`}>
+    <article className={`group flex flex-col bg-transparent card-interactive ${className}`}>
       {/* 1. Architectural Cover Photo */}
       <Link
         href={propertyUrl}
-        className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-100 block mb-4"
+        className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-100 block mb-4 shadow-xs"
       >
         <Image
           src={coverImage}
@@ -77,11 +77,12 @@ export function PropertyCard({ property, className = '', priority = false }: Pro
         {/* Top Badges: Status / MahaRERA */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 items-center z-10">
           {property.status === 'sold' ? (
-            <span className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide uppercase bg-black text-white">
+            <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold tracking-wide uppercase bg-black text-white">
               Sold
             </span>
           ) : property.is_hot_deal ? (
-            <span className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide uppercase bg-white/95 text-black backdrop-blur-sm shadow-sm">
+            <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold tracking-wide uppercase bg-white/95 text-black backdrop-blur-sm shadow-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-live-dot" />
               Featured
             </span>
           ) : null}

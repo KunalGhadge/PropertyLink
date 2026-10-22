@@ -7,6 +7,7 @@ import { getSiteSettings, getAgents } from '@/lib/data/store'
 import { Navbar } from '@/components/public/Navbar'
 import { Footer } from '@/components/public/Footer'
 import { WhatsAppButton } from '@/components/public/WhatsAppButton'
+import { AboutTeamSection } from '@/components/public/AboutTeamSection'
 
 export const metadata: Metadata = {
   title: 'About Apex Realty | Panvel & Navi Mumbai Real Estate Advisory',
@@ -161,69 +162,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Members Section */}
-        <section className="space-y-10">
-          <div className="max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 block mb-2">
-              Boutique Team
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-normal text-black tracking-tight">
-              Meet Our Property Specialists
-            </h2>
-            <p className="text-sm text-neutral-500 font-light mt-1">
-              Local neighborhood consultants living and working in Navi Mumbai.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {agents.map((agent) => (
-              <div
-                key={agent.id}
-                className="bg-white rounded-2xl border border-neutral-200/90 p-7 text-center space-y-4 hover:border-black transition-all"
-              >
-                <div className="relative w-20 h-20 rounded-full overflow-hidden mx-auto bg-neutral-100 border border-neutral-200">
-                  <Image
-                    src={agent.avatar_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80'}
-                    alt={agent.name}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-base font-medium text-black">{agent.name}</h3>
-                  <p className="text-xs text-neutral-500 font-light mt-0.5">{agent.designation}</p>
-                  <p className="text-[11px] text-neutral-400 font-light mt-0.5">{agent.experience_years} Years Experience</p>
-                </div>
-                <div className="pt-1 flex flex-wrap justify-center gap-1.5">
-                  {agent.specialization?.map((spec) => (
-                    <span
-                      key={spec}
-                      className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-600 text-[10px] font-normal"
-                    >
-                      {spec}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-3 border-t border-neutral-100 flex items-center justify-center gap-2">
-                  <WhatsAppButton
-                    phone={agent.whatsapp_number || agent.phone}
-                    size="sm"
-                    label="WhatsApp"
-                    className="px-4 py-2 text-xs"
-                  />
-                  <a
-                    href={`tel:${agent.phone}`}
-                    aria-label={`Call ${agent.name}`}
-                    className="p-2 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors"
-                  >
-                    <Phone className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Team Members Section (Live Reactive) */}
+        <AboutTeamSection initialAgents={agents} />
 
         {/* Private Consultation Banner */}
         <section className="bg-black text-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-neutral-900">

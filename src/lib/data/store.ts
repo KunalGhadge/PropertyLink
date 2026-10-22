@@ -22,6 +22,44 @@ const state: GlobalState = {
   testimonials: [...DEMO_TESTIMONIALS],
 }
 
+// Hydrate from browser localStorage on client load
+if (typeof window !== 'undefined') {
+  try {
+    const savedAgents = localStorage.getItem('propertylink_agents')
+    if (savedAgents) state.agents = JSON.parse(savedAgents)
+
+    const savedProps = localStorage.getItem('propertylink_properties')
+    if (savedProps) state.properties = JSON.parse(savedProps)
+
+    const savedSettings = localStorage.getItem('propertylink_settings')
+    if (savedSettings) state.settings = JSON.parse(savedSettings)
+
+    const savedLeads = localStorage.getItem('propertylink_leads')
+    if (savedLeads) state.leads = JSON.parse(savedLeads)
+
+    const savedVisits = localStorage.getItem('propertylink_site_visits')
+    if (savedVisits) state.siteVisits = JSON.parse(savedVisits)
+  } catch (e) {
+    console.warn('Failed to load state from localStorage:', e)
+  }
+}
+
+function persistState(key: 'agents' | 'properties' | 'settings' | 'leads' | 'site_visits') {
+  if (typeof window === 'undefined') return
+  try {
+    if (key === 'agents') localStorage.setItem('propertylink_agents', JSON.stringify(state.agents))
+    if (key === 'properties') localStorage.setItem('propertylink_properties', JSON.stringify(state.properties))
+    if (key === 'settings') localStorage.setItem('propertylink_settings', JSON.stringify(state.settings))
+    if (key === 'leads') localStorage.setItem('propertylink_leads', JSON.stringify(state.leads))
+    if (key === 'site_visits') localStorage.setItem('propertylink_site_visits', JSON.stringify(state.siteVisits))
+    
+    // Broadcast change across tabs and components
+    window.dispatchEvent(new CustomEvent('propertylink_store_updated', { detail: { key } }))
+  } catch (e) {
+    console.warn('Failed to persist state to localStorage:', e)
+  }
+}
+
 // ---------------- Property Store Functions ----------------
 export function getProperties(params?: {
   query?: string
@@ -192,6 +230,7 @@ export function createProperty(prop: Partial<PropertyWithImages>): PropertyWithI
     ],
   }
   state.properties.unshift(newProp)
+  persistState('properties')
   return newProp
 }
 
@@ -203,6 +242,7 @@ export function updateProperty(id: string, updates: Partial<PropertyWithImages>)
     ...updates,
     updated_at: new Date().toISOString(),
   }
+  persistState('properties')
   return state.properties[index]
 }
 
@@ -210,6 +250,7 @@ export function deleteProperty(id: string): boolean {
   const index = state.properties.findIndex((p) => p.id === id)
   if (index === -1) return false
   state.properties.splice(index, 1)
+  persistState('properties')
   return true
 }
 
@@ -219,6 +260,7 @@ export function softDeleteProperty(id: string): boolean {
   prop.status = 'hidden'
   prop.deleted_at = new Date().toISOString()
   prop.updated_at = new Date().toISOString()
+  persistState('properties')
   return true
 }
 
@@ -228,6 +270,7 @@ export function restoreProperty(id: string): boolean {
   prop.status = 'available'
   prop.deleted_at = null
   prop.updated_at = new Date().toISOString()
+  persistState('properties')
   return true
 }
 
@@ -236,6 +279,7 @@ export function markPropertyAsSold(id: string): boolean {
   if (!prop) return false
   prop.status = 'sold'
   prop.updated_at = new Date().toISOString()
+  persistState('properties')
   return true
 }
 
@@ -251,6 +295,7 @@ export function duplicateProperty(id: string): PropertyWithImages | null {
     updated_at: new Date().toISOString(),
   }
   state.properties.unshift(clone)
+  persistState('properties')
   return clone
 }
 
@@ -382,6 +427,7 @@ export function updateSiteSettings(updates: Partial<SiteSettings>): SiteSettings
     ...updates,
     updated_at: new Date().toISOString(),
   }
+  persistState('settings')
   return { ...state.settings }
 }
 
@@ -403,11 +449,39 @@ export function createAgent(agentData: Partial<Agent>): Agent {
     avatar_url: agentData.avatar_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
     experience_years: agentData.experience_years || 3,
     specialization: agentData.specialization || ['Residential Sales'],
-    is_active: true,
+    is_active: agentData.is_active ?? true,
     created_at: new Date().toISOString(),
   }
   state.agents.push(newAgent)
+  persistState('agents')
   return newAgent
+}
+
+export function updateAgent(id: string, updates: Partial<Agent>): Agent | null {
+  const index = state.agents.findIndex((a) => a.id === id)
+  if (index === -1) return null
+  state.agents[index] = {
+    ...state.agents[index],
+    ...updates,
+  }
+  persistState('agents')
+  return state.agents[index]
+}
+
+export function deleteAgent(id: string): boolean {
+  const index = state.agents.findIndex((a) => a.id === id)
+  if (index === -1) return false
+  state.agents.splice(index, 1)
+  persistState('agents')
+  return true
+}
+
+export function toggleAgentStatus(id: string): Agent | null {
+  const agent = state.agents.find((a) => a.id === id)
+  if (!agent) return null
+  agent.is_active = !agent.is_active
+  persistState('agents')
+  return agent
 }
 
 // ---------------- Testimonials Store Functions ----------------

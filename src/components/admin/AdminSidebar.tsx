@@ -15,6 +15,7 @@ import {
   ChevronRight,
   LogOut,
   BookOpen,
+  UserCheck,
 } from 'lucide-react'
 
 interface AdminSidebarProps {
@@ -33,6 +34,7 @@ export function AdminSidebar({
     { label: 'Enquiries', href: '/admin/enquiries', icon: Users2 },
     { label: 'Site Visits', href: '/admin/site-visits', icon: Calendar },
     { label: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
+    { label: 'Team & Agents', href: '/admin/team', icon: UserCheck },
     { label: 'Site Settings', href: '/admin/settings', icon: Settings },
     { label: 'Broker Guide', href: '/admin/guide', icon: BookOpen },
   ]

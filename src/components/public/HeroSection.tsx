@@ -192,6 +192,14 @@ export function HeroSection({ settings }: HeroSectionProps) {
           </div>
         </div>
       </div>
+
+      {/* Animated Scroll Down Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-1.5 pointer-events-none opacity-75">
+        <span className="text-[9px] uppercase tracking-widest text-white/60 font-mono">Explore</span>
+        <div className="w-4 h-7 rounded-full border border-white/30 flex items-start justify-center p-1">
+          <div className="w-1 h-2 rounded-full bg-white animate-bounce" />
+        </div>
+      </div>
     </section>
   )
 }

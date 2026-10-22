@@ -78,16 +78,8 @@ export function Navbar({ settings }: NavbarProps) {
             </Link>
           </nav>
 
-          {/* Right Action CTAs: Post a property / Call / WhatsApp */}
+          {/* Right Action CTAs: Call / WhatsApp */}
           <div className="hidden sm:flex items-center gap-3">
-            <Link
-              href="/admin/properties/new"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-neutral-300 text-neutral-900 text-xs font-medium hover:bg-neutral-50 transition-colors"
-            >
-              <PlusCircle className="w-3.5 h-3.5" />
-              <span>Post a property</span>
-            </Link>
-
             <a
               href={`tel:${phoneNumber.replace(/[^0-9+]/g, '')}`}
               className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-black text-white text-xs font-medium hover:bg-neutral-800 transition-colors"

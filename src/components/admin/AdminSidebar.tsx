@@ -10,7 +10,6 @@ import {
   Calendar,
   BarChart3,
   Settings,
-  UserCheck,
   ExternalLink,
   ShieldCheck,
   ChevronRight,
@@ -35,12 +34,11 @@ export function AdminSidebar({
     { label: 'Site Visits', href: '/admin/site-visits', icon: Calendar },
     { label: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
     { label: 'Site Settings', href: '/admin/settings', icon: Settings },
-    { label: 'Team & Agents', href: '/admin/team', icon: UserCheck },
     { label: 'Broker Guide', href: '/admin/guide', icon: BookOpen },
   ]
 
   return (
-    <aside className="w-64 bg-neutral-950 text-neutral-400 flex flex-col justify-between border-r border-neutral-900 shrink-0 min-h-screen">
+    <aside className="w-64 bg-neutral-950 text-neutral-400 flex flex-col justify-between border-r border-neutral-900 shrink-0 sticky top-0 h-screen overflow-y-auto">
       <div className="p-5 space-y-6">
         {/* Brand Header */}
         <div className="flex items-center gap-3 pb-5 border-b border-neutral-900">

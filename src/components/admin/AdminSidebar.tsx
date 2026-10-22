@@ -103,9 +103,18 @@ export function AdminSidebar({
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
             Apex Realty
           </span>
-          <Link href="/admin/login" className="hover:text-neutral-300">
+          <button
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                localStorage.removeItem('propertylink_auth')
+                document.cookie = 'propertylink_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+              }
+              window.location.href = '/admin/login'
+            }}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
             Sign out
-          </Link>
+          </button>
         </div>
       </div>
     </aside>

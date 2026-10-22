@@ -1,18 +1,52 @@
 'use client'
 
-import React, { useState } from 'react'
-import { usePathname } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 import { AdminNavbar } from '@/components/admin/AdminNavbar'
-import { getSiteSettings } from '@/lib/data/store'
+import { Loader2 } from 'lucide-react'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
   const isLoginPage = pathname === '/admin/login'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    if (isLoginPage) {
+      setIsAuthenticated(true)
+      return
+    }
+
+    // Check if authenticated in localStorage or cookie
+    const isAuthed =
+      typeof window !== 'undefined' &&
+      (localStorage.getItem('propertylink_auth') === 'true' ||
+        document.cookie.includes('propertylink_auth=true'))
+
+    if (!isAuthed) {
+      setIsAuthenticated(false)
+      router.replace('/admin/login')
+    } else {
+      setIsAuthenticated(true)
+    }
+  }, [isLoginPage, router, pathname])
 
   if (isLoginPage) {
     return <>{children}</>
+  }
+
+  // Loading state while verifying auth
+  if (isAuthenticated === null || isAuthenticated === false) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-950 text-white gap-3">
+        <Loader2 className="w-6 h-6 animate-spin text-neutral-400" />
+        <span className="text-xs text-neutral-400 uppercase tracking-widest font-mono">
+          Verifying Advisor Access...
+        </span>
+      </div>
+    )
   }
 
   const getPageTitle = (path: string) => {
@@ -25,12 +59,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (path.startsWith('/admin/analytics')) return 'Analytics & Conversion'
     if (path.startsWith('/admin/settings')) return 'Site Customization & Branding'
     if (path.startsWith('/admin/team')) return 'Team & Agents Management'
-    if (path.startsWith('/admin/guide')) return 'Broker Onboarding & Operations Guide'
-    return 'Broker Portal'
+    if (path.startsWith('/admin/guide')) return 'Broker Operations Manual'
+    return 'Broker Operations'
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-100 text-slate-900">
+    <div className="min-h-screen flex bg-neutral-100 text-neutral-900 selection:bg-black selection:text-white">
       {/* Desktop Sidebar */}
       <div className="hidden lg:block shrink-0">
         <AdminSidebar />

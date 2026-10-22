@@ -132,8 +132,8 @@ export function Footer({ settings }: FooterProps) {
               Terms
             </Link>
             <span>•</span>
-            <Link href="/admin" className="hover:text-neutral-300 transition-colors">
-              Portal
+            <Link href="/admin/login" className="hover:text-neutral-300 transition-colors">
+              Advisor Login
             </Link>
           </div>
         </div>

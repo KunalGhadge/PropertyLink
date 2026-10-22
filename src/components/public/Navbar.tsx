@@ -175,11 +175,11 @@ export function Navbar({ settings }: NavbarProps) {
             />
             <div className="pt-2 text-center">
               <Link
-                href="/admin"
+                href="/admin/login"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-xs text-neutral-500 hover:text-black font-medium"
               >
-                Broker Operations Portal →
+                Advisor Login →
               </Link>
             </div>
           </div>

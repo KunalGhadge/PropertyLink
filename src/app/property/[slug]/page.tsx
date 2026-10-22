@@ -208,62 +208,62 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
             />
 
             {/* Quick Specs Overview Grid */}
-            <div className="bg-neutral-50/70 rounded-2xl border border-neutral-200 p-6 shadow-xs">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">
+            <div className="bg-neutral-50/70 rounded-2xl border border-neutral-200 p-4 sm:p-6 shadow-xs">
+              <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-3 sm:mb-4">
                 Property Specifications
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Configuration</span>
-                  <span className="text-sm font-semibold text-black">{property.bhk || 0} BHK</span>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 text-xs">
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Configuration</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black">{property.bhk || 0} BHK</span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Carpet Area</span>
-                  <span className="text-sm font-semibold text-black">{formatArea(property.carpet_area, property.area_unit)}</span>
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Carpet Area</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black">{formatArea(property.carpet_area, property.area_unit)}</span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Floor Level</span>
-                  <span className="text-sm font-semibold text-black">
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Floor Level</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black truncate block">
                     {property.floor_number ? `${property.floor_number} of ${property.total_floors}` : 'Mid Floor'}
                   </span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Furnishing</span>
-                  <span className="text-sm font-semibold text-black capitalize">
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Furnishing</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black capitalize truncate block">
                     {property.furnishing.replace('_', ' ')}
                   </span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Facing / Vastu</span>
-                  <span className="text-sm font-semibold text-black">{property.facing || 'East Facing'}</span>
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Facing / Vastu</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black truncate block">{property.facing || 'East Facing'}</span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Possession</span>
-                  <span className="text-sm font-semibold text-black">{property.possession_date || 'Ready to Move'}</span>
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Possession</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black truncate block">{property.possession_date || 'Ready to Move'}</span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Bathrooms</span>
-                  <span className="text-sm font-semibold text-black">{property.bathrooms} Baths</span>
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Bathrooms</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black">{property.bathrooms} Baths</span>
                 </div>
-                <div className="p-3 bg-white rounded-xl border border-neutral-200/80">
-                  <span className="text-neutral-400 block mb-0.5 text-[11px]">Balconies</span>
-                  <span className="text-sm font-semibold text-black">{property.balconies} Balconies</span>
+                <div className="p-2.5 sm:p-3 bg-white rounded-xl border border-neutral-200/80">
+                  <span className="text-neutral-400 block mb-0.5 text-[10px] sm:text-[11px]">Balconies</span>
+                  <span className="text-xs sm:text-sm font-semibold text-black">{property.balconies} Balconies</span>
                 </div>
               </div>
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-8 shadow-xs space-y-4">
-              <h2 className="text-base font-semibold text-black tracking-tight">About this Residence</h2>
-              <div className="text-sm text-neutral-600 leading-relaxed whitespace-pre-line space-y-3 font-light">
+            <div className="bg-white rounded-2xl border border-neutral-200 p-5 sm:p-8 shadow-xs space-y-3 sm:space-y-4">
+              <h2 className="text-sm sm:text-base font-semibold text-black tracking-tight">About this Residence</h2>
+              <div className="text-xs sm:text-sm text-neutral-600 leading-relaxed whitespace-pre-line space-y-3 font-light">
                 {property.description}
               </div>
             </div>
 
             {/* Amenities Grid */}
             {property.amenities && property.amenities.length > 0 && (
-              <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-8 shadow-xs space-y-4">
-                <h2 className="text-base font-semibold text-black tracking-tight">Amenities & Lifestyle Features</h2>
+              <div className="bg-white rounded-2xl border border-neutral-200 p-5 sm:p-8 shadow-xs space-y-3 sm:space-y-4">
+                <h2 className="text-sm sm:text-base font-semibold text-black tracking-tight">Amenities & Lifestyle Features</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {property.amenities.map((amenity) => (
                     <div
@@ -329,7 +329,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
           <div className="lg:col-span-4 space-y-6">
             <div className="sticky top-24 space-y-5">
               {/* Primary Direct Broker Actions Card */}
-              <div className="bg-white rounded-2xl border border-neutral-200 p-6 shadow-xs space-y-4">
+              <div className="bg-white rounded-2xl border border-neutral-200 p-5 sm:p-6 shadow-xs space-y-4">
                 <div className="pb-2 border-b border-neutral-100 flex items-center justify-between">
                   <div>
                     <h3 className="text-base font-semibold text-black tracking-tight">Direct Broker Inquiry</h3>
